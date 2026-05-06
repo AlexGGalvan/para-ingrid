@@ -1,0 +1,240 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  min-height: 100vh;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  background: radial-gradient(120% 80% at 50% 20%, #2d1f26 0%, #120a10 55%, #0a0508 100%);
+  color: #f4e8ec;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+.poem-app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(12px + env(safe-area-inset-top, 0))
+    calc(16px + env(safe-area-inset-right, 0))
+    calc(24px + env(safe-area-inset-bottom, 0))
+    calc(16px + env(safe-area-inset-left, 0));
+  outline: none;
+}
+
+.poem-app .verses-column,
+.poem-app .verse-panel:not(.has-text) {
+  cursor: pointer;
+}
+
+.poem-app:focus-visible {
+  outline: 2px solid rgba(255, 183, 201, 0.55);
+  outline-offset: 3px;
+}
+
+.acronym {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.25rem;
+  padding: 0.5rem 0 0.75rem;
+}
+
+.acronym-track {
+  display: flex;
+  gap: clamp(6px, 2.5vw, 14px);
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.acronym-track .slot {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.2em 0.15em;
+  border: none;
+  background: none;
+  font: inherit;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 9vw, 2.65rem);
+  letter-spacing: 0.02em;
+  min-width: 0.85em;
+  text-align: center;
+  line-height: 1;
+  transition: color 0.45s ease, opacity 0.45s ease, transform 0.35s ease;
+}
+
+.acronym-track .slot:focus-visible {
+  outline: 2px solid rgba(255, 183, 201, 0.75);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.acronym-track .slot.pending {
+  cursor: default;
+  color: rgba(244, 232, 236, 0.18);
+  transform: scale(0.92);
+}
+
+.acronym-track .slot.revealed {
+  cursor: pointer;
+  color: #ffb7c9;
+  text-shadow: 0 0 28px rgba(255, 140, 170, 0.45);
+  transform: scale(1);
+}
+
+.acronym-track .slot.current {
+  color: #fff0f5;
+  text-shadow: 0 0 36px rgba(255, 200, 220, 0.65);
+  animation: pulse-letter 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse-letter {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.92;
+  }
+}
+
+.hint {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.65rem, 2.8vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 232, 236, 0.45);
+  text-align: center;
+  margin: 0 auto 0.75rem;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.45;
+  max-width: 22rem;
+  pointer-events: none;
+}
+
+.hint.is-hidden {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.verses-column {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12px, black calc(100% - 24px), transparent 100%);
+}
+
+.verse-panel {
+  margin: 0 auto;
+  padding: 0 0.15rem;
+  max-width: 28rem;
+  font-size: clamp(1.05rem, 4.1vw, 1.28rem);
+  line-height: 1.55;
+  font-weight: 400;
+  white-space: pre-line;
+  min-height: 8rem;
+}
+
+.verse-panel.verse-enter {
+  animation: verse-in 0.5s ease forwards;
+}
+
+@keyframes verse-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.extra-cta {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff6b8f, #c94b7d);
+  color: #fff;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(201, 75, 125, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.extra-cta:not(.is-visible) {
+  display: none !important;
+  pointer-events: none;
+}
+
+.extra-cta.is-visible {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  margin: 1.25rem auto 0;
+  padding: 0.9rem 1.25rem;
+}
+
+.extra-cta:active {
+  transform: scale(0.98);
+}
+
+.extra-cta:focus-visible {
+  outline: 2px solid rgba(255, 230, 240, 0.95);
+  outline-offset: 3px;
+}
+
+.extra-panel {
+  margin: 1.75rem auto 0;
+  padding: 1.35rem 0.15rem 0;
+  max-width: 28rem;
+  font-size: clamp(1.05rem, 4.1vw, 1.28rem);
+  line-height: 1.55;
+  font-weight: 400;
+  white-space: pre-line;
+  border-top: 1px solid rgba(255, 183, 201, 0.22);
+  color: #f0dfe5;
+}
+
+.extra-panel.verse-enter {
+  animation: verse-in 0.55s ease forwards;
+}
+
+.done-msg {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244, 232, 236, 0.4);
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .verse-panel,
+  .extra-panel {
+    max-width: 32rem;
+  }
+}

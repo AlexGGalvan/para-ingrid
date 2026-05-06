@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a0f14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Para Ingrid</title>
+</head>
+
+<body>
+    <main class="poem-app" id="poem-area" tabindex="0" role="application" aria-label="Poema — toca para el siguiente verso; toca una letra para volver a ese verso">
+        <div class="acronym" aria-live="polite" aria-atomic="true">
+            <div class="acronym-track" id="acronym-track"></div>
+        </div>
+
+        <p class="hint" id="hint">Toca la pantalla para el siguiente verso · Toca una letra para volver a ese verso</p>
+
+        <div class="verses-column" id="verses-column">
+            <div class="verse-panel" id="verse-panel" aria-live="polite"></div>
+            <button type="button" class="extra-cta" id="extra-cta" aria-hidden="true">¿Terminaste? Hay más</button>
+            <div class="extra-panel" id="extra-panel" hidden aria-live="polite"></div>
+            <p class="done-msg" id="done-msg" hidden>Fin.</p>
+        </div>
+
+        <!-- Poema como datos -->
+        <script type="application/json" id="poem-data">
+        {
+            "letters": ["I", "N", "G", "R", "I", "D"],
+            "lines": [
+                {"s": 0, "t": "Intento mirarte en recuerdos que no saben irse,"},
+                {"s": 0, "t": "en lugares donde tu nombre todavía respira bajito,"},
+                {"s": 0, "t": "como si el silencio hubiera aprendido a hablar de ti."},
+                {"s": 0, "t": "Y aunque trato de decirme"},
+                {"s": 0, "t": "que fuiste solo un momento,"},
+                {"s": 0, "t": "algo en mi pecho responde que no,"},
+                {"s": 0, "t": "que hay personas que no pasan,"},
+                {"s": 0, "t": "solo se quedan doliendo"},
+                {"s": 0, "t": "en una parte del alma"},
+                {"s": 0, "t": "donde nadie más puede tocar."},
+                {"s": 1, "t": "No pude hacerte pasajera,"},
+                {"s": 1, "t": "aunque quise,"},
+                {"s": 1, "t": "aunque me repetí mil veces"},
+                {"s": 1, "t": "que el tiempo también sabe borrar."},
+                {"s": 1, "t": "Pero hay amores que se quedan sentados"},
+                {"s": 1, "t": "en medio de la vida,"},
+                {"s": 1, "t": "mirando cómo uno intenta seguir,"},
+                {"s": 1, "t": "mientras por dentro todo sigue detenido"},
+                {"s": 1, "t": "en el mismo lugar"},
+                {"s": 1, "t": "donde alguien se fue sin regresar."},
+                {"s": 2, "t": "Guardo la extraña certeza de haberte encontrado"},
+                {"s": 2, "t": "como quien reconoce algo que ya le pertenecía al alma"},
+                {"s": 2, "t": "antes de saber su nombre."},
+                {"s": 2, "t": "Como Adán mirando a Eva por primera vez,"},
+                {"s": 2, "t": "yo sentí que había algo en ti"},
+                {"s": 2, "t": "hecho a la medida de mi vacío,"},
+                {"s": 2, "t": "no porque debas buscarme tú,"},
+                {"s": 2, "t": "sino porque tal vez fui yo"},
+                {"s": 2, "t": "quien tenía que encontrarte,"},
+                {"s": 2, "t": "y ahora que te encontré,"},
+                {"s": 2, "t": "me duele pensar"},
+                {"s": 2, "t": "que la vida me pida soltarte."},
+                {"s": 3, "t": "Reconozco que dolió más de lo que dije,"},
+                {"s": 3, "t": "más de lo que mi orgullo pudo aceptar,"},
+                {"s": 3, "t": "porque no solo te fuiste tú;"},
+                {"s": 3, "t": "se fue también una parte de mí"},
+                {"s": 3, "t": "que sabía sentirse viva contigo."},
+                {"s": 3, "t": "Desde entonces camino, sonrío, respiro,"},
+                {"s": 3, "t": "pero hay algo adentro que no se mueve,"},
+                {"s": 3, "t": "como si mi alma hubiera quedado"},
+                {"s": 3, "t": "esperando una respuesta"},
+                {"s": 3, "t": "en una casa vacía."},
+                {"s": 4, "t": "Ignoro cuánto pesa quererte así,"},
+                {"s": 4, "t": "cuántas penas caben en tu nombre,"},
+                {"s": 4, "t": "cuánto dolor puede cargar un amor"},
+                {"s": 4, "t": "antes de aprender a morirse."},
+                {"s": 4, "t": "Pero sé que habría vivido con todas,"},
+                {"s": 4, "t": "si me lo hubieras pedido,"},
+                {"s": 4, "t": "si al final de tanta espera"},
+                {"s": 4, "t": "hubiera estado tu abrazo"},
+                {"s": 4, "t": "cerrando la herida"},
+                {"s": 4, "t": "que tú misma dejaste abierta."},
+                {"s": 5, "t": "Después de ti, mi amor no murió;"},
+                {"s": 5, "t": "se quedó congelado,"},
+                {"s": 5, "t": "intacto, terco, callado,"},
+                {"s": 5, "t": "como una vela que no entiende de despedidas"},
+                {"s": 5, "t": "y sigue ardiendo porque todavía cree."},
+                {"s": 5, "t": "Te fuiste,"},
+                {"s": 5, "t": "pero algo mío sigue mirando hacia tu camino,"},
+                {"s": 5, "t": "no con vergüenza,"},
+                {"s": 5, "t": "sino con esa esperanza triste y limpia"},
+                {"s": 5, "t": "de quien sabe que amar también es esperar,"},
+                {"s": 5, "t": "y que si un día vuelves,"},
+                {"s": 5, "t": "mi corazón todavía sabrá reconocerte."}
+            ]
+        }
+        </script>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
