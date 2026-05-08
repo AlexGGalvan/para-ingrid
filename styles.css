@@ -13,10 +13,58 @@ body {
   min-height: 100dvh;
   min-height: 100vh;
   font-family: "Cormorant Garamond", "Times New Roman", serif;
-  background: radial-gradient(120% 80% at 50% 20%, #2d1f26 0%, #120a10 55%, #0a0508 100%);
+  background: radial-gradient(120% 80% at 50% 15%, #3a2340 0%, #160b18 52%, #08040a 100%);
   color: #f4e8ec;
   touch-action: manipulation;
   overscroll-behavior: none;
+}
+
+.poem-app {
+  position: relative;
+  isolation: isolate;
+}
+
+.poem-app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(700px 420px at 12% 12%, rgba(255, 198, 222, 0.18), transparent 60%),
+    radial-gradient(540px 360px at 86% 18%, rgba(190, 176, 255, 0.16), transparent 62%),
+    radial-gradient(520px 420px at 50% 92%, rgba(255, 138, 186, 0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 38%, rgba(255, 255, 255, 0.02));
+  filter: saturate(1.05);
+  pointer-events: none;
+}
+
+.poem-app::after {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.09) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.07) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.05) 0 1px, transparent 2px);
+  background-size: 220px 220px, 260px 260px, 240px 240px, 300px 300px;
+  opacity: 0.55;
+  transform: translateZ(0);
+  animation: float-sparkles 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float-sparkles {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+    opacity: 0.65;
+  }
 }
 
 .poem-app {
@@ -151,6 +199,11 @@ body {
   font-weight: 400;
   white-space: pre-line;
   min-height: 8rem;
+  text-shadow: 0 0 24px rgba(255, 200, 220, 0.12);
+}
+
+.verse-panel.has-text {
+  padding: 0.25rem 0.15rem 0.15rem;
 }
 
 .verse-panel.verse-enter {
@@ -172,7 +225,9 @@ body {
   box-sizing: border-box;
   border: none;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ff6b8f, #c94b7d);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
+    linear-gradient(135deg, #ff6fa3 0%, #d35bff 55%, #ffb7c9 100%);
   color: #fff;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(0.82rem, 3.2vw, 0.95rem);
@@ -180,8 +235,29 @@ body {
   letter-spacing: 0.04em;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 8px 28px rgba(201, 75, 125, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 10px 32px rgba(255, 110, 170, 0.22),
+    0 2px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.extra-cta::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 22%,
+    transparent 44%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.65s ease;
+  pointer-events: none;
 }
 
 .extra-cta:not(.is-visible) {
@@ -197,6 +273,18 @@ body {
   padding: 0.9rem 1.25rem;
 }
 
+.extra-cta:hover {
+  filter: brightness(1.03) saturate(1.06);
+  box-shadow:
+    0 14px 42px rgba(255, 140, 210, 0.24),
+    0 3px 14px rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.extra-cta:hover::before {
+  transform: translateX(120%);
+}
+
 .extra-cta:active {
   transform: scale(0.98);
 }
@@ -204,6 +292,222 @@ body {
 .extra-cta:focus-visible {
   outline: 2px solid rgba(255, 230, 240, 0.95);
   outline-offset: 3px;
+}
+
+/* Botones "Volver al menú" como acción secundaria */
+#btn-back-1,
+#btn-back-2,
+#btn-back-3 {
+  max-width: 12rem;
+  margin: 0 auto 0.85rem;
+  padding: 0.7rem 1rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04)),
+    rgba(10, 5, 8, 0.25);
+  color: rgba(255, 240, 245, 0.92);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 183, 201, 0.18) inset;
+}
+
+#btn-back-1:hover,
+#btn-back-2:hover,
+#btn-back-3:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Reiniciar: mismo estilo secundario pero más compacto */
+.btn-reset {
+  max-width: 10rem !important;
+  margin: -0.25rem auto 0.85rem !important;
+  padding: 0.62rem 0.95rem !important;
+  opacity: 0.92;
+}
+
+/* Menú centrado y con más presencia */
+#menu-view .verses-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding-bottom: 0;
+  mask-image: none;
+}
+
+#menu-view .verse-panel {
+  min-height: 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.25rem, 5vw, 1.6rem);
+  color: rgba(255, 240, 245, 0.92);
+  text-shadow: 0 0 30px rgba(255, 200, 220, 0.18);
+  margin-bottom: 0.75rem;
+}
+
+#menu-view .verse-panel.menu-title {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+  color: rgba(255, 240, 245, 0.95);
+  text-shadow:
+    0 0 30px rgba(255, 200, 220, 0.22),
+    0 0 60px rgba(190, 176, 255, 0.10);
+}
+
+.menu-verse {
+  margin: -0.35rem auto 1.05rem;
+  max-width: 26rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1rem, 4.4vw, 1.2rem);
+  line-height: 1.45;
+  color: rgba(244, 232, 236, 0.78);
+  text-shadow: 0 0 30px rgba(255, 200, 220, 0.12);
+}
+
+.menu-note {
+  margin: -0.6rem auto 1.35rem;
+  max-width: 26rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(0.98rem, 4.3vw, 1.16rem);
+  line-height: 1.5;
+  color: rgba(244, 232, 236, 0.68);
+  text-shadow: 0 0 28px rgba(255, 200, 220, 0.10);
+}
+
+.poem-meta {
+  margin: 0.15rem auto 0.55rem;
+  text-align: center;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 232, 236, 0.45);
+}
+
+.pager {
+  margin: 0.1rem auto 0.65rem;
+  text-align: center;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 183, 201, 0.5);
+}
+
+.signature {
+  margin: 1.25rem auto 0.25rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(255, 240, 245, 0.78);
+  text-shadow: 0 0 26px rgba(255, 200, 220, 0.14);
+}
+
+/* Corazones del poema "prisa" */
+.hearts {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0 0.6rem;
+  user-select: none;
+}
+
+.hearts .heart {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(1.35rem, 6.8vw, 1.8rem);
+  line-height: 1;
+  color: rgba(255, 240, 245, 0.28);
+  text-shadow: 0 0 18px rgba(255, 120, 185, 0.12);
+  transform: translateZ(0);
+  transition: transform 0.22s ease, color 0.22s ease, text-shadow 0.22s ease;
+}
+
+.hearts .heart.is-full {
+  color: #ffb7c9;
+  text-shadow: 0 0 30px rgba(255, 140, 210, 0.35);
+  transform: scale(1.06);
+}
+
+.hearts .heart.is-full:last-child {
+  animation: heart-pop 0.6s ease both;
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(0.96);
+    filter: brightness(1);
+  }
+  55% {
+    transform: scale(1.2);
+    filter: brightness(1.08);
+  }
+  100% {
+    transform: scale(1.06);
+    filter: brightness(1);
+  }
+}
+
+/* Iconos del poema "perfume" */
+.perfumes {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0 0.6rem;
+  user-select: none;
+}
+
+.perfumes .perfume {
+  width: clamp(26px, 9vw, 34px);
+  height: clamp(26px, 9vw, 34px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.26;
+  color: rgba(255, 240, 245, 0.72);
+  transform: translateZ(0) scale(0.98);
+  transition: transform 0.22s ease, opacity 0.22s ease, filter 0.22s ease, color 0.22s ease;
+}
+
+.perfumes .perfume svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 210, 0.08));
+}
+
+.perfumes .perfume.is-full {
+  opacity: 1;
+  color: rgba(255, 183, 201, 0.98);
+  filter: brightness(1.08);
+  transform: translateZ(0) scale(1.06);
+  animation: perfume-glow 0.55s ease both;
+}
+
+@keyframes perfume-glow {
+  0% {
+    transform: scale(0.98);
+    filter: brightness(1);
+  }
+  60% {
+    transform: scale(1.18);
+    filter: brightness(1.12);
+  }
+  100% {
+    transform: scale(1.06);
+    filter: brightness(1.08);
+  }
 }
 
 .extra-panel {
@@ -216,6 +520,7 @@ body {
   white-space: pre-line;
   border-top: 1px solid rgba(255, 183, 201, 0.22);
   color: #f0dfe5;
+  text-shadow: 0 0 24px rgba(255, 200, 220, 0.10);
 }
 
 .extra-panel.verse-enter {

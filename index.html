@@ -13,92 +13,191 @@
 </head>
 
 <body>
-    <main class="poem-app" id="poem-area" tabindex="0" role="application" aria-label="Poema — toca para el siguiente verso; toca una letra para volver a ese verso">
-        <div class="acronym" aria-live="polite" aria-atomic="true">
-            <div class="acronym-track" id="acronym-track"></div>
-        </div>
+    <main class="poem-app">
+        <section id="menu-view" aria-label="Menú de poemas">
+            <div class="verses-column">
+                <div class="verse-panel has-text menu-title">
+                    Proverbios 18:22
+                </div>
+                <p class="menu-verse">Quien halla esposa encuentra el bien y recibe el favor del Señor</p>
+                <button type="button" class="extra-cta is-visible" id="btn-ingrid">INGRID</button>
+                <button type="button" class="extra-cta is-visible" id="btn-prisa">¿Lo nuestro fue prisa?</button>
+                <button type="button" class="extra-cta is-visible" id="btn-perfume">¿Dónde consigo tu perfume?</button>
+                <p class="menu-note">Por el momento estas son 3 partes de mi corazón, pero mientras mi corazón lata por ti esta página seguirá creciendo.</p>
+            </div>
+        </section>
 
-        <p class="hint" id="hint">Toca la pantalla para el siguiente verso · Toca una letra para volver a ese verso</p>
+        <section id="ingrid-view" hidden>
+            <button type="button" class="extra-cta is-visible" id="btn-back-1">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-ingrid">Reiniciar</button>
+            <div id="poem-area" tabindex="0" role="application" aria-label="Poema — toca para el siguiente verso; toca una letra para volver a ese verso">
+                <div class="acronym" aria-live="polite" aria-atomic="true">
+                    <div class="acronym-track" id="acronym-track"></div>
+                </div>
 
-        <div class="verses-column" id="verses-column">
-            <div class="verse-panel" id="verse-panel" aria-live="polite"></div>
-            <button type="button" class="extra-cta" id="extra-cta" aria-hidden="true">¿Terminaste? Hay más</button>
-            <div class="extra-panel" id="extra-panel" hidden aria-live="polite"></div>
-            <p class="done-msg" id="done-msg" hidden>Fin.</p>
-        </div>
+                <p class="poem-meta" id="date-ingrid">Domingo 3 de Mayo de 2026</p>
+                <p class="hint" id="hint">Toca la pantalla para el siguiente verso · Toca una letra para volver a ese verso</p>
+                <p class="pager" id="pager-ingrid" aria-label="Progreso del poema">0/6</p>
 
-        <!-- Poema como datos -->
-        <script type="application/json" id="poem-data">
-        {
-            "letters": ["I", "N", "G", "R", "I", "D"],
-            "lines": [
-                {"s": 0, "t": "Intento mirarte en recuerdos que no saben irse,"},
-                {"s": 0, "t": "en lugares donde tu nombre todavía respira bajito,"},
-                {"s": 0, "t": "como si el silencio hubiera aprendido a hablar de ti."},
-                {"s": 0, "t": "Y aunque trato de decirme"},
-                {"s": 0, "t": "que fuiste solo un momento,"},
-                {"s": 0, "t": "algo en mi pecho responde que no,"},
-                {"s": 0, "t": "que hay personas que no pasan,"},
-                {"s": 0, "t": "solo se quedan doliendo"},
-                {"s": 0, "t": "en una parte del alma"},
-                {"s": 0, "t": "donde nadie más puede tocar."},
-                {"s": 1, "t": "No pude hacerte pasajera,"},
-                {"s": 1, "t": "aunque quise,"},
-                {"s": 1, "t": "aunque me repetí mil veces"},
-                {"s": 1, "t": "que el tiempo también sabe borrar."},
-                {"s": 1, "t": "Pero hay amores que se quedan sentados"},
-                {"s": 1, "t": "en medio de la vida,"},
-                {"s": 1, "t": "mirando cómo uno intenta seguir,"},
-                {"s": 1, "t": "mientras por dentro todo sigue detenido"},
-                {"s": 1, "t": "en el mismo lugar"},
-                {"s": 1, "t": "donde alguien se fue sin regresar."},
-                {"s": 2, "t": "Guardo la extraña certeza de haberte encontrado"},
-                {"s": 2, "t": "como quien reconoce algo que ya le pertenecía al alma"},
-                {"s": 2, "t": "antes de saber su nombre."},
-                {"s": 2, "t": "Como Adán mirando a Eva por primera vez,"},
-                {"s": 2, "t": "yo sentí que había algo en ti"},
-                {"s": 2, "t": "hecho a la medida de mi vacío,"},
-                {"s": 2, "t": "no porque debas buscarme tú,"},
-                {"s": 2, "t": "sino porque tal vez fui yo"},
-                {"s": 2, "t": "quien tenía que encontrarte,"},
-                {"s": 2, "t": "y ahora que te encontré,"},
-                {"s": 2, "t": "me duele pensar"},
-                {"s": 2, "t": "que la vida me pida soltarte."},
-                {"s": 3, "t": "Reconozco que dolió más de lo que dije,"},
-                {"s": 3, "t": "más de lo que mi orgullo pudo aceptar,"},
-                {"s": 3, "t": "porque no solo te fuiste tú;"},
-                {"s": 3, "t": "se fue también una parte de mí"},
-                {"s": 3, "t": "que sabía sentirse viva contigo."},
-                {"s": 3, "t": "Desde entonces camino, sonrío, respiro,"},
-                {"s": 3, "t": "pero hay algo adentro que no se mueve,"},
-                {"s": 3, "t": "como si mi alma hubiera quedado"},
-                {"s": 3, "t": "esperando una respuesta"},
-                {"s": 3, "t": "en una casa vacía."},
-                {"s": 4, "t": "Ignoro cuánto pesa quererte así,"},
-                {"s": 4, "t": "cuántas penas caben en tu nombre,"},
-                {"s": 4, "t": "cuánto dolor puede cargar un amor"},
-                {"s": 4, "t": "antes de aprender a morirse."},
-                {"s": 4, "t": "Pero sé que habría vivido con todas,"},
-                {"s": 4, "t": "si me lo hubieras pedido,"},
-                {"s": 4, "t": "si al final de tanta espera"},
-                {"s": 4, "t": "hubiera estado tu abrazo"},
-                {"s": 4, "t": "cerrando la herida"},
-                {"s": 4, "t": "que tú misma dejaste abierta."},
-                {"s": 5, "t": "Después de ti, mi amor no murió;"},
-                {"s": 5, "t": "se quedó congelado,"},
-                {"s": 5, "t": "intacto, terco, callado,"},
-                {"s": 5, "t": "como una vela que no entiende de despedidas"},
-                {"s": 5, "t": "y sigue ardiendo porque todavía cree."},
-                {"s": 5, "t": "Te fuiste,"},
-                {"s": 5, "t": "pero algo mío sigue mirando hacia tu camino,"},
-                {"s": 5, "t": "no con vergüenza,"},
-                {"s": 5, "t": "sino con esa esperanza triste y limpia"},
-                {"s": 5, "t": "de quien sabe que amar también es esperar,"},
-                {"s": 5, "t": "y que si un día vuelves,"},
-                {"s": 5, "t": "mi corazón todavía sabrá reconocerte."}
-            ]
-        }
-        </script>
+                <div class="verses-column" id="verses-column">
+                    <div class="verse-panel" id="verse-panel" aria-live="polite"></div>
+                    <p class="done-msg" id="done-msg" hidden>Fin.</p>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+
+                <!-- Poema como datos -->
+                <script type="application/json" id="poem-data">
+                {
+                    "letters": ["I", "N", "G", "R", "I", "D"],
+                    "lines": [
+                        {"s": 0, "t": "Intento mirarte en recuerdos que no saben irse,"},
+                        {"s": 0, "t": "en lugares donde tu nombre todavía respira bajito,"},
+                        {"s": 0, "t": "como si el silencio hubiera aprendido a hablar de ti."},
+                        {"s": 0, "t": "Y aunque trato de decirme"},
+                        {"s": 0, "t": "que fuiste solo un momento,"},
+                        {"s": 0, "t": "algo en mi pecho responde que no,"},
+                        {"s": 0, "t": "que hay personas que no pasan,"},
+                        {"s": 0, "t": "solo se quedan doliendo"},
+                        {"s": 0, "t": "en una parte del alma"},
+                        {"s": 0, "t": "donde nadie más puede tocar."},
+                        {"s": 1, "t": "No pude hacerte pasajera,"},
+                        {"s": 1, "t": "aunque quise,"},
+                        {"s": 1, "t": "aunque me repetí mil veces"},
+                        {"s": 1, "t": "que el tiempo también sabe borrar."},
+                        {"s": 1, "t": "Pero hay amores que se quedan sentados"},
+                        {"s": 1, "t": "en medio de la vida,"},
+                        {"s": 1, "t": "mirando cómo uno intenta seguir,"},
+                        {"s": 1, "t": "mientras por dentro todo sigue detenido"},
+                        {"s": 1, "t": "en el mismo lugar"},
+                        {"s": 1, "t": "donde alguien se fue sin regresar."},
+                        {"s": 2, "t": "Guardo la extraña certeza de haberte encontrado"},
+                        {"s": 2, "t": "como quien reconoce algo que ya le pertenecía al alma"},
+                        {"s": 2, "t": "antes de saber su nombre."},
+                        {"s": 2, "t": "Como Adán mirando a Eva por primera vez,"},
+                        {"s": 2, "t": "yo sentí que había algo en ti"},
+                        {"s": 2, "t": "hecho a la medida de mi vacío,"},
+                        {"s": 2, "t": "no porque debas buscarme tú,"},
+                        {"s": 2, "t": "sino porque tal vez fui yo"},
+                        {"s": 2, "t": "quien tenía que encontrarte,"},
+                        {"s": 2, "t": "y ahora que te encontré,"},
+                        {"s": 2, "t": "me duele pensar"},
+                        {"s": 2, "t": "que la vida me pida soltarte."},
+                        {"s": 3, "t": "Reconozco que dolió más de lo que dije,"},
+                        {"s": 3, "t": "más de lo que mi orgullo pudo aceptar,"},
+                        {"s": 3, "t": "porque no solo te fuiste tú;"},
+                        {"s": 3, "t": "se fue también una parte de mí"},
+                        {"s": 3, "t": "que sabía sentirse viva contigo."},
+                        {"s": 3, "t": "Desde entonces camino, sonrío, respiro,"},
+                        {"s": 3, "t": "pero hay algo adentro que no se mueve,"},
+                        {"s": 3, "t": "como si mi alma hubiera quedado"},
+                        {"s": 3, "t": "esperando una respuesta"},
+                        {"s": 3, "t": "en una casa vacía."},
+                        {"s": 4, "t": "Ignoro cuánto pesa quererte así,"},
+                        {"s": 4, "t": "cuántas penas caben en tu nombre,"},
+                        {"s": 4, "t": "cuánto dolor puede cargar un amor"},
+                        {"s": 4, "t": "antes de aprender a morirse."},
+                        {"s": 4, "t": "Pero sé que habría vivido con todas,"},
+                        {"s": 4, "t": "si me lo hubieras pedido,"},
+                        {"s": 4, "t": "si al final de tanta espera"},
+                        {"s": 4, "t": "hubiera estado tu abrazo"},
+                        {"s": 4, "t": "cerrando la herida"},
+                        {"s": 4, "t": "que tú misma dejaste abierta."},
+                        {"s": 5, "t": "Después de ti, mi amor no murió;"},
+                        {"s": 5, "t": "se quedó congelado,"},
+                        {"s": 5, "t": "intacto, terco, callado,"},
+                        {"s": 5, "t": "como una vela que no entiende de despedidas"},
+                        {"s": 5, "t": "y sigue ardiendo porque todavía cree."},
+                        {"s": 5, "t": "Te fuiste,"},
+                        {"s": 5, "t": "pero algo mío sigue mirando hacia tu camino,"},
+                        {"s": 5, "t": "no con vergüenza,"},
+                        {"s": 5, "t": "sino con esa esperanza triste y limpia"},
+                        {"s": 5, "t": "de quien sabe que amar también es esperar,"},
+                        {"s": 5, "t": "y que si un día vuelves,"},
+                        {"s": 5, "t": "mi corazón todavía sabrá reconocerte."}
+                    ]
+                }
+                </script>
+            </div>
+        </section>
+
+        <section id="prisa-view" hidden aria-label="Poema: ¿Lo nuestro fue prisa?">
+            <button type="button" class="extra-cta is-visible" id="btn-back-2">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-prisa">Reiniciar</button>
+            <div id="poem-area-prisa" tabindex="0" role="application" aria-label="Poema — toca para llenar corazones">
+                <p class="poem-meta" id="date-prisa">Martes 5 de Mayo de 2026</p>
+                <div class="hearts" id="prisa-hearts" aria-label="Corazones" role="img">
+                    <span class="heart" aria-hidden="true">♡</span>
+                    <span class="heart" aria-hidden="true">♡</span>
+                    <span class="heart" aria-hidden="true">♡</span>
+                    <span class="heart" aria-hidden="true">♡</span>
+                    <span class="heart" aria-hidden="true">♡</span>
+                </div>
+                <p class="hint" id="hint-prisa">Toca la pantalla para llenar los corazones</p>
+                <p class="pager" id="pager-prisa" aria-label="Progreso del poema">0/5</p>
+
+                <div class="verses-column" id="verses-column-prisa">
+                    <div class="verse-panel" id="prisa-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="perfume-view" hidden aria-label="Poema: ¿Dónde consigo tu perfume?">
+            <button type="button" class="extra-cta is-visible" id="btn-back-3">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-perfume">Reiniciar</button>
+            <div id="poem-area-perfume" tabindex="0" role="application" aria-label="Poema — toca para llenar perfumes">
+                <p class="poem-meta" id="date-perfume">Viernes 8 de Mayo de 2026</p>
+                <div class="perfumes" id="perfume-icons" aria-label="Perfumes" role="img">
+                    <span class="perfume" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10 5h4" />
+                            <path d="M11 5V3h2v2" />
+                            <path d="M9 8h6" />
+                            <path d="M8 8v1c0 1.2 1 2 2.2 2h3.6C15 11 16 10.2 16 9V8" />
+                            <path d="M8.5 11.2 7.5 13.2c-.6 1.2-1 2.4-1 3.8 0 2.5 2 4 5.5 4h0c3.5 0 5.5-1.5 5.5-4 0-1.4-.4-2.6-1-3.8l-1-2" />
+                            <path d="M9.2 15.1c.8-.6 1.7-.9 2.8-.9s2 .3 2.8.9" />
+                        </svg>
+                    </span>
+                    <span class="perfume" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10 5h4" />
+                            <path d="M11 5V3h2v2" />
+                            <path d="M9 8h6" />
+                            <path d="M8 8v1c0 1.2 1 2 2.2 2h3.6C15 11 16 10.2 16 9V8" />
+                            <path d="M8.5 11.2 7.5 13.2c-.6 1.2-1 2.4-1 3.8 0 2.5 2 4 5.5 4h0c3.5 0 5.5-1.5 5.5-4 0-1.4-.4-2.6-1-3.8l-1-2" />
+                            <path d="M9.2 15.1c.8-.6 1.7-.9 2.8-.9s2 .3 2.8.9" />
+                        </svg>
+                    </span>
+                    <span class="perfume" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10 5h4" />
+                            <path d="M11 5V3h2v2" />
+                            <path d="M9 8h6" />
+                            <path d="M8 8v1c0 1.2 1 2 2.2 2h3.6C15 11 16 10.2 16 9V8" />
+                            <path d="M8.5 11.2 7.5 13.2c-.6 1.2-1 2.4-1 3.8 0 2.5 2 4 5.5 4h0c3.5 0 5.5-1.5 5.5-4 0-1.4-.4-2.6-1-3.8l-1-2" />
+                            <path d="M9.2 15.1c.8-.6 1.7-.9 2.8-.9s2 .3 2.8.9" />
+                        </svg>
+                    </span>
+                    <span class="perfume" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10 5h4" />
+                            <path d="M11 5V3h2v2" />
+                            <path d="M9 8h6" />
+                            <path d="M8 8v1c0 1.2 1 2 2.2 2h3.6C15 11 16 10.2 16 9V8" />
+                            <path d="M8.5 11.2 7.5 13.2c-.6 1.2-1 2.4-1 3.8 0 2.5 2 4 5.5 4h0c3.5 0 5.5-1.5 5.5-4 0-1.4-.4-2.6-1-3.8l-1-2" />
+                            <path d="M9.2 15.1c.8-.6 1.7-.9 2.8-.9s2 .3 2.8.9" />
+                        </svg>
+                    </span>
+                </div>
+                <p class="hint" id="hint-perfume">Toca la pantalla para “encontrar” tu perfume</p>
+                <p class="pager" id="pager-perfume" aria-label="Progreso del poema">0/4</p>
+
+                <div class="verses-column" id="verses-column-perfume">
+                    <div class="verse-panel" id="perfume-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="script.js"></script>
 </body>
