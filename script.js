@@ -2,6 +2,7 @@
   "use strict";
 
   var menuView = document.getElementById("menu-view");
+  var storyView = document.getElementById("story-view");
   var ingridView = document.getElementById("ingrid-view");
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
@@ -11,6 +12,8 @@
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
+  var btnBackStory = document.getElementById("btn-back-story");
+  var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
   var btnResetPrisa = document.getElementById("btn-reset-prisa");
   var btnResetPerfume = document.getElementById("btn-reset-perfume");
@@ -35,9 +38,19 @@
   var doneMsg = document.getElementById("done-msg");
   var scrollColumn = document.getElementById("verses-column");
   var ingridPager = document.getElementById("pager-ingrid");
+  var storyArea = document.getElementById("story-area");
+  var versesColumnStory = document.getElementById("verses-column-story");
+
+  /**
+   * Respuestas a «¿Ya le pongo punto?» · regístrate en https://formspree.io ,
+   * crea un formulario y pega aquí la URL (ejemplo: https://formspree.io/f/abcdefgh).
+   * Las respuestas llegan al correo de esa cuenta. Déjalo en "" hasta configurarlo.
+   */
+  var STORY_RESPONSE_FORM_URL = "https://formspree.io/f/xkoypgpl";
 
   if (
     !menuView ||
+    !storyView ||
     !ingridView ||
     !prisaView ||
     !perfumeView ||
@@ -47,6 +60,8 @@
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
+    !btnBackStory ||
+    !btnLeerHistoria ||
     !btnResetIngrid ||
     !btnResetPrisa ||
     !btnResetPerfume ||
@@ -68,6 +83,8 @@
     !panel ||
     !scrollColumn
     || !ingridPager
+    || !storyArea
+    || !versesColumnStory
   )
     return;
 
@@ -441,9 +458,15 @@
 
   function showView(view) {
     menuView.hidden = view !== "menu";
+    storyView.hidden = view !== "story";
     ingridView.hidden = view !== "ingrid";
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
+
+    if (view === "story") {
+      versesColumnStory.scrollTop = 0;
+      storyArea.focus({ preventScroll: true });
+    }
 
     if (view === "ingrid") {
       ingridPlayer.reset();
@@ -473,6 +496,10 @@
     showView("perfume");
   });
 
+  btnLeerHistoria.addEventListener("click", function () {
+    showView("story");
+  });
+
   btnBack1.addEventListener("click", function (e) {
     e.stopPropagation();
     showView("menu");
@@ -483,6 +510,10 @@
   });
 
   btnBack3.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBackStory.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -503,6 +534,113 @@
     resetPerfume();
     perfumeArea.focus();
   });
+
+  (function setupStoryFollowup() {
+    var form = document.getElementById("story-followup-form");
+    var text = document.getElementById("story-response-text");
+    var submitBtn = document.getElementById("story-followup-submit");
+    var statusEl = document.getElementById("story-form-status");
+    var note = document.getElementById("story-form-note");
+    if (!form || !text || !submitBtn || !statusEl || !note) return;
+
+    var Honey = form.querySelector('input[name="_gotcha"]');
+    var endpointOk =
+      typeof STORY_RESPONSE_FORM_URL === "string" &&
+      STORY_RESPONSE_FORM_URL.indexOf("https://") === 0 &&
+      STORY_RESPONSE_FORM_URL.length > 12;
+
+    function configureNote() {
+      if (endpointOk) {
+        note.textContent =
+          "";
+        note.classList.remove("is-muted", "is-warn");
+        submitBtn.removeAttribute("aria-disabled");
+        submitBtn.disabled = false;
+      } else {
+        note.textContent =
+          "El envío aún no está conectado: quien creó esta página debe añadir en script.js una URL gratuita de Formspree para que tus palabras lleguen a su correo.";
+        note.classList.add("is-muted", "is-warn");
+        submitBtn.setAttribute("aria-disabled", "true");
+        submitBtn.disabled = true;
+      }
+      statusEl.textContent = "";
+      statusEl.classList.remove("is-ok", "is-err");
+    }
+
+    configureNote();
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      statusEl.textContent = "";
+      statusEl.classList.remove("is-ok", "is-err");
+
+      if (!endpointOk) {
+        statusEl.classList.add("is-err");
+        statusEl.textContent = "Por ahora no se puede enviar.";
+        return;
+      }
+
+      if (Honey && Honey.value) return;
+
+      var body = text.value.trim();
+      if (!body.length) {
+        statusEl.classList.add("is-err");
+        statusEl.textContent = "Escribe algo antes de enviar.";
+        text.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-busy", "true");
+
+      fetch(STORY_RESPONSE_FORM_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          respuesta: body,
+          _subject: "Historia · ¿Ya le pongo punto?"
+        })
+      })
+        .then(function (res) {
+          if (res.ok) {
+            text.value = "";
+            statusEl.classList.add("is-ok");
+            statusEl.textContent =
+              "❤️❤️❤️❤️❤️❤️";
+            return;
+          }
+          return res.json().catch(function () {
+            return {};
+          }).then(function (data) {
+            var msg =
+              (data.errors && data.errors.form && Array.isArray(data.errors.form))
+                ? data.errors.form.join(" ")
+                : (data.error &&
+                    typeof data.error === "object" &&
+                    data.error.title)
+                  ? data.error.title
+                  : "";
+            statusEl.classList.add("is-err");
+            statusEl.textContent =
+              msg || "No se pudo enviar. Intenta de nuevo más tarde.";
+          });
+        })
+        .catch(function () {
+          statusEl.classList.add("is-err");
+          statusEl.textContent =
+            "Hay un problema de red o bloqueó el envío este dispositivo. Intenta después.";
+        })
+        .then(function () {
+          submitBtn.removeAttribute("aria-busy");
+          if (endpointOk) {
+            submitBtn.disabled = false;
+          }
+        });
+    });
+  })();
 
   showView("menu");
 })();
