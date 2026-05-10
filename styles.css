@@ -300,6 +300,7 @@ body {
 #btn-back-1,
 #btn-back-2,
 #btn-back-3,
+#btn-back-4,
 #btn-back-story {
   max-width: 12rem;
   margin: 0 auto 0.85rem;
@@ -316,6 +317,7 @@ body {
 #btn-back-1:hover,
 #btn-back-2:hover,
 #btn-back-3:hover,
+#btn-back-4:hover,
 #btn-back-story:hover {
   filter: brightness(1.05);
   transform: translateY(-1px);
@@ -372,6 +374,18 @@ body {
   line-height: 1.45;
   color: rgba(244, 232, 236, 0.78);
   text-shadow: 0 0 30px rgba(255, 200, 220, 0.12);
+}
+
+.menu-personal-msg {
+  margin: -0.15rem auto 1.15rem;
+  max-width: 22rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(0.98rem, 4.2vw, 1.14rem);
+  line-height: 1.5;
+  color: rgba(255, 232, 240, 0.88);
+  text-shadow: 0 0 28px rgba(255, 200, 220, 0.14);
 }
 
 .menu-closing {
@@ -969,6 +983,7 @@ button.story-followup-submit:disabled {
   }
 
   .menu-verse,
+  .menu-personal-msg,
   .menu-note {
     max-width: 26rem;
   }

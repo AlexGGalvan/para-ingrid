@@ -6,17 +6,21 @@
   var ingridView = document.getElementById("ingrid-view");
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
+  var amorView = document.getElementById("amor-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
+  var btnAmor = document.getElementById("btn-amor");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
+  var btnBack4 = document.getElementById("btn-back-4");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
   var btnResetPrisa = document.getElementById("btn-reset-prisa");
   var btnResetPerfume = document.getElementById("btn-reset-perfume");
+  var btnResetAmor = document.getElementById("btn-reset-amor");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -29,6 +33,12 @@
   var perfumePanel = document.getElementById("perfume-panel");
   var perfumeIcons = document.getElementById("perfume-icons");
   var perfumePager = document.getElementById("pager-perfume");
+  var amorArea = document.getElementById("poem-area-amor");
+  var amorHint = document.getElementById("hint-amor");
+  var amorScrollColumn = document.getElementById("verses-column-amor");
+  var amorPanel = document.getElementById("amor-panel");
+  var amorHearts = document.getElementById("amor-hearts");
+  var amorPager = document.getElementById("pager-amor");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -54,17 +64,21 @@
     !ingridView ||
     !prisaView ||
     !perfumeView ||
+    !amorView ||
     !btnIngrid ||
     !btnPrisa ||
     !btnPerfume ||
+    !btnAmor ||
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
+    !btnBack4 ||
     !btnBackStory ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
     !btnResetPrisa ||
     !btnResetPerfume ||
+    !btnResetAmor ||
     !prisaArea ||
     !prisaPanel ||
     !prisaHint ||
@@ -77,6 +91,12 @@
     !perfumeScrollColumn ||
     !perfumeIcons ||
     !perfumePager ||
+    !amorArea ||
+    !amorPanel ||
+    !amorHint ||
+    !amorScrollColumn ||
+    !amorHearts ||
+    !amorPager ||
     !dataEl ||
     !area ||
     !track ||
@@ -163,6 +183,36 @@
     "sino para explicarme\n" +
     "por qué sigues aquí\n" +
     "aun cuando no estás.";
+
+  var AMOR_POEM =
+    "¿En qué momento se termina el amor?\n" +
+    "¿Cuando llegan los días difíciles,\n" +
+    "cuando la voz tiembla,\n" +
+    "cuando el corazón se abre\n" +
+    "y ya no puede esconder lo que le duele?\n" +
+    "\n" +
+    "Porque amar cuando todo es risa\n" +
+    "no exige demasiado.\n" +
+    "Cualquiera puede quedarse\n" +
+    "cuando la vida se ve bonita\n" +
+    "y no hay heridas que cuidar.\n" +
+    "\n" +
+    "Pero mi amor no nació\n" +
+    "para huir cuando pesa el alma,\n" +
+    "ni para medir su fuerza\n" +
+    "solo cuando todo está en calma.\n" +
+    "\n" +
+    "Tampoco necesito ponerlo a prueba;\n" +
+    "yo sé que resistiría.\n" +
+    "No porque sea perfecto,\n" +
+    "sino porque es sincero\n" +
+    "incluso cuando duele.\n" +
+    "\n" +
+    "Mi amor no está hecho\n" +
+    "solo para los días buenos.\n" +
+    "Está aquí para cuidar lo frágil,\n" +
+    "para no temer, para dejar de fingir…\n" +
+    "y simplemente vivir.";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -456,12 +506,86 @@
   );
   perfumeArea.addEventListener("keydown", onPerfumeActivate);
 
+  var amorHeartsEls = Array.prototype.slice.call(
+    amorHearts.querySelectorAll(".heart")
+  );
+  var amorFill = 0;
+  var amorParas = AMOR_POEM.split(/\n\s*\n/);
+  var amorShown = 0;
+
+  function resetAmorHearts() {
+    amorFill = 0;
+    amorShown = 0;
+    amorHeartsEls.forEach(function (el) {
+      el.textContent = "♡";
+      el.classList.remove("is-full");
+    });
+    amorHint.classList.remove("is-hidden");
+    amorPanel.textContent = "";
+    amorPanel.classList.remove("has-text");
+    setPager(amorPager, 0, amorParas.length);
+  }
+
+  function fillNextAmorHeart() {
+    if (amorFill < amorHeartsEls.length) {
+      var elAmor = amorHeartsEls[amorFill];
+      elAmor.textContent = "♥";
+      elAmor.classList.add("is-full");
+      amorFill += 1;
+    }
+  }
+
+  function revealNextAmorParagraph() {
+    if (amorShown >= amorParas.length) return;
+    var nextAmor = amorParas[amorShown].trim();
+    amorShown += 1;
+    if (!nextAmor) return;
+
+    amorPanel.textContent = nextAmor;
+    amorPanel.classList.add("has-text");
+    amorPanel.classList.remove("verse-enter");
+    void amorPanel.offsetWidth;
+    amorPanel.classList.add("verse-enter");
+    amorPanel.scrollTop = 0;
+    amorScrollColumn.scrollTop = 0;
+    setPager(amorPager, amorShown, amorParas.length);
+  }
+
+  function amorProgress() {
+    if (amorFill === 0 && amorShown === 0) {
+      amorHint.classList.add("is-hidden");
+    }
+    fillNextAmorHeart();
+    revealNextAmorParagraph();
+    if (amorFill >= amorHeartsEls.length && amorShown >= amorParas.length) {
+      amorHint.classList.add("is-hidden");
+    }
+  }
+
+  function onAmorActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    amorProgress();
+  }
+
+  amorArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-4")) return;
+      onAmorActivate(e);
+    },
+    { passive: true }
+  );
+  amorArea.addEventListener("keydown", onAmorActivate);
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
     ingridView.hidden = view !== "ingrid";
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
+    amorView.hidden = view !== "amor";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -482,6 +606,11 @@
       resetPerfume();
       perfumeArea.focus();
     }
+
+    if (view === "amor") {
+      resetAmorHearts();
+      amorArea.focus();
+    }
   }
 
   btnIngrid.addEventListener("click", function () {
@@ -494,6 +623,10 @@
 
   btnPerfume.addEventListener("click", function () {
     showView("perfume");
+  });
+
+  btnAmor.addEventListener("click", function () {
+    showView("amor");
   });
 
   btnLeerHistoria.addEventListener("click", function () {
@@ -510,6 +643,10 @@
   });
 
   btnBack3.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack4.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -533,6 +670,12 @@
     e.stopPropagation();
     resetPerfume();
     perfumeArea.focus();
+  });
+
+  btnResetAmor.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetAmorHearts();
+    amorArea.focus();
   });
 
   (function setupStoryFollowup() {
