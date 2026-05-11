@@ -398,7 +398,7 @@ body {
   margin-top: 0.25rem;
 }
 
-.menu-story-slot + .menu-closing {
+.playlist-embed-slot + .menu-closing {
   margin-top: 1.5rem !important;
 }
 
@@ -567,6 +567,40 @@ body {
   text-transform: uppercase;
   color: rgba(244, 232, 236, 0.4);
   margin-top: 1.5rem;
+}
+
+/* Playlist Apple Music (menú) */
+.playlist-embed-slot {
+  width: 100%;
+  max-width: 660px;
+  margin: 1.5rem auto 0;
+  cursor: default;
+}
+
+.playlist-embed-label {
+  margin: 0 0 0.65rem;
+  text-align: center;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.68rem, 2.6vw, 0.74rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 232, 236, 0.48);
+}
+
+.playlist-embed-frame {
+  border-radius: 0.85rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 183, 201, 0.12),
+    0 18px 48px rgba(0, 0, 0, 0.32);
+  background: rgba(12, 6, 10, 0.35);
+}
+
+.playlist-embed-frame iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
 }
 
 /* Historia «¿Ya le pongo punto?» (dentro del menú) */
