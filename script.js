@@ -785,5 +785,82 @@
     });
   })();
 
+  (function initMenuPersonalCarousel() {
+    var root = document.getElementById("menu-personal-carousel");
+    var strip = document.getElementById("menu-personal-carousel-strip");
+    if (!root || !strip) return;
+
+    var slides = strip.querySelectorAll(".menu-personal-carousel__slide");
+    var dots = root.querySelectorAll(".menu-personal-carousel__dot");
+    if (!slides.length || dots.length !== slides.length) return;
+
+    var idx = 0;
+    var n = slides.length;
+    var intervalMs = 5500;
+    var timerId = null;
+
+    function setAriaHidden() {
+      for (var s = 0; s < slides.length; s++) {
+        slides[s].setAttribute("aria-hidden", s === idx ? "false" : "true");
+      }
+    }
+
+    function apply() {
+      root.setAttribute("data-index", String(idx));
+      setAriaHidden();
+      for (var d = 0; d < dots.length; d++) {
+        var on = d === idx;
+        dots[d].classList.toggle("is-active", on);
+        dots[d].setAttribute("aria-selected", on ? "true" : "false");
+      }
+    }
+
+    function go(i) {
+      idx = (i % n + n) % n;
+      apply();
+    }
+
+    function next() {
+      go(idx + 1);
+    }
+
+    function start() {
+      stop();
+      timerId = window.setInterval(next, intervalMs);
+    }
+
+    function stop() {
+      if (timerId !== null) {
+        window.clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    for (var b = 0; b < dots.length; b++) {
+      (function (i) {
+        dots[i].addEventListener("click", function () {
+          stop();
+          go(i);
+          start();
+        });
+      })(b);
+    }
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", function (e) {
+      if (!root.contains(e.relatedTarget)) start();
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    apply();
+    start();
+  })();
+
   showView("menu");
 })();
