@@ -43,6 +43,54 @@
                 <button type="button" class="extra-cta is-visible" id="btn-perfume">¿Dónde consigo tu perfume?</button>
                 <button type="button" class="extra-cta is-visible" id="btn-amor">¿Cuándo se termina el amor?</button>
                 <button type="button" class="extra-cta is-visible" id="btn-quedarme">Donde quedarme</button>
+                <section class="shared-feelings-section" id="archivo-sentimientos-compartidos"
+                    aria-labelledby="shared-feelings-heading">
+                    <h2 class="shared-feelings-title" id="shared-feelings-heading">
+                        Los sentimientos que están en esta página<br>
+                        no son solo míos, son de los dos.
+                    </h2>
+                    <div class="shared-collage-wrapper" tabindex="0" role="group"
+                        aria-label="Collage de fragmentos y recuerdos en papel">
+                        <span class="shared-collage-deco shared-collage-deco--tape-tl" aria-hidden="true"></span>
+                        <span class="shared-collage-deco shared-collage-deco--tape-tr" aria-hidden="true"></span>
+                        <span class="shared-collage-deco shared-collage-deco--clip clip-left" aria-hidden="true">
+                            <svg width="28" height="40" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+                                <path d="M8 6h12v28H8V6z" fill="url(#clipMetal)" stroke="rgba(80,75,85,0.45)" stroke-width="0.6" />
+                                <path d="M14 6v8" stroke="rgba(60,55,65,0.5)" stroke-width="1.2" stroke-linecap="round" />
+                                <defs>
+                                    <linearGradient id="clipMetal" x1="0" y1="0" x2="28" y2="40" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#c8ccd4" />
+                                        <stop offset="0.45" stop-color="#eef1f6" />
+                                        <stop offset="1" stop-color="#9aa0ad" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </span>
+                        <span class="shared-collage-deco shared-collage-deco--clip clip-right" aria-hidden="true">
+                            <svg width="28" height="40" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+                                <path d="M8 6h12v28H8V6z" fill="url(#clipMetal2)" stroke="rgba(80,75,85,0.45)" stroke-width="0.6" />
+                                <path d="M14 6v8" stroke="rgba(60,55,65,0.5)" stroke-width="1.2" stroke-linecap="round" />
+                                <defs>
+                                    <linearGradient id="clipMetal2" x1="28" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#c8ccd4" />
+                                        <stop offset="0.45" stop-color="#eef1f6" />
+                                        <stop offset="1" stop-color="#9aa0ad" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </span>
+                        <span class="shared-collage-deco shared-collage-deco--flower" aria-hidden="true"></span>
+                        <span class="shared-collage-deco shared-collage-deco--heart" aria-hidden="true"></span>
+                        <span class="shared-collage-deco shared-collage-deco--heart sketch-heart-2" aria-hidden="true"></span>
+                        <div class="shared-collage-matte">
+                            <img class="shared-collage-image"
+                                src="assets/collage-sentimientos-compartidos.png"
+                                width="1024" height="682"
+                                alt="Collage en tonos rosas y crema: recortes de mensajes y sentimientos, como un cuaderno íntimo compartido."
+                                decoding="async" loading="lazy" fetchpriority="low">
+                        </div>
+                    </div>
+                </section>
                 <div class="menu-story-slot">
                     <div class="story-card">
                         <header class="story-card__head">
@@ -589,6 +637,19 @@
             </div>
         </section>
     </main>
+    <noscript>
+        <style>
+            .shared-feelings-section .shared-collage-wrapper {
+                opacity: 1 !important;
+                transform: rotate(-1.35deg) scale(1) !important;
+            }
+
+            .shared-feelings-section .shared-feelings-title {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
     <script src="script.js"></script>
 </body>
 

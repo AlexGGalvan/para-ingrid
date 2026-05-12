@@ -468,8 +468,322 @@ body {
   margin-top: 0.25rem;
 }
 
+#btn-quedarme + .shared-feelings-section {
+  margin-top: 0.35rem;
+}
+
+.shared-feelings-section + .menu-story-slot {
+  margin-top: 1.35rem;
+}
+
 .playlist-embed-slot + .menu-closing {
   margin-top: 1.5rem !important;
+}
+
+/* Archivo emocional — fragmentos sobre papel (menú principal) */
+.shared-feelings-section {
+  --sf-paper: #f9ebe8;
+  --sf-paper-deep: #efd9d8;
+  --sf-blush: #f4d4dc;
+  --sf-lavender-mist: rgba(200, 188, 230, 0.35);
+  --sf-tape: rgba(214, 140, 160, 0.42);
+  width: 100%;
+  max-width: min(22.5rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(1.15rem, 4vw, 1.45rem) clamp(0.65rem, 3.5vw, 1rem) clamp(1.25rem, 4vw, 1.55rem);
+  border-radius: 1.35rem 1.1rem 1.25rem 1.2rem / 1.2rem 1.3rem 1.15rem 1.28rem;
+  background:
+    radial-gradient(120% 90% at 12% 8%, rgba(255, 255, 255, 0.14), transparent 55%),
+    radial-gradient(90% 70% at 88% 92%, var(--sf-lavender-mist), transparent 58%),
+    linear-gradient(168deg, rgba(255, 245, 248, 0.09) 0%, rgba(18, 10, 16, 0.42) 100%),
+    linear-gradient(145deg, #2a1828 0%, #1a1018 55%, #120a10 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 183, 201, 0.16),
+    0 22px 50px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  position: relative;
+  isolation: isolate;
+}
+
+.shared-feelings-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 55%, rgba(255, 220, 230, 0.05) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 88%, rgba(200, 190, 240, 0.04) 0 1px, transparent 2px);
+  background-size: 180px 180px, 220px 220px, 260px 260px;
+}
+
+.shared-feelings-title {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 1.05rem;
+  max-width: 19.5rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(1.02rem, 4.2vw, 1.22rem);
+  line-height: 1.42;
+  letter-spacing: 0.02em;
+  color: rgba(255, 244, 250, 0.94);
+  text-shadow:
+    0 0 28px rgba(255, 200, 220, 0.18),
+    0 0 48px rgba(190, 176, 255, 0.12);
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition:
+    opacity 0.88s cubic-bezier(0.22, 1, 0.36, 1) 0.06s,
+    transform 0.88s cubic-bezier(0.22, 1, 0.36, 1) 0.06s;
+}
+
+.shared-feelings-section.is-revealed .shared-feelings-title {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.shared-collage-wrapper {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: min(19.5rem, 100%);
+  padding: clamp(0.55rem, 2.5vw, 0.85rem) clamp(0.35rem, 2vw, 0.55rem) clamp(0.65rem, 2.5vw, 0.95rem);
+  outline: none;
+  opacity: 0;
+  transform: translate3d(0, 14px, 0) rotate(-1.35deg) scale(0.98);
+  filter: saturate(1.02);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shared-feelings-section.is-revealed .shared-collage-wrapper {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(-1.35deg) scale(1);
+}
+
+.shared-collage-matte {
+  position: relative;
+  border-radius: 0.55rem 0.7rem 0.62rem 0.58rem / 0.62rem 0.55rem 0.68rem 0.6rem;
+  padding: clamp(0.35rem, 2vw, 0.5rem);
+  background:
+    linear-gradient(165deg, var(--sf-paper) 0%, var(--sf-paper-deep) 48%, #e8ccd0 100%);
+  box-shadow:
+    0 0 0 1px rgba(180, 120, 130, 0.12),
+    0 3px 0 rgba(255, 255, 255, 0.35) inset,
+    0 18px 36px rgba(40, 12, 24, 0.28),
+    0 6px 14px rgba(30, 8, 18, 0.22);
+  transform-origin: 50% 60%;
+  transition:
+    transform 0.55s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.55s ease;
+}
+
+.shared-collage-matte::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(90, 40, 55, 0.04) 0 1px, transparent 2.5px),
+    radial-gradient(circle at 55% 42%, rgba(120, 70, 90, 0.035) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 78%, rgba(100, 60, 80, 0.03) 0 1px, transparent 2px);
+  background-size: 140px 140px, 180px 180px, 160px 160px;
+}
+
+.shared-collage-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.35rem 0.5rem 0.4rem 0.38rem / 0.42rem 0.36rem 0.48rem 0.4rem;
+  clip-path: polygon(
+    1.5% 0.8%,
+    98.2% 0.2%,
+    99.4% 8%,
+    100% 42%,
+    98.8% 72%,
+    97.5% 99%,
+    6% 100%,
+    0.8% 94%,
+    0.2% 58%,
+    0.6% 22%
+  );
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.55) inset,
+    0 10px 24px rgba(60, 20, 35, 0.15);
+  object-fit: contain;
+}
+
+.shared-collage-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.shared-collage-deco--tape-tl {
+  top: 0.1rem;
+  left: 8%;
+  width: 3.1rem;
+  height: 1.05rem;
+  transform: rotate(-52deg);
+  background: linear-gradient(90deg, transparent, var(--sf-tape) 15%, var(--sf-tape) 85%, transparent);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  opacity: 0.88;
+}
+
+.shared-collage-deco--tape-tr {
+  top: 0.35rem;
+  right: 6%;
+  width: 2.6rem;
+  height: 0.95rem;
+  transform: rotate(38deg);
+  background: linear-gradient(90deg, transparent, rgba(232, 160, 175, 0.38) 12%, rgba(232, 160, 175, 0.38) 88%, transparent);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.shared-collage-deco--clip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25));
+}
+
+.shared-collage-deco--clip.clip-left {
+  left: -0.15rem;
+  top: 18%;
+  transform: rotate(-8deg);
+}
+
+.shared-collage-deco--clip.clip-right {
+  right: -0.1rem;
+  top: 38%;
+  transform: rotate(6deg);
+}
+
+.shared-collage-deco--flower {
+  width: 1.65rem;
+  height: 1.65rem;
+  right: 4%;
+  bottom: 6%;
+  transform: rotate(18deg);
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(210, 175, 130, 0.55) 0 22%, transparent 24%),
+    radial-gradient(ellipse 45% 38% at 30% 40%, rgba(200, 165, 115, 0.5) 0 40%, transparent 42%),
+    radial-gradient(ellipse 45% 38% at 70% 40%, rgba(200, 165, 115, 0.5) 0 40%, transparent 42%),
+    radial-gradient(ellipse 38% 45% at 50% 28%, rgba(205, 170, 118, 0.48) 0 40%, transparent 42%),
+    radial-gradient(ellipse 38% 45% at 50% 72%, rgba(205, 170, 118, 0.48) 0 40%, transparent 42%);
+  filter: saturate(0.85);
+}
+
+.shared-collage-deco--heart {
+  left: 9%;
+  bottom: 7%;
+  width: 0.75rem;
+  height: 0.72rem;
+  transform: rotate(-16deg);
+  opacity: 0.55;
+}
+
+.shared-collage-deco--heart::after {
+  content: "♥";
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: rgba(190, 95, 120, 0.5);
+  display: block;
+  margin-top: -0.1em;
+}
+
+.shared-collage-deco--heart.sketch-heart-2 {
+  left: auto;
+  right: 20%;
+  top: 6%;
+  bottom: auto;
+  transform: rotate(20deg) scale(0.92);
+  opacity: 0.48;
+}
+
+.shared-collage-deco--heart.sketch-heart-2::after {
+  font-size: 0.68rem;
+  color: rgba(175, 105, 135, 0.45);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shared-collage-wrapper:hover .shared-collage-matte,
+  .shared-collage-wrapper:focus-visible .shared-collage-matte {
+    transform: scale(1.035) rotate(-0.65deg);
+    box-shadow:
+      0 0 0 1px rgba(180, 120, 130, 0.14),
+      0 3px 0 rgba(255, 255, 255, 0.4) inset,
+      0 26px 52px rgba(40, 12, 24, 0.38),
+      0 10px 22px rgba(30, 8, 18, 0.28);
+  }
+
+  .shared-collage-wrapper:hover,
+  .shared-collage-wrapper:focus-visible {
+    transform: translate3d(0, -3px, 0) rotate(-1.15deg) scale(1);
+  }
+}
+
+.shared-collage-wrapper:focus-visible {
+  outline: 2px solid rgba(255, 200, 215, 0.55);
+  outline-offset: 6px;
+  border-radius: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  .shared-feelings-section {
+    max-width: min(26rem, 100%);
+  }
+
+  .shared-feelings-title {
+    max-width: 24rem;
+  }
+
+  .shared-collage-wrapper {
+    max-width: min(22rem, 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shared-feelings-title {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .shared-collage-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .shared-feelings-section.is-revealed .shared-collage-wrapper {
+    transform: none !important;
+  }
+
+  .shared-collage-wrapper:hover .shared-collage-matte,
+  .shared-collage-wrapper:focus-visible .shared-collage-matte {
+    transform: none !important;
+  }
+
+  .shared-collage-wrapper:hover,
+  .shared-collage-wrapper:focus-visible {
+    transform: none !important;
+  }
 }
 
 .menu-note {

@@ -994,5 +994,38 @@
     start();
   })();
 
+  (function initSharedFeelingsReveal() {
+    var section = document.querySelector(".shared-feelings-section");
+    if (!section) return;
+
+    function reveal() {
+      section.classList.add("is-revealed");
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      reveal();
+      return;
+    }
+
+    if (!window.IntersectionObserver) {
+      reveal();
+      return;
+    }
+
+    var obs = new IntersectionObserver(
+      function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            reveal();
+            obs.disconnect();
+            return;
+          }
+        }
+      },
+      { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
+    );
+    obs.observe(section);
+  })();
+
   showView("menu");
 })();
