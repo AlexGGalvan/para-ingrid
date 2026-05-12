@@ -7,20 +7,24 @@
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
   var amorView = document.getElementById("amor-view");
+  var quedarmeView = document.getElementById("quedarme-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
+  var btnQuedarme = document.getElementById("btn-quedarme");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
   var btnBack4 = document.getElementById("btn-back-4");
+  var btnBack5 = document.getElementById("btn-back-5");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
   var btnResetPrisa = document.getElementById("btn-reset-prisa");
   var btnResetPerfume = document.getElementById("btn-reset-perfume");
   var btnResetAmor = document.getElementById("btn-reset-amor");
+  var btnResetQuedarme = document.getElementById("btn-reset-quedarme");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -39,6 +43,12 @@
   var amorPanel = document.getElementById("amor-panel");
   var amorHearts = document.getElementById("amor-hearts");
   var amorPager = document.getElementById("pager-amor");
+  var quedarmeArea = document.getElementById("poem-area-quedarme");
+  var quedarmeHint = document.getElementById("hint-quedarme");
+  var quedarmeScrollColumn = document.getElementById("verses-column-quedarme");
+  var quedarmePanel = document.getElementById("quedarme-panel");
+  var quedarmeSuns = document.getElementById("quedarme-suns");
+  var quedarmePager = document.getElementById("pager-quedarme");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -65,20 +75,24 @@
     !prisaView ||
     !perfumeView ||
     !amorView ||
+    !quedarmeView ||
     !btnIngrid ||
     !btnPrisa ||
     !btnPerfume ||
     !btnAmor ||
+    !btnQuedarme ||
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
     !btnBack4 ||
+    !btnBack5 ||
     !btnBackStory ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
     !btnResetPrisa ||
     !btnResetPerfume ||
     !btnResetAmor ||
+    !btnResetQuedarme ||
     !prisaArea ||
     !prisaPanel ||
     !prisaHint ||
@@ -97,6 +111,12 @@
     !amorScrollColumn ||
     !amorHearts ||
     !amorPager ||
+    !quedarmeArea ||
+    !quedarmePanel ||
+    !quedarmeHint ||
+    !quedarmeScrollColumn ||
+    !quedarmeSuns ||
+    !quedarmePager ||
     !dataEl ||
     !area ||
     !track ||
@@ -213,6 +233,25 @@
     "Está aquí para cuidar lo frágil,\n" +
     "para no temer, para dejar de fingir…\n" +
     "y simplemente vivir.";
+
+  var QUEDARME_POEM =
+    "No sé qué ruta habrá para encontrarme,\n" +
+    "cuando despierta el cuarto tan vacío;\n" +
+    "la luz cae despacio sobre el frío,\n" +
+    "como si el alba aún quisiera salvarme.\n" +
+    "\n" +
+    "Yo no le pido al tiempo acompañarme,\n" +
+    "ni hacer de tu silencio un desafío;\n" +
+    "guardo tu imagen, clara como un río,\n" +
+    "por si tus ojos vuelven a nombrarme.\n" +
+    "\n" +
+    "Si alguna vez la más simple mañana\n" +
+    "me deja abrir los ojos junto a ti,\n" +
+    "sabré por qué esperé junto a mi ventana.\n" +
+    "\n" +
+    "No sé a dónde tenga que ir sin ti,\n" +
+    "pero al mirar tu luz sobre mi mañana,\n" +
+    "sabría dónde quedarme: junto a ti.";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -579,6 +618,79 @@
   );
   amorArea.addEventListener("keydown", onAmorActivate);
 
+  var quedarmeSunsEls = Array.prototype.slice.call(
+    quedarmeSuns.querySelectorAll(".sun")
+  );
+  var quedarmeFill = 0;
+  var quedarmeParas = QUEDARME_POEM.split(/\n\s*\n/);
+  var quedarmeShown = 0;
+
+  function resetQuedarme() {
+    quedarmeFill = 0;
+    quedarmeShown = 0;
+    quedarmeSunsEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    quedarmeHint.classList.remove("is-hidden");
+    quedarmePanel.textContent = "";
+    quedarmePanel.classList.remove("has-text");
+    setPager(quedarmePager, 0, quedarmeParas.length);
+  }
+
+  function fillNextSun() {
+    if (quedarmeFill < quedarmeSunsEls.length) {
+      quedarmeSunsEls[quedarmeFill].classList.add("is-full");
+      quedarmeFill += 1;
+    }
+  }
+
+  function revealNextQuedarmeParagraph() {
+    if (quedarmeShown >= quedarmeParas.length) return;
+    var nextQ = quedarmeParas[quedarmeShown].trim();
+    quedarmeShown += 1;
+    if (!nextQ) return;
+
+    quedarmePanel.textContent = nextQ;
+    quedarmePanel.classList.add("has-text");
+    quedarmePanel.classList.remove("verse-enter");
+    void quedarmePanel.offsetWidth;
+    quedarmePanel.classList.add("verse-enter");
+    quedarmePanel.scrollTop = 0;
+    quedarmeScrollColumn.scrollTop = 0;
+    setPager(quedarmePager, quedarmeShown, quedarmeParas.length);
+  }
+
+  function quedarmeProgress() {
+    if (quedarmeFill === 0 && quedarmeShown === 0) {
+      quedarmeHint.classList.add("is-hidden");
+    }
+    fillNextSun();
+    revealNextQuedarmeParagraph();
+    if (
+      quedarmeFill >= quedarmeSunsEls.length &&
+      quedarmeShown >= quedarmeParas.length
+    ) {
+      quedarmeHint.classList.add("is-hidden");
+    }
+  }
+
+  function onQuedarmeActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    quedarmeProgress();
+  }
+
+  quedarmeArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-5")) return;
+      onQuedarmeActivate(e);
+    },
+    { passive: true }
+  );
+  quedarmeArea.addEventListener("keydown", onQuedarmeActivate);
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
@@ -586,6 +698,7 @@
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
     amorView.hidden = view !== "amor";
+    quedarmeView.hidden = view !== "quedarme";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -611,6 +724,11 @@
       resetAmorHearts();
       amorArea.focus();
     }
+
+    if (view === "quedarme") {
+      resetQuedarme();
+      quedarmeArea.focus();
+    }
   }
 
   btnIngrid.addEventListener("click", function () {
@@ -627,6 +745,10 @@
 
   btnAmor.addEventListener("click", function () {
     showView("amor");
+  });
+
+  btnQuedarme.addEventListener("click", function () {
+    showView("quedarme");
   });
 
   btnLeerHistoria.addEventListener("click", function () {
@@ -647,6 +769,10 @@
   });
 
   btnBack4.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack5.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -676,6 +802,12 @@
     e.stopPropagation();
     resetAmorHearts();
     amorArea.focus();
+  });
+
+  btnResetQuedarme.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetQuedarme();
+    quedarmeArea.focus();
   });
 
   (function setupStoryFollowup() {
