@@ -8,16 +8,19 @@
   var perfumeView = document.getElementById("perfume-view");
   var amorView = document.getElementById("amor-view");
   var quedarmeView = document.getElementById("quedarme-view");
+  var nudoView = document.getElementById("nudo-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
   var btnQuedarme = document.getElementById("btn-quedarme");
+  var btnNudo = document.getElementById("btn-nudo");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
   var btnBack4 = document.getElementById("btn-back-4");
   var btnBack5 = document.getElementById("btn-back-5");
+  var btnBack6 = document.getElementById("btn-back-6");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
@@ -25,6 +28,7 @@
   var btnResetPerfume = document.getElementById("btn-reset-perfume");
   var btnResetAmor = document.getElementById("btn-reset-amor");
   var btnResetQuedarme = document.getElementById("btn-reset-quedarme");
+  var btnResetNudo = document.getElementById("btn-reset-nudo");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -49,6 +53,12 @@
   var quedarmePanel = document.getElementById("quedarme-panel");
   var quedarmeSuns = document.getElementById("quedarme-suns");
   var quedarmePager = document.getElementById("pager-quedarme");
+  var nudoArea = document.getElementById("poem-area-nudo");
+  var nudoHint = document.getElementById("hint-nudo");
+  var nudoScrollColumn = document.getElementById("verses-column-nudo");
+  var nudoPanel = document.getElementById("nudo-panel");
+  var nudoKnots = document.getElementById("nudo-knots");
+  var nudoPager = document.getElementById("pager-nudo");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -76,16 +86,19 @@
     !perfumeView ||
     !amorView ||
     !quedarmeView ||
+    !nudoView ||
     !btnIngrid ||
     !btnPrisa ||
     !btnPerfume ||
     !btnAmor ||
     !btnQuedarme ||
+    !btnNudo ||
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
     !btnBack4 ||
     !btnBack5 ||
+    !btnBack6 ||
     !btnBackStory ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
@@ -93,6 +106,7 @@
     !btnResetPerfume ||
     !btnResetAmor ||
     !btnResetQuedarme ||
+    !btnResetNudo ||
     !prisaArea ||
     !prisaPanel ||
     !prisaHint ||
@@ -117,6 +131,12 @@
     !quedarmeScrollColumn ||
     !quedarmeSuns ||
     !quedarmePager ||
+    !nudoArea ||
+    !nudoPanel ||
+    !nudoHint ||
+    !nudoScrollColumn ||
+    !nudoKnots ||
+    !nudoPager ||
     !dataEl ||
     !area ||
     !track ||
@@ -252,6 +272,43 @@
     "No sé a dónde tenga que ir sin ti,\n" +
     "pero al mirar tu luz sobre mi mañana,\n" +
     "sabría dónde quedarme: junto a ti.";
+
+  var NUDO_POEM =
+    "Ayer quise explicarte\n" +
+    "por qué escribirte me salva,\n" +
+    "pero hubo una palabra\n" +
+    "que no quiso salir de mí.\n" +
+    "\n" +
+    "No era grande,\n" +
+    "no era difícil,\n" +
+    "pero traía todo el peso\n" +
+    "de imaginar la vida sin ti.\n" +
+    "\n" +
+    "Se me hizo nudo la garganta,\n" +
+    "como si el alma supiera\n" +
+    "que decir \"perderte\"\n" +
+    "era aceptar un dolor\n" +
+    "que todavía no estoy listo para nombrar.\n" +
+    "\n" +
+    "Por eso lo dije rápido,\n" +
+    "antes de quebrarme otra vez:\n" +
+    "pensar en haberte perdido\n" +
+    "me dolía demasiado.\n" +
+    "\n" +
+    "Porque no eras solo alguien bonita\n" +
+    "pasando por mi historia;\n" +
+    "eras esa mezcla extraña y perfecta\n" +
+    "de mejor amiga,\n" +
+    "de hogar,\n" +
+    "de esposa.\n" +
+    "\n" +
+    "Y quizá por eso me tembló la voz:\n" +
+    "porque hay personas\n" +
+    "que uno no quiere perder,\n" +
+    "no por miedo a estar solo,\n" +
+    "sino porque al encontrarlas\n" +
+    "algo dentro dice:\n" +
+    "\"Me caes muy bien.\"";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -691,6 +748,80 @@
   );
   quedarmeArea.addEventListener("keydown", onQuedarmeActivate);
 
+  var nudoKnotEls = Array.prototype.slice.call(
+    nudoKnots.querySelectorAll(".knot")
+  );
+  var nudoFill = 0;
+  var nudoParas = NUDO_POEM.split(/\n\s*\n/);
+  var nudoShown = 0;
+
+  function resetNudo() {
+    nudoFill = 0;
+    nudoShown = 0;
+    nudoKnotEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    nudoHint.classList.remove("is-hidden");
+    nudoPanel.textContent = "";
+    nudoPanel.classList.remove("has-text");
+    setPager(nudoPager, 0, nudoParas.length);
+  }
+
+  function fillNextKnot() {
+    if (nudoFill < nudoKnotEls.length) {
+      nudoKnotEls[nudoFill].classList.add("is-full");
+      nudoFill += 1;
+    }
+  }
+
+  function revealNextNudoParagraph() {
+    if (nudoShown >= nudoParas.length) return;
+    var nextN = nudoParas[nudoShown].trim();
+    nudoShown += 1;
+    if (!nextN) return;
+
+    nudoPanel.textContent = nextN;
+    nudoPanel.classList.add("has-text");
+    nudoPanel.classList.remove("verse-enter");
+    void nudoPanel.offsetWidth;
+    nudoPanel.classList.add("verse-enter");
+    nudoPanel.scrollTop = 0;
+    nudoScrollColumn.scrollTop = 0;
+    setPager(nudoPager, nudoShown, nudoParas.length);
+  }
+
+  function nudoProgress() {
+    if (nudoFill === 0 && nudoShown === 0) {
+      nudoHint.classList.add("is-hidden");
+    }
+    fillNextKnot();
+    revealNextNudoParagraph();
+    if (
+      nudoFill >= nudoKnotEls.length &&
+      nudoShown >= nudoParas.length
+    ) {
+      nudoHint.classList.add("is-hidden");
+    }
+  }
+
+  function onNudoActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    nudoProgress();
+  }
+
+  nudoArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-6")) return;
+      if (e.target.closest("#btn-reset-nudo")) return;
+      onNudoActivate(e);
+    },
+    { passive: true }
+  );
+  nudoArea.addEventListener("keydown", onNudoActivate);
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
@@ -699,6 +830,7 @@
     perfumeView.hidden = view !== "perfume";
     amorView.hidden = view !== "amor";
     quedarmeView.hidden = view !== "quedarme";
+    nudoView.hidden = view !== "nudo";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -729,6 +861,11 @@
       resetQuedarme();
       quedarmeArea.focus();
     }
+
+    if (view === "nudo") {
+      resetNudo();
+      nudoArea.focus();
+    }
   }
 
   btnIngrid.addEventListener("click", function () {
@@ -749,6 +886,10 @@
 
   btnQuedarme.addEventListener("click", function () {
     showView("quedarme");
+  });
+
+  btnNudo.addEventListener("click", function () {
+    showView("nudo");
   });
 
   btnLeerHistoria.addEventListener("click", function () {
@@ -773,6 +914,10 @@
   });
 
   btnBack5.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack6.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -808,6 +953,12 @@
     e.stopPropagation();
     resetQuedarme();
     quedarmeArea.focus();
+  });
+
+  btnResetNudo.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetNudo();
+    nudoArea.focus();
   });
 
   (function setupStoryFollowup() {

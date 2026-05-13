@@ -302,6 +302,7 @@ body {
 #btn-back-3,
 #btn-back-4,
 #btn-back-5,
+#btn-back-6,
 #btn-back-story {
   max-width: 12rem;
   margin: 0 auto 0.85rem;
@@ -320,6 +321,7 @@ body {
 #btn-back-3:hover,
 #btn-back-4:hover,
 #btn-back-5:hover,
+#btn-back-6:hover,
 #btn-back-story:hover {
   filter: brightness(1.05);
   transform: translateY(-1px);
@@ -978,6 +980,69 @@ body {
   55% {
     transform: scale(1.2) rotate(6deg);
     filter: brightness(1.15);
+  }
+  100% {
+    transform: scale(1.08) rotate(0deg);
+    filter: brightness(1.08);
+  }
+}
+
+/* Nudos del poema «Nudo en la garganta» */
+.knots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.35rem 0 0.6rem;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: none;
+}
+
+.knots .knot {
+  width: clamp(26px, 8vw, 32px);
+  height: clamp(26px, 8vw, 32px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.28;
+  color: rgba(255, 230, 238, 0.72);
+  transform: translateZ(0) scale(0.98);
+  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease, color 0.25s ease;
+}
+
+.knots .knot svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(255, 160, 195, 0.08));
+}
+
+.knots .knot.is-full {
+  opacity: 1;
+  color: rgba(255, 183, 201, 0.96);
+  filter: brightness(1.08);
+  transform: translateZ(0) scale(1.08);
+  animation: knot-tighten 0.58s ease both;
+}
+
+.knots .knot.is-full svg {
+  filter: drop-shadow(0 0 12px rgba(255, 170, 205, 0.45));
+}
+
+@keyframes knot-tighten {
+  0% {
+    transform: scale(0.96) rotate(-8deg);
+    filter: brightness(1);
+  }
+  55% {
+    transform: scale(1.16) rotate(4deg);
+    filter: brightness(1.12);
   }
   100% {
     transform: scale(1.08) rotate(0deg);
