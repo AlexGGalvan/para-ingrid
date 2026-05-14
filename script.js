@@ -9,18 +9,21 @@
   var amorView = document.getElementById("amor-view");
   var quedarmeView = document.getElementById("quedarme-view");
   var nudoView = document.getElementById("nudo-view");
+  var ternuraView = document.getElementById("ternura-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
   var btnQuedarme = document.getElementById("btn-quedarme");
   var btnNudo = document.getElementById("btn-nudo");
+  var btnTernura = document.getElementById("btn-ternura");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
   var btnBack4 = document.getElementById("btn-back-4");
   var btnBack5 = document.getElementById("btn-back-5");
   var btnBack6 = document.getElementById("btn-back-6");
+  var btnBack7 = document.getElementById("btn-back-7");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
@@ -29,6 +32,7 @@
   var btnResetAmor = document.getElementById("btn-reset-amor");
   var btnResetQuedarme = document.getElementById("btn-reset-quedarme");
   var btnResetNudo = document.getElementById("btn-reset-nudo");
+  var btnResetTernura = document.getElementById("btn-reset-ternura");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -59,6 +63,12 @@
   var nudoPanel = document.getElementById("nudo-panel");
   var nudoKnots = document.getElementById("nudo-knots");
   var nudoPager = document.getElementById("pager-nudo");
+  var ternuraArea = document.getElementById("poem-area-ternura");
+  var ternuraHint = document.getElementById("hint-ternura");
+  var ternuraScrollColumn = document.getElementById("verses-column-ternura");
+  var ternuraPanel = document.getElementById("ternura-panel");
+  var ternuraCuritas = document.getElementById("ternura-curitas");
+  var ternuraPager = document.getElementById("pager-ternura");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -87,18 +97,21 @@
     !amorView ||
     !quedarmeView ||
     !nudoView ||
+    !ternuraView ||
     !btnIngrid ||
     !btnPrisa ||
     !btnPerfume ||
     !btnAmor ||
     !btnQuedarme ||
     !btnNudo ||
+    !btnTernura ||
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
     !btnBack4 ||
     !btnBack5 ||
     !btnBack6 ||
+    !btnBack7 ||
     !btnBackStory ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
@@ -107,6 +120,7 @@
     !btnResetAmor ||
     !btnResetQuedarme ||
     !btnResetNudo ||
+    !btnResetTernura ||
     !prisaArea ||
     !prisaPanel ||
     !prisaHint ||
@@ -137,6 +151,12 @@
     !nudoScrollColumn ||
     !nudoKnots ||
     !nudoPager ||
+    !ternuraArea ||
+    !ternuraPanel ||
+    !ternuraHint ||
+    !ternuraScrollColumn ||
+    !ternuraCuritas ||
+    !ternuraPager ||
     !dataEl ||
     !area ||
     !track ||
@@ -309,6 +329,80 @@
     "sino porque al encontrarlas\n" +
     "algo dentro dice:\n" +
     "\"Me caes muy bien.\"";
+
+  var TERNURA_POEM =
+    "Hay formas de querer\n" +
+    "que no hacen ruido,\n" +
+    "pero se notan.\n" +
+    "\n" +
+    "Se notan en una mirada\n" +
+    "que no sabe dónde esconderse,\n" +
+    "en unas manos inquietas,\n" +
+    "en una risa que intenta disimular\n" +
+    "todo lo que el corazón ya confesó.\n" +
+    "\n" +
+    "Cuando volviste a caminar hacia mí,\n" +
+    "después de habernos perdido un rato,\n" +
+    "te vi venir con ese miedo tierno\n" +
+    "de quien no teme al camino,\n" +
+    "sino a lo mucho que le importa llegar.\n" +
+    "\n" +
+    "Y no sé cómo explicarlo,\n" +
+    "pero algo en mí descansó.\n" +
+    "\n" +
+    "Porque tus nervios\n" +
+    "no se sintieron como duda,\n" +
+    "se sintieron como cuidado.\n" +
+    "Como si entrar de nuevo a mi vida\n" +
+    "fuera una puerta delicada\n" +
+    "que no querías cerrar mal.\n" +
+    "\n" +
+    "Y yo, que tantas veces\n" +
+    "confundí el amor con ansiedad,\n" +
+    "con esfuerzo,\n" +
+    "con tener que ganarme un lugar,\n" +
+    "empecé a entender\n" +
+    "que quizá querer bonito\n" +
+    "se parece más a esto:\n" +
+    "a reír sin medir el tiempo,\n" +
+    "a sentir paz en un abrazo,\n" +
+    "a no necesitar pruebas\n" +
+    "porque las acciones hablan bajito,\n" +
+    "pero hablan claro.\n" +
+    "\n" +
+    "Contigo hay algo\n" +
+    "que no empuja,\n" +
+    "no exige,\n" +
+    "no corre.\n" +
+    "Solo llega,\n" +
+    "se sienta junto a mí,\n" +
+    "me mira de esa forma tuya\n" +
+    "y le enseña a mi corazón\n" +
+    "que también puede ser amado\n" +
+    "sin tener que ponerse a la defensiva.\n" +
+    "\n" +
+    "Y hay un niño dentro de mí\n" +
+    "que todavía no sabe bien\n" +
+    "qué hacer con tanta ternura.\n" +
+    "Un niño que aprendió\n" +
+    "a esperar poco,\n" +
+    "a cuidarse solo,\n" +
+    "a no creer tan fácil\n" +
+    "cuando alguien parecía quedarse.\n" +
+    "Pero contigo,\n" +
+    "poco a poco,\n" +
+    "ese niño baja la guardia.\n" +
+    "\n" +
+    "Porque tu forma de querer\n" +
+    "no promete salvarlo todo,\n" +
+    "pero sí le susurra algo\n" +
+    "que nunca había entendido:\n" +
+    "que el amor verdadero\n" +
+    "no siempre llega con grandes palabras;\n" +
+    "a veces viene caminando nervioso hacia ti,\n" +
+    "con miedo de caer,\n" +
+    "pero con más miedo\n" +
+    "de no llegar.";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -822,6 +916,80 @@
   );
   nudoArea.addEventListener("keydown", onNudoActivate);
 
+  var ternuraCuritaEls = Array.prototype.slice.call(
+    ternuraCuritas.querySelectorAll(".curita")
+  );
+  var ternuraFill = 0;
+  var ternuraParas = TERNURA_POEM.split(/\n\s*\n/);
+  var ternuraShown = 0;
+
+  function resetTernuraCuritas() {
+    ternuraFill = 0;
+    ternuraShown = 0;
+    ternuraCuritaEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    ternuraHint.classList.remove("is-hidden");
+    ternuraPanel.textContent = "";
+    ternuraPanel.classList.remove("has-text");
+    setPager(ternuraPager, 0, ternuraParas.length);
+  }
+
+  function fillNextTernuraCurita() {
+    if (ternuraFill < ternuraCuritaEls.length) {
+      ternuraCuritaEls[ternuraFill].classList.add("is-full");
+      ternuraFill += 1;
+    }
+  }
+
+  function revealNextTernuraParagraph() {
+    if (ternuraShown >= ternuraParas.length) return;
+    var nextT = ternuraParas[ternuraShown].trim();
+    ternuraShown += 1;
+    if (!nextT) return;
+
+    ternuraPanel.textContent = nextT;
+    ternuraPanel.classList.add("has-text");
+    ternuraPanel.classList.remove("verse-enter");
+    void ternuraPanel.offsetWidth;
+    ternuraPanel.classList.add("verse-enter");
+    ternuraPanel.scrollTop = 0;
+    ternuraScrollColumn.scrollTop = 0;
+    setPager(ternuraPager, ternuraShown, ternuraParas.length);
+  }
+
+  function ternuraProgress() {
+    if (ternuraFill === 0 && ternuraShown === 0) {
+      ternuraHint.classList.add("is-hidden");
+    }
+    fillNextTernuraCurita();
+    revealNextTernuraParagraph();
+    if (
+      ternuraFill >= ternuraCuritaEls.length &&
+      ternuraShown >= ternuraParas.length
+    ) {
+      ternuraHint.classList.add("is-hidden");
+    }
+  }
+
+  function onTernuraActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    ternuraProgress();
+  }
+
+  ternuraArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-7")) return;
+      if (e.target.closest("#btn-reset-ternura")) return;
+      onTernuraActivate(e);
+    },
+    { passive: true }
+  );
+  ternuraArea.addEventListener("keydown", onTernuraActivate);
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
@@ -831,6 +999,7 @@
     amorView.hidden = view !== "amor";
     quedarmeView.hidden = view !== "quedarme";
     nudoView.hidden = view !== "nudo";
+    ternuraView.hidden = view !== "ternura";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -866,6 +1035,11 @@
       resetNudo();
       nudoArea.focus();
     }
+
+    if (view === "ternura") {
+      resetTernuraCuritas();
+      ternuraArea.focus();
+    }
   }
 
   btnIngrid.addEventListener("click", function () {
@@ -890,6 +1064,10 @@
 
   btnNudo.addEventListener("click", function () {
     showView("nudo");
+  });
+
+  btnTernura.addEventListener("click", function () {
+    showView("ternura");
   });
 
   btnLeerHistoria.addEventListener("click", function () {
@@ -918,6 +1096,10 @@
   });
 
   btnBack6.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack7.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -959,6 +1141,12 @@
     e.stopPropagation();
     resetNudo();
     nudoArea.focus();
+  });
+
+  btnResetTernura.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetTernuraCuritas();
+    ternuraArea.focus();
   });
 
   (function setupStoryFollowup() {
