@@ -1333,6 +1333,19 @@
     start();
   })();
 
+  (function initPresentationEmbed() {
+    var frame = document.getElementById("ppt-embed-frame");
+    if (!frame) return;
+    if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
+      return;
+    }
+    var fileUrl = new URL("assets/por_que_me_gustas_ingrid.pptx", window.location.href).href;
+    frame.setAttribute(
+      "src",
+      "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(fileUrl)
+    );
+  })();
+
   (function initSharedFeelingsReveal() {
     var section = document.querySelector(".shared-feelings-section");
     if (!section) return;

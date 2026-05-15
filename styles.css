@@ -423,26 +423,30 @@ body {
 
 .menu-personal-carousel__strip {
   display: flex;
-  width: 400%;
+  width: 500%;
   transform: translate3d(0, 0, 0);
   transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .menu-personal-carousel[data-index="1"] .menu-personal-carousel__strip {
-  transform: translate3d(-25%, 0, 0);
+  transform: translate3d(-20%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="2"] .menu-personal-carousel__strip {
-  transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-40%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="3"] .menu-personal-carousel__strip {
-  transform: translate3d(-75%, 0, 0);
+  transform: translate3d(-60%, 0, 0);
+}
+
+.menu-personal-carousel[data-index="4"] .menu-personal-carousel__strip {
+  transform: translate3d(-80%, 0, 0);
 }
 
 .menu-personal-carousel__slide {
-  flex: 0 0 25%;
-  width: 25%;
+  flex: 0 0 20%;
+  width: 20%;
   margin: 0;
   padding: 0 0.55rem;
   box-sizing: border-box;
@@ -1213,6 +1217,128 @@ body {
   text-transform: uppercase;
   color: rgba(244, 232, 236, 0.4);
   margin-top: 1.5rem;
+}
+
+/* Presentación PowerPoint (menú) */
+.menu-presentation-slot {
+  width: 100%;
+  max-width: min(100%, 680px);
+  margin: 1.2rem auto 0.35rem;
+  padding: 0 0.35rem;
+  cursor: default;
+}
+
+.menu-presentation-title {
+  margin: 0 0 0.45rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.12rem, 4.2vw, 1.42rem);
+  line-height: 1.25;
+  color: rgba(255, 244, 250, 0.96);
+  text-shadow:
+    0 0 28px rgba(255, 200, 220, 0.22),
+    0 0 50px rgba(190, 176, 255, 0.08);
+}
+
+.menu-presentation-intro {
+  margin: 0 auto 0.8rem;
+  max-width: 28rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(0.94rem, 3.4vw, 1.06rem);
+  line-height: 1.5;
+  color: rgba(244, 232, 236, 0.76);
+}
+
+.menu-presentation-attrib {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 200, 215, 0.45);
+}
+
+.menu-presentation-embed-wrap {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 183, 201, 0.14),
+    0 18px 48px rgba(0, 0, 0, 0.34);
+  background: rgba(10, 5, 8, 0.5);
+}
+
+.menu-presentation-iframe {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 50vh, 540px);
+  border: 0;
+  background: rgba(6, 3, 6, 0.6);
+}
+
+.menu-presentation-download {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: calc(100% - 1rem);
+  margin: 1rem auto 0;
+  padding: 0.62rem 1rem 0.62rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 175, 200, 0.38);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 55%),
+    rgba(18, 12, 20, 0.72);
+  color: rgba(230, 225, 240, 0.92);
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.menu-presentation-download:hover {
+  border-color: rgba(200, 195, 225, 0.55);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, transparent 55%),
+    rgba(26, 18, 30, 0.88);
+  color: rgba(248, 244, 255, 0.98);
+  transform: translateY(-1px);
+}
+
+.menu-presentation-download:active {
+  transform: translateY(0);
+}
+
+.menu-presentation-download:focus-visible {
+  outline: 2px solid rgba(190, 200, 255, 0.65);
+  outline-offset: 3px;
+}
+
+.menu-presentation-download__icon {
+  flex-shrink: 0;
+  display: flex;
+  color: rgba(200, 210, 255, 0.85);
+}
+
+.menu-presentation-download__icon svg {
+  display: block;
+}
+
+.menu-presentation-download__text {
+  line-height: 1.25;
 }
 
 /* Playlist Apple Music (menú) */
