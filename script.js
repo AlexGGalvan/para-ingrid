@@ -1336,14 +1336,27 @@
   (function initPresentationEmbed() {
     var frame = document.getElementById("ppt-embed-frame");
     if (!frame) return;
-    if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
-      return;
+    var mq = window.matchMedia("(min-width: 721px)");
+    function apply() {
+      if (!mq.matches) {
+        frame.removeAttribute("src");
+        return;
+      }
+      if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
+        return;
+      }
+      var fileUrl = new URL("assets/por_que_me_gustas_ingrid.pptx", window.location.href).href;
+      frame.setAttribute(
+        "src",
+        "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(fileUrl)
+      );
     }
-    var fileUrl = new URL("assets/por_que_me_gustas_ingrid.pptx", window.location.href).href;
-    frame.setAttribute(
-      "src",
-      "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(fileUrl)
-    );
+    apply();
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", apply);
+    } else if (typeof mq.addListener === "function") {
+      mq.addListener(apply);
+    }
   })();
 
   (function initSharedFeelingsReveal() {

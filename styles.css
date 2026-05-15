@@ -1253,16 +1253,30 @@ body {
   color: rgba(244, 232, 236, 0.76);
 }
 
-.menu-presentation-attrib {
-  display: block;
-  margin-top: 0.35rem;
+.menu-presentation-downloads {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  padding: 0 0.15rem;
+}
+
+.menu-presentation-downloads-kicker {
+  margin: 0 0 0.2rem;
+  text-align: center;
   font-family: "Montserrat", system-ui, sans-serif;
-  font-style: normal;
-  font-size: 0.68rem;
+  font-size: clamp(0.68rem, 2.9vw, 0.76rem);
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 200, 215, 0.45);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  color: rgba(244, 232, 236, 0.58);
+}
+
+.menu-presentation-desktop-preview-label {
+  display: none;
 }
 
 .menu-presentation-embed-wrap {
@@ -1282,15 +1296,35 @@ body {
   background: rgba(6, 3, 6, 0.6);
 }
 
+@media (max-width: 720px) {
+  .menu-presentation-embed-wrap {
+    display: none;
+  }
+}
+
+@media (min-width: 721px) {
+  .menu-presentation-desktop-preview-label {
+    display: block;
+    margin: 0 auto 0.55rem;
+    max-width: 28rem;
+    text-align: center;
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 232, 236, 0.42);
+  }
+}
+
 .menu-presentation-download {
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  width: fit-content;
-  max-width: calc(100% - 1rem);
-  margin: 1rem auto 0;
+  width: 100%;
+  margin: 0;
   padding: 0.62rem 1rem 0.62rem 0.85rem;
   border-radius: 12px;
   border: 1px solid rgba(180, 175, 200, 0.38);
@@ -1307,6 +1341,35 @@ body {
   text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.menu-presentation-download--primary {
+  min-height: 48px;
+  padding: 0.72rem 1rem 0.72rem 0.9rem;
+  border-color: rgba(255, 183, 201, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 210, 225, 0.1) 0%, transparent 50%),
+    rgba(22, 14, 22, 0.82);
+  box-shadow:
+    0 6px 22px rgba(0, 0, 0, 0.24),
+    0 0 24px rgba(255, 140, 185, 0.06);
+}
+
+.menu-presentation-download--primary .menu-presentation-download__icon {
+  color: rgba(255, 200, 218, 0.95);
+}
+
+.menu-presentation-download--secondary {
+  min-height: 44px;
+  padding: 0.55rem 0.9rem 0.55rem 0.8rem;
+  font-size: clamp(0.65rem, 2.5vw, 0.74rem);
+  letter-spacing: 0.07em;
+  border-color: rgba(150, 145, 175, 0.32);
+  opacity: 0.95;
+}
+
+.menu-presentation-download--secondary .menu-presentation-download__icon {
+  color: rgba(185, 190, 220, 0.75);
 }
 
 .menu-presentation-download:hover {
