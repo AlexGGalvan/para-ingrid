@@ -10,6 +10,7 @@
   var quedarmeView = document.getElementById("quedarme-view");
   var nudoView = document.getElementById("nudo-view");
   var ternuraView = document.getElementById("ternura-view");
+  var ocasoView = document.getElementById("ocaso-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
@@ -17,6 +18,7 @@
   var btnQuedarme = document.getElementById("btn-quedarme");
   var btnNudo = document.getElementById("btn-nudo");
   var btnTernura = document.getElementById("btn-ternura");
+  var btnOcaso = document.getElementById("btn-ocaso");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
@@ -24,6 +26,7 @@
   var btnBack5 = document.getElementById("btn-back-5");
   var btnBack6 = document.getElementById("btn-back-6");
   var btnBack7 = document.getElementById("btn-back-7");
+  var btnBack8 = document.getElementById("btn-back-8");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
@@ -33,6 +36,7 @@
   var btnResetQuedarme = document.getElementById("btn-reset-quedarme");
   var btnResetNudo = document.getElementById("btn-reset-nudo");
   var btnResetTernura = document.getElementById("btn-reset-ternura");
+  var btnResetOcaso = document.getElementById("btn-reset-ocaso");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -69,6 +73,12 @@
   var ternuraPanel = document.getElementById("ternura-panel");
   var ternuraCuritas = document.getElementById("ternura-curitas");
   var ternuraPager = document.getElementById("pager-ternura");
+  var ocasoArea = document.getElementById("poem-area-ocaso");
+  var ocasoHint = document.getElementById("hint-ocaso");
+  var ocasoScrollColumn = document.getElementById("verses-column-ocaso");
+  var ocasoPanel = document.getElementById("ocaso-panel");
+  var ocasoIcons = document.getElementById("ocaso-icons");
+  var ocasoPager = document.getElementById("pager-ocaso");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -98,6 +108,7 @@
     !quedarmeView ||
     !nudoView ||
     !ternuraView ||
+    !ocasoView ||
     !btnIngrid ||
     !btnPrisa ||
     !btnPerfume ||
@@ -105,6 +116,7 @@
     !btnQuedarme ||
     !btnNudo ||
     !btnTernura ||
+    !btnOcaso ||
     !btnBack1 ||
     !btnBack2 ||
     !btnBack3 ||
@@ -112,6 +124,7 @@
     !btnBack5 ||
     !btnBack6 ||
     !btnBack7 ||
+    !btnBack8 ||
     !btnBackStory ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
@@ -121,6 +134,7 @@
     !btnResetQuedarme ||
     !btnResetNudo ||
     !btnResetTernura ||
+    !btnResetOcaso ||
     !prisaArea ||
     !prisaPanel ||
     !prisaHint ||
@@ -157,6 +171,12 @@
     !ternuraScrollColumn ||
     !ternuraCuritas ||
     !ternuraPager ||
+    !ocasoArea ||
+    !ocasoPanel ||
+    !ocasoHint ||
+    !ocasoScrollColumn ||
+    !ocasoIcons ||
+    !ocasoPager ||
     !dataEl ||
     !area ||
     !track ||
@@ -403,6 +423,51 @@
     "con miedo de caer,\n" +
     "pero con más miedo\n" +
     "de no llegar.";
+
+  var OCASO_POEM =
+    "No sé si el atardecer sea tan bonito\n" +
+    "como dicen los que nunca te han visto llegar.\n" +
+    "Porque yo he visto al cielo pintarse de oro,\n" +
+    "pero también te he visto sonreír,\n" +
+    "y desde entonces entiendo\n" +
+    "que hay luces que no necesitan esconderse en el horizonte\n" +
+    "para quedarse dentro de uno.\n" +
+    "\n" +
+    "Cuando te vas,\n" +
+    "no siento que te pierdo.\n" +
+    "Te pienso como el sol cuando baja despacio:\n" +
+    "se va, sí,\n" +
+    "pero no se despide con tristeza,\n" +
+    "sino dejando en el cielo una promesa\n" +
+    "de que mañana volverá a tocarlo todo.\n" +
+    "\n" +
+    "Por eso no le reclamo al tiempo\n" +
+    "cuando se pone lento al extrañarte.\n" +
+    "No culpo a los minutos\n" +
+    "por alargarse cuando pienso en ti,\n" +
+    "porque hasta en esa espera\n" +
+    "hay algo bonito:\n" +
+    "la certeza de que tu recuerdo\n" +
+    "también sabe acompañarme.\n" +
+    "\n" +
+    "Y aunque a veces te extraño\n" +
+    "con esa calma que pesa poquito en el pecho,\n" +
+    "no me duele como ausencia,\n" +
+    "me queda más bien como luz.\n" +
+    "Como ese último color del día\n" +
+    "que no se queda para siempre,\n" +
+    "pero alcanza para hacer hermoso\n" +
+    "todo lo que toca.\n" +
+    "\n" +
+    "Si el mundo dice\n" +
+    "que no hay nada más bello que un atardecer,\n" +
+    "yo no discutiría.\n" +
+    "Solo pensaría en ti,\n" +
+    "porque quien tuvo la suerte de verte sonreír\n" +
+    "sabe, sin tener que explicarlo,\n" +
+    "que ningún cielo pintado de oro\n" +
+    "se compara\n" +
+    "con la luz que dejas cuando sonríes.";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -990,6 +1055,125 @@
   );
   ternuraArea.addEventListener("keydown", onTernuraActivate);
 
+  var ocasoIconEls = Array.prototype.slice.call(
+    ocasoIcons.querySelectorAll("span.ocaso")
+  );
+  var ocasoFill = 0;
+  var ocasoParas = OCASO_POEM.split(/\n\s*\n/);
+  var ocasoShown = 0;
+
+  function resetOcasoIcons() {
+    ocasoFill = 0;
+    ocasoShown = 0;
+    ocasoIconEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    ocasoHint.classList.remove("is-hidden");
+    ocasoPanel.textContent = "";
+    ocasoPanel.classList.remove("has-text");
+    ocasoPanel.classList.remove("ocaso-panel--finale");
+    setPager(ocasoPager, 0, ocasoParas.length);
+  }
+
+  function fillNextOcaso() {
+    if (ocasoFill < ocasoIconEls.length) {
+      ocasoIconEls[ocasoFill].classList.add("is-full");
+      ocasoFill += 1;
+    }
+  }
+
+  function revealNextOcasoParagraph() {
+    if (ocasoShown >= ocasoParas.length) return;
+    ocasoPanel.classList.remove("ocaso-panel--finale");
+
+    var isLastStanza = ocasoShown === ocasoParas.length - 1;
+    var block = ocasoParas[ocasoShown].trim();
+    ocasoShown += 1;
+    if (!block) return;
+
+    ocasoPanel.textContent = "";
+
+    if (isLastStanza) {
+      var lines = block
+        .split("\n")
+        .map(function (ln) {
+          return ln.trim();
+        })
+        .filter(function (ln) {
+          return ln.length;
+        });
+      var underlineRe = /^porque quien tuvo la suerte\b/i;
+      var underlineStart = -1;
+      for (var li = 0; li < lines.length; li++) {
+        if (underlineRe.test(lines[li])) {
+          underlineStart = li;
+          break;
+        }
+      }
+      if (underlineStart > 0) {
+        ocasoPanel.classList.add("ocaso-panel--finale");
+        var leadEl = document.createElement("p");
+        leadEl.className = "ocaso-stanza-lead";
+        leadEl.textContent = lines.slice(0, underlineStart).join("\n");
+        ocasoPanel.appendChild(leadEl);
+        var codaEl = document.createElement("p");
+        codaEl.className = "ocaso-stanza-coda";
+        codaEl.textContent = lines.slice(underlineStart).join("\n");
+        ocasoPanel.appendChild(codaEl);
+      } else if (underlineStart === 0) {
+        ocasoPanel.classList.add("ocaso-panel--finale");
+        var codaOnly = document.createElement("p");
+        codaOnly.className = "ocaso-stanza-coda";
+        codaOnly.textContent = lines.join("\n");
+        ocasoPanel.appendChild(codaOnly);
+      } else {
+        ocasoPanel.textContent = block;
+      }
+    } else {
+      ocasoPanel.textContent = block;
+    }
+
+    ocasoPanel.classList.add("has-text");
+    ocasoPanel.classList.remove("verse-enter");
+    void ocasoPanel.offsetWidth;
+    ocasoPanel.classList.add("verse-enter");
+    ocasoPanel.scrollTop = 0;
+    ocasoScrollColumn.scrollTop = 0;
+    setPager(ocasoPager, ocasoShown, ocasoParas.length);
+  }
+
+  function ocasoProgress() {
+    if (ocasoFill === 0 && ocasoShown === 0) {
+      ocasoHint.classList.add("is-hidden");
+    }
+    fillNextOcaso();
+    revealNextOcasoParagraph();
+    if (
+      ocasoFill >= ocasoIconEls.length &&
+      ocasoShown >= ocasoParas.length
+    ) {
+      ocasoHint.classList.add("is-hidden");
+    }
+  }
+
+  function onOcasoActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    ocasoProgress();
+  }
+
+  ocasoArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-8")) return;
+      if (e.target.closest("#btn-reset-ocaso")) return;
+      onOcasoActivate(e);
+    },
+    { passive: true }
+  );
+  ocasoArea.addEventListener("keydown", onOcasoActivate);
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
@@ -1000,6 +1184,7 @@
     quedarmeView.hidden = view !== "quedarme";
     nudoView.hidden = view !== "nudo";
     ternuraView.hidden = view !== "ternura";
+    ocasoView.hidden = view !== "ocaso";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -1040,6 +1225,11 @@
       resetTernuraCuritas();
       ternuraArea.focus();
     }
+
+    if (view === "ocaso") {
+      resetOcasoIcons();
+      ocasoArea.focus();
+    }
   }
 
   btnIngrid.addEventListener("click", function () {
@@ -1068,6 +1258,10 @@
 
   btnTernura.addEventListener("click", function () {
     showView("ternura");
+  });
+
+  btnOcaso.addEventListener("click", function () {
+    showView("ocaso");
   });
 
   btnLeerHistoria.addEventListener("click", function () {
@@ -1100,6 +1294,10 @@
   });
 
   btnBack7.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack8.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -1147,6 +1345,12 @@
     e.stopPropagation();
     resetTernuraCuritas();
     ternuraArea.focus();
+  });
+
+  btnResetOcaso.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetOcasoIcons();
+    ocasoArea.focus();
   });
 
   (function setupStoryFollowup() {
