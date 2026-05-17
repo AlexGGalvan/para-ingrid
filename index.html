@@ -25,6 +25,7 @@
                     <p class="menu-personal-carousel__kicker">Mensaje de hoy</p>
                     <div class="menu-personal-carousel__viewport">
                         <div class="menu-personal-carousel__strip" id="menu-personal-carousel-strip">
+                            <p class="menu-personal-carousel__slide">Cuando te acaricié me di cuenta que había vivido toda mi vida con las manos vacías</p>
                             <p class="menu-personal-carousel__slide">La vida es la flor de la que el amor es la miel</p>
                             <p class="menu-personal-carousel__slide">Qué raro y qué bonito<br>que alguien pueda sentirse como paz y emoción al mismo tiempo.</p>
                             <p class="menu-personal-carousel__slide">Por una mirada, un mundo;<br>por una sonrisa, un cielo;<br>por un beso… yo no sé qué te diera por un beso.</p>
@@ -46,6 +47,8 @@
                             aria-selected="false" aria-label="Mensaje 5"></button>
                         <button type="button" class="menu-personal-carousel__dot" role="tab"
                             aria-selected="false" aria-label="Mensaje 6"></button>
+                        <button type="button" class="menu-personal-carousel__dot" role="tab"
+                            aria-selected="false" aria-label="Mensaje 7"></button>
                     </div>
                 </div>
                 <section class="menu-presentation-slot" aria-labelledby="presentation-heading">
@@ -72,7 +75,10 @@
                             loading="lazy"></iframe>
                     </div>
                 </section>
-                <button type="button" class="extra-cta is-visible" id="btn-ingrid">INGRID</button>
+                <div class="menu-poem-actions" aria-label="Ingrid">
+                    <button type="button" class="extra-cta is-visible menu-poem-actions__main" id="btn-ingrid">INGRID</button>
+                    <button type="button" class="extra-cta is-visible extra-cta--sub" id="btn-ingrid-letter">Carta de amor</button>
+                </div>
                 <button type="button" class="extra-cta is-visible" id="btn-prisa">¿Lo nuestro fue prisa?</button>
                 <button type="button" class="extra-cta is-visible" id="btn-perfume">¿Dónde consigo tu perfume?</button>
                 <button type="button" class="extra-cta is-visible" id="btn-amor">¿Cuándo se termina el amor?</button>
@@ -406,6 +412,35 @@
                             </button>
                         </form>
                         <p class="story-form-status" id="story-form-status" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ingrid-letter-view" hidden aria-label="Carta de amor para Ingrid">
+            <button type="button" class="extra-cta is-visible" id="btn-back-ingrid-letter">Volver al menú</button>
+            <div id="ingrid-letter-area" class="story-area" tabindex="0" aria-label="Carta de amor — desplázate para leer">
+                <header class="story-view-head">
+                    <h1 class="story-view-title">Ingrid</h1>
+                    <p class="story-view-sub">Carta de amor</p>
+                </header>
+                <div class="verses-column story-verses" id="verses-column-ingrid-letter">
+                    <div class="story-body story-body--page">
+                        <article class="story-chapter ingrid-letter">
+                            <div class="story-prose">
+                                <p class="ingrid-letter__salute">Ingrid Joselin Reyes Campos,</p>
+                                <p>A veces pienso que una vida puede seguir aunque alguien falte.</p>
+                                <p>Uno despierta, trabaja, sonríe, responde mensajes… sigue.</p>
+                                <p>Pero contigo entendí que vivir no es solo seguir respirando.</p>
+                                <p>También es sentir que algo dentro de uno tiene sentido.</p>
+                                <p>Por eso, cuando pienso en ti, me nace decir:</p>
+                                <div class="story-stanza ingrid-letter__highlight">
+                                    <p>Una vida sin ti… qué clase de vida sería...</p>
+                                </div>
+                                <p>Porque te quiero de una forma que no llegó a interrumpir mi vida, sino a encajar en ella. Como si una parte de mí ya tuviera tu espacio guardado sin saberlo, y cuando llegaste, todo simplemente encontró dónde quedarse.</p>
+                                <p class="ingrid-letter__sign">— Ramiro Alejandro Garcia Galvan</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 
   var menuView = document.getElementById("menu-view");
   var storyView = document.getElementById("story-view");
+  var ingridLetterView = document.getElementById("ingrid-letter-view");
   var ingridView = document.getElementById("ingrid-view");
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
@@ -12,6 +13,7 @@
   var ternuraView = document.getElementById("ternura-view");
   var ocasoView = document.getElementById("ocaso-view");
   var btnIngrid = document.getElementById("btn-ingrid");
+  var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
@@ -28,6 +30,7 @@
   var btnBack7 = document.getElementById("btn-back-7");
   var btnBack8 = document.getElementById("btn-back-8");
   var btnBackStory = document.getElementById("btn-back-story");
+  var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
   var btnResetPrisa = document.getElementById("btn-reset-prisa");
@@ -90,6 +93,8 @@
   var ingridPager = document.getElementById("pager-ingrid");
   var storyArea = document.getElementById("story-area");
   var versesColumnStory = document.getElementById("verses-column-story");
+  var ingridLetterArea = document.getElementById("ingrid-letter-area");
+  var versesColumnIngridLetter = document.getElementById("verses-column-ingrid-letter");
 
   /**
    * Respuestas a «¿Ya le pongo punto?» · regístrate en https://formspree.io ,
@@ -101,6 +106,7 @@
   if (
     !menuView ||
     !storyView ||
+    !ingridLetterView ||
     !ingridView ||
     !prisaView ||
     !perfumeView ||
@@ -110,6 +116,7 @@
     !ternuraView ||
     !ocasoView ||
     !btnIngrid ||
+    !btnIngridLetter ||
     !btnPrisa ||
     !btnPerfume ||
     !btnAmor ||
@@ -126,6 +133,7 @@
     !btnBack7 ||
     !btnBack8 ||
     !btnBackStory ||
+    !btnBackIngridLetter ||
     !btnLeerHistoria ||
     !btnResetIngrid ||
     !btnResetPrisa ||
@@ -185,6 +193,8 @@
     || !ingridPager
     || !storyArea
     || !versesColumnStory
+    || !ingridLetterArea
+    || !versesColumnIngridLetter
   )
     return;
 
@@ -1174,9 +1184,17 @@
   );
   ocasoArea.addEventListener("keydown", onOcasoActivate);
 
+  function resetIngridLetterScroll() {
+    window.scrollTo(0, 0);
+    ingridLetterView.scrollTop = 0;
+    ingridLetterArea.scrollTop = 0;
+    versesColumnIngridLetter.scrollTop = 0;
+  }
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
+    ingridLetterView.hidden = view !== "ingrid-letter";
     ingridView.hidden = view !== "ingrid";
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
@@ -1189,6 +1207,17 @@
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
       storyArea.focus({ preventScroll: true });
+    }
+
+    if (view === "ingrid-letter") {
+      resetIngridLetterScroll();
+      requestAnimationFrame(function () {
+        resetIngridLetterScroll();
+        requestAnimationFrame(function () {
+          resetIngridLetterScroll();
+          ingridLetterArea.focus({ preventScroll: true });
+        });
+      });
     }
 
     if (view === "ingrid") {
@@ -1234,6 +1263,10 @@
 
   btnIngrid.addEventListener("click", function () {
     showView("ingrid");
+  });
+
+  btnIngridLetter.addEventListener("click", function () {
+    showView("ingrid-letter");
   });
 
   btnPrisa.addEventListener("click", function () {
@@ -1302,6 +1335,10 @@
   });
 
   btnBackStory.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBackIngridLetter.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -1594,6 +1631,41 @@
       { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
     );
     obs.observe(section);
+  })();
+
+  (function initIngridLetterBtnIntro() {
+    var btn = document.getElementById("btn-ingrid-letter");
+    if (!btn) return;
+
+    var storageKey = "para-ingrid-letter-btn-intro";
+    try {
+      if (localStorage.getItem(storageKey)) return;
+    } catch (err) {
+      return;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      try {
+        localStorage.setItem(storageKey, "1");
+      } catch (e2) {}
+      return;
+    }
+
+    btn.classList.add("is-intro-pending");
+
+    window.setTimeout(function () {
+      btn.classList.remove("is-intro-pending");
+      btn.classList.add("is-intro-reveal");
+    }, 500);
+
+    btn.addEventListener("animationend", function onEnd(e) {
+      if (e.animationName !== "letter-btn-fade-in") return;
+      btn.removeEventListener("animationend", onEnd);
+      btn.classList.remove("is-intro-reveal");
+      try {
+        localStorage.setItem(storageKey, "1");
+      } catch (e3) {}
+    });
   })();
 
   showView("menu");
