@@ -1192,30 +1192,71 @@
   }
 
   var letterBtnIntroTimer = null;
+  var letterBtnIntroCleanupTimer = null;
+  var letterBtnIntroRaf = 0;
+
+  function clearIngridLetterBtnIntro() {
+    if (letterBtnIntroTimer !== null) {
+      window.clearTimeout(letterBtnIntroTimer);
+      letterBtnIntroTimer = null;
+    }
+    if (letterBtnIntroCleanupTimer !== null) {
+      window.clearTimeout(letterBtnIntroCleanupTimer);
+      letterBtnIntroCleanupTimer = null;
+    }
+    if (letterBtnIntroRaf) {
+      window.cancelAnimationFrame(letterBtnIntroRaf);
+      letterBtnIntroRaf = 0;
+    }
+    btnIngridLetter.classList.remove("is-intro-reveal", "is-intro-pending");
+  }
+
+  function finishIngridLetterBtnIntro() {
+    btnIngridLetter.classList.remove("is-intro-reveal", "is-intro-pending");
+    if (letterBtnIntroCleanupTimer !== null) {
+      window.clearTimeout(letterBtnIntroCleanupTimer);
+      letterBtnIntroCleanupTimer = null;
+    }
+  }
 
   function playIngridLetterBtnIntro() {
     if (!btnIngridLetter) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    if (letterBtnIntroTimer !== null) {
-      window.clearTimeout(letterBtnIntroTimer);
-      letterBtnIntroTimer = null;
-    }
-
-    btnIngridLetter.classList.remove("is-intro-reveal", "is-intro-pending");
+    clearIngridLetterBtnIntro();
     void btnIngridLetter.offsetWidth;
 
     btnIngridLetter.classList.add("is-intro-pending");
     letterBtnIntroTimer = window.setTimeout(function () {
       letterBtnIntroTimer = null;
+      void btnIngridLetter.offsetWidth;
       btnIngridLetter.classList.remove("is-intro-pending");
       btnIngridLetter.classList.add("is-intro-reveal");
-    }, 500);
+      letterBtnIntroCleanupTimer = window.setTimeout(finishIngridLetterBtnIntro, 1400);
+    }, 60);
   }
 
-  btnIngridLetter.addEventListener("animationend", function (e) {
-    if (e.animationName !== "letter-btn-fade-in") return;
-    btnIngridLetter.classList.remove("is-intro-reveal");
+  function scheduleIngridLetterBtnIntro() {
+    if (!btnIngridLetter) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    clearIngridLetterBtnIntro();
+    letterBtnIntroRaf = window.requestAnimationFrame(function () {
+      letterBtnIntroRaf = window.requestAnimationFrame(function () {
+        letterBtnIntroRaf = 0;
+        try {
+          btnIngridLetter.scrollIntoView({ block: "center", inline: "nearest" });
+        } catch (err) {}
+        playIngridLetterBtnIntro();
+      });
+    });
+  }
+
+  btnIngridLetter.addEventListener("transitionend", function (e) {
+    if (e.target !== btnIngridLetter) return;
+    if (e.propertyName !== "opacity") return;
+    if (!btnIngridLetter.classList.contains("is-intro-reveal")) return;
+    finishIngridLetterBtnIntro();
   });
 
   function showView(view) {
@@ -1288,7 +1329,7 @@
     }
 
     if (view === "menu") {
-      playIngridLetterBtnIntro();
+      scheduleIngridLetterBtnIntro();
     }
   }
 
