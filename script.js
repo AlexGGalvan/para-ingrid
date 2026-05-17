@@ -1191,6 +1191,33 @@
     versesColumnIngridLetter.scrollTop = 0;
   }
 
+  var letterBtnIntroTimer = null;
+
+  function playIngridLetterBtnIntro() {
+    if (!btnIngridLetter) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    if (letterBtnIntroTimer !== null) {
+      window.clearTimeout(letterBtnIntroTimer);
+      letterBtnIntroTimer = null;
+    }
+
+    btnIngridLetter.classList.remove("is-intro-reveal", "is-intro-pending");
+    void btnIngridLetter.offsetWidth;
+
+    btnIngridLetter.classList.add("is-intro-pending");
+    letterBtnIntroTimer = window.setTimeout(function () {
+      letterBtnIntroTimer = null;
+      btnIngridLetter.classList.remove("is-intro-pending");
+      btnIngridLetter.classList.add("is-intro-reveal");
+    }, 500);
+  }
+
+  btnIngridLetter.addEventListener("animationend", function (e) {
+    if (e.animationName !== "letter-btn-fade-in") return;
+    btnIngridLetter.classList.remove("is-intro-reveal");
+  });
+
   function showView(view) {
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
@@ -1258,6 +1285,10 @@
     if (view === "ocaso") {
       resetOcasoIcons();
       ocasoArea.focus();
+    }
+
+    if (view === "menu") {
+      playIngridLetterBtnIntro();
     }
   }
 
@@ -1631,41 +1662,6 @@
       { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
     );
     obs.observe(section);
-  })();
-
-  (function initIngridLetterBtnIntro() {
-    var btn = document.getElementById("btn-ingrid-letter");
-    if (!btn) return;
-
-    var storageKey = "para-ingrid-letter-btn-intro";
-    try {
-      if (localStorage.getItem(storageKey)) return;
-    } catch (err) {
-      return;
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      try {
-        localStorage.setItem(storageKey, "1");
-      } catch (e2) {}
-      return;
-    }
-
-    btn.classList.add("is-intro-pending");
-
-    window.setTimeout(function () {
-      btn.classList.remove("is-intro-pending");
-      btn.classList.add("is-intro-reveal");
-    }, 500);
-
-    btn.addEventListener("animationend", function onEnd(e) {
-      if (e.animationName !== "letter-btn-fade-in") return;
-      btn.removeEventListener("animationend", onEnd);
-      btn.classList.remove("is-intro-reveal");
-      try {
-        localStorage.setItem(storageKey, "1");
-      } catch (e3) {}
-    });
   })();
 
   showView("menu");
