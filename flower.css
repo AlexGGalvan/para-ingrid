@@ -866,7 +866,8 @@ body {
   .bouquet-stage {
     min-height: 100svh;
     height: 100svh;
-    padding-top: 8.5rem;
+    padding: 8.5rem 0 1.5rem;
+    place-items: center;
   }
 
   .back-link {
@@ -893,11 +894,12 @@ body {
   }
 
   .bouquet {
-    --scale: 0.72;
-    --shift-x: -2.7rem;
+    --scale: 0.74;
+    --shift-x: 0rem;
     width: 34rem;
     height: 42rem;
-    margin-bottom: -1.4rem;
+    margin: 0 auto;
+    transform-origin: 50% 55%;
   }
 
   .bouquet::before {
@@ -1068,11 +1070,19 @@ body {
   }
 }
 
+@media (max-width: 520px) {
+  .bouquet {
+    --scale: 0.64;
+    --shift-x: 0rem;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 430px) {
   .bouquet {
-    --scale: 0.61;
-    --shift-x: -3.6rem;
-    margin-bottom: -2.7rem;
+    --scale: 0.58;
+    --shift-x: 0rem;
+    margin: 0 auto;
   }
 
   .bouquet::before {
@@ -1165,9 +1175,9 @@ body {
 
 @media (max-width: 380px) {
   .bouquet {
-    --scale: 0.56;
-    --shift-x: -3.9rem;
-    margin-bottom: -3.1rem;
+    --scale: 0.52;
+    --shift-x: 0rem;
+    margin: 0 auto;
   }
 }
 
