@@ -923,7 +923,51 @@ body {
   }
 
   .stem {
-    display: none;
+    display: block;
+    bottom: -0.25rem;
+    z-index: 1;
+    width: 0.32rem;
+    opacity: 0.62;
+  }
+
+  .stem-one {
+    transform: translateX(-0.45rem) rotate(-28deg);
+    height: 18.5rem;
+  }
+
+  .stem-two {
+    transform: translateX(0.45rem) rotate(28deg);
+    height: 18.2rem;
+  }
+
+  .stem-three {
+    transform: translateX(-0.35rem) rotate(-9deg);
+    height: 19.8rem;
+  }
+
+  .stem-four {
+    transform: translateX(0.35rem) rotate(9deg);
+    height: 19.8rem;
+  }
+
+  .stem-five {
+    transform: translateX(-0.75rem) rotate(-42deg);
+    height: 16.2rem;
+  }
+
+  .stem-six {
+    transform: translateX(0.75rem) rotate(42deg);
+    height: 16.5rem;
+  }
+
+  .stem-seven {
+    transform: translateX(-0.15rem) rotate(17deg);
+    height: 18.6rem;
+  }
+
+  .stem-eight {
+    transform: translateX(0.15rem) rotate(-17deg);
+    height: 18.4rem;
   }
 
   .eucalyptus-left {
@@ -956,12 +1000,12 @@ body {
   }
 
   .leaf {
-    z-index: 1;
+    z-index: 2;
   }
 
   .gypsophila,
   .flower {
-    z-index: 2;
+    z-index: 3;
   }
 
   .gerbera-four {
@@ -1035,6 +1079,34 @@ body {
     bottom: -0.1rem;
     width: 18rem;
     height: 15.5rem;
+  }
+
+  .stem {
+    width: 0.3rem;
+    opacity: 0.58;
+  }
+
+  .stem-one {
+    height: 16.8rem;
+  }
+
+  .stem-two {
+    height: 16.6rem;
+  }
+
+  .stem-three,
+  .stem-four {
+    height: 18.2rem;
+  }
+
+  .stem-five,
+  .stem-six {
+    height: 14.8rem;
+  }
+
+  .stem-seven,
+  .stem-eight {
+    height: 17.1rem;
   }
 
   .eucalyptus-left {
