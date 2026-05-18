@@ -895,7 +895,7 @@ body {
 
   .bouquet {
     --scale: 0.78;
-    --shift-x: 0rem;
+    --shift-x: -1.4rem;
     width: 34rem;
     height: 38rem;
     margin: 0 auto;
@@ -1074,7 +1074,7 @@ body {
 @media (max-width: 520px) {
   .bouquet {
     --scale: 0.64;
-    --shift-x: 0rem;
+    --shift-x: -1.6rem;
     margin: 0 auto;
   }
 }
@@ -1082,7 +1082,7 @@ body {
 @media (max-width: 430px) {
   .bouquet {
     --scale: 0.58;
-    --shift-x: 0rem;
+    --shift-x: -1.8rem;
     margin: 0 auto;
   }
 
@@ -1174,7 +1174,7 @@ body {
 @media (max-width: 380px) {
   .bouquet {
     --scale: 0.52;
-    --shift-x: 0rem;
+    --shift-x: -2rem;
     margin: 0 auto;
   }
 }
