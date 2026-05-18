@@ -894,12 +894,12 @@ body {
   }
 
   .bouquet {
-    --scale: 0.74;
+    --scale: 0.78;
     --shift-x: 0rem;
     width: 34rem;
-    height: 42rem;
+    height: 38rem;
     margin: 0 auto;
-    transform-origin: 50% 55%;
+    transform-origin: 50% 100%;
   }
 
   .bouquet::before {
@@ -926,69 +926,70 @@ body {
 
   .stem {
     display: block;
-    bottom: -0.25rem;
+    bottom: -0.5rem;
     z-index: 1;
-    width: 0.32rem;
-    opacity: 0.62;
+    width: 0.38rem;
+    opacity: 0.78;
   }
 
   .stem-one {
-    transform: translateX(-0.45rem) rotate(-28deg);
-    height: 18.5rem;
+    transform: translateX(-0.45rem) rotate(-22deg);
+    height: 26rem;
   }
 
   .stem-two {
-    transform: translateX(0.45rem) rotate(28deg);
-    height: 18.2rem;
+    transform: translateX(0.45rem) rotate(22deg);
+    height: 26rem;
   }
 
   .stem-three {
-    transform: translateX(-0.35rem) rotate(-9deg);
-    height: 19.8rem;
+    transform: translateX(-0.35rem) rotate(-6deg);
+    height: 30rem;
   }
 
   .stem-four {
-    transform: translateX(0.35rem) rotate(9deg);
-    height: 19.8rem;
+    transform: translateX(0.35rem) rotate(6deg);
+    height: 30rem;
   }
 
   .stem-five {
-    transform: translateX(-0.75rem) rotate(-42deg);
-    height: 16.2rem;
+    transform: translateX(-0.75rem) rotate(-34deg);
+    height: 22rem;
   }
 
   .stem-six {
-    transform: translateX(0.75rem) rotate(42deg);
-    height: 16.5rem;
+    transform: translateX(0.75rem) rotate(34deg);
+    height: 22rem;
   }
 
   .stem-seven {
-    transform: translateX(-0.15rem) rotate(17deg);
-    height: 18.6rem;
+    transform: translateX(-0.15rem) rotate(12deg);
+    height: 27rem;
   }
 
   .stem-eight {
-    transform: translateX(0.15rem) rotate(-17deg);
-    height: 18.4rem;
+    transform: translateX(0.15rem) rotate(-12deg);
+    height: 27rem;
   }
 
   .eucalyptus-left {
-    left: 8.2rem;
-    top: 13.1rem;
-    height: 7rem;
-    transform: rotate(-24deg) scale(0.78);
+    left: 7.8rem;
+    top: 12rem;
+    height: 9rem;
+    transform: rotate(-22deg) scale(0.82);
   }
 
   .eucalyptus-right {
-    right: 5.8rem;
-    top: 16.8rem;
-    height: 7rem;
-    transform: rotate(50deg) scale(0.7);
+    right: 5.3rem;
+    top: 15rem;
+    height: 9rem;
+    transform: rotate(48deg) scale(0.78);
   }
 
   .eucalyptus-low {
     left: 8rem;
-    top: 27rem;
+    top: 25rem;
+    height: 8rem;
     transform: rotate(76deg) scale(0.82);
   }
 
@@ -1092,31 +1093,28 @@ body {
   }
 
   .stem {
-    width: 0.3rem;
-    opacity: 0.58;
+    width: 0.36rem;
+    opacity: 0.75;
   }
 
-  .stem-one {
-    height: 16.8rem;
-  }
-
+  .stem-one,
   .stem-two {
-    height: 16.6rem;
+    height: 24rem;
   }
 
   .stem-three,
   .stem-four {
-    height: 18.2rem;
+    height: 28rem;
   }
 
   .stem-five,
   .stem-six {
-    height: 14.8rem;
+    height: 20rem;
   }
 
   .stem-seven,
   .stem-eight {
-    height: 17.1rem;
+    height: 25rem;
   }
 
   .eucalyptus-left {
