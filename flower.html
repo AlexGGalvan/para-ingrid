@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#08040a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="flower.css">
+    <title>Ramo para Ingrid</title>
+</head>
+
+<body>
+    <main class="bouquet-scene" aria-label="Ramo virtual para Ingrid">
+        <a class="back-link" href="index.html" aria-label="Volver al menu">Volver</a>
+        <div class="night-sky" aria-hidden="true">
+            <span class="moon-glow"></span>
+            <span class="aurora aurora-one"></span>
+            <span class="aurora aurora-two"></span>
+            <div class="stars" id="stars"></div>
+            <div class="fireflies" id="fireflies"></div>
+        </div>
+
+        <section class="bouquet-stage" aria-label="Ramo virtual con gerberas, rosas, claveles, gypsophila y mariposas doradas">
+            <header class="bouquet-intro">
+                <p>Te quiero y siempre quiero verte sonreír...</p>
+                <p>¿Y si empiezas a tocar las flores? Tal vez guarden algo para ti.</p>
+            </header>
+            <div class="flower-note" id="flower-note" aria-live="polite" aria-hidden="true">
+                <p class="flower-note__verse" id="flower-note-verse"></p>
+                <p class="flower-note__phrase" id="flower-note-phrase"></p>
+            </div>
+            <div class="special-message" id="special-message" aria-live="polite" aria-hidden="true">
+                <p class="special-message__hearts" aria-hidden="true">♡ ♡ ♡</p>
+                <p class="special-message__text">Me caes muy bien</p>
+                <p class="special-message__hearts" aria-hidden="true">♡ ♡ ♡</p>
+            </div>
+            <div class="final-blessing" id="final-blessing" aria-live="polite" aria-hidden="true">
+                <p>Sobre todo, vístanse de amor, que es el vínculo perfecto.</p>
+                <span>Colosenses 3:14</span>
+            </div>
+            <div class="petal-rain" id="petal-rain" aria-hidden="true"></div>
+            <div class="butterfly butterfly-one" aria-hidden="true">
+                <span class="wing wing-left"></span>
+                <span class="wing wing-right"></span>
+                <span class="body"></span>
+            </div>
+            <div class="butterfly butterfly-two" aria-hidden="true">
+                <span class="wing wing-left"></span>
+                <span class="wing wing-right"></span>
+                <span class="body"></span>
+            </div>
+
+            <div class="bouquet" aria-hidden="true">
+                <div class="stem stem-one"></div>
+                <div class="stem stem-two"></div>
+                <div class="stem stem-three"></div>
+                <div class="stem stem-four"></div>
+                <div class="stem stem-five"></div>
+                <div class="stem stem-six"></div>
+                <div class="stem stem-seven"></div>
+                <div class="stem stem-eight"></div>
+
+                <div class="leaf leaf-one"></div>
+                <div class="leaf leaf-two"></div>
+                <div class="leaf leaf-three"></div>
+                <div class="leaf leaf-four"></div>
+                <div class="leaf leaf-five"></div>
+                <div class="leaf leaf-six"></div>
+                <div class="eucalyptus eucalyptus-left">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="eucalyptus eucalyptus-right">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="eucalyptus eucalyptus-low">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="gypsophila gypsophila-left" id="gypsophila-left"></div>
+                <div class="gypsophila gypsophila-right" id="gypsophila-right"></div>
+                <div class="gypsophila gypsophila-top" id="gypsophila-top"></div>
+                <div class="gypsophila gypsophila-center" id="gypsophila-center"></div>
+                <div class="gypsophila gypsophila-low" id="gypsophila-low"></div>
+
+                <div class="flower gerbera gerbera-one">
+                    <div class="petal-ring ring-back"></div>
+                    <div class="petal-ring ring-mid"></div>
+                    <div class="petal-ring ring-front"></div>
+                    <span class="flower-core"></span>
+                </div>
+                <div class="flower gerbera gerbera-two special-flower">
+                    <div class="petal-ring ring-back"></div>
+                    <div class="petal-ring ring-mid"></div>
+                    <div class="petal-ring ring-front"></div>
+                    <span class="flower-core"></span>
+                </div>
+                <div class="flower gerbera gerbera-three">
+                    <div class="petal-ring ring-back"></div>
+                    <div class="petal-ring ring-mid"></div>
+                    <div class="petal-ring ring-front"></div>
+                    <span class="flower-core"></span>
+                </div>
+                <div class="flower gerbera gerbera-four">
+                    <div class="petal-ring ring-back"></div>
+                    <div class="petal-ring ring-mid"></div>
+                    <div class="petal-ring ring-front"></div>
+                    <span class="flower-core"></span>
+                </div>
+
+                <div class="flower rose rose-one">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-two">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-three">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-four">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-five">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-six">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-seven">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-eight">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-nine">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+                <div class="flower rose rose-ten">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <i></i>
+                </div>
+
+                <div class="flower carnation carnation-one">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="flower carnation carnation-two">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="flower carnation carnation-three">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="flower carnation carnation-four">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="flower carnation carnation-five">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="flower mini-rose mini-rose-one"><span></span><i></i></div>
+                <div class="flower mini-rose mini-rose-two"><span></span><i></i></div>
+                <div class="flower mini-rose mini-rose-three"><span></span><i></i></div>
+                <div class="flower mini-rose mini-rose-four"><span></span><i></i></div>
+                <div class="flower mini-rose mini-rose-five"><span></span><i></i></div>
+                <div class="flower mini-rose mini-rose-six"><span></span><i></i></div>
+                <div class="flower bud bud-one"></div>
+                <div class="flower bud bud-two"></div>
+                <div class="flower bud bud-three"></div>
+                <div class="flower bud bud-four"></div>
+            </div>
+        </section>
+    </main>
+    <script src="flower.js"></script>
+</body>
+
+</html>
