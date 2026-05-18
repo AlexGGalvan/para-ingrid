@@ -297,11 +297,12 @@ body {
 
 .bouquet {
   --scale: 1;
+  --shift-x: 0rem;
   position: relative;
   width: min(96vw, 39rem);
   height: min(79vh, 42rem);
   min-height: 34rem;
-  transform: scale(var(--scale));
+  transform: translateX(var(--shift-x)) scale(var(--scale));
   transform-origin: 50% 100%;
   filter: drop-shadow(0 34px 42px rgba(0, 0, 0, 0.46));
   animation: bouquet-rise 1.45s cubic-bezier(0.18, 0.84, 0.2, 1) both;
@@ -740,11 +741,11 @@ body {
 @keyframes bouquet-rise {
   from {
     opacity: 0;
-    transform: translateY(4rem) scale(0.94);
+    transform: translate3d(var(--shift-x), 4rem, 0) scale(0.94);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(var(--scale));
+    transform: translate3d(var(--shift-x), 0, 0) scale(var(--scale));
   }
 }
 
@@ -888,6 +889,7 @@ body {
 
   .bouquet {
     --scale: 0.72;
+    --shift-x: -2.7rem;
     width: 34rem;
     height: 42rem;
     margin-bottom: -1.4rem;
@@ -920,6 +922,7 @@ body {
 @media (max-width: 430px) {
   .bouquet {
     --scale: 0.61;
+    --shift-x: -3.6rem;
     margin-bottom: -2.7rem;
   }
 
@@ -950,6 +953,7 @@ body {
 @media (max-width: 380px) {
   .bouquet {
     --scale: 0.56;
+    --shift-x: -3.9rem;
     margin-bottom: -3.1rem;
   }
 }
