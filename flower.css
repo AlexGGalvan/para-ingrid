@@ -895,6 +895,81 @@ body {
     margin-bottom: -1.4rem;
   }
 
+  .stem {
+    width: 0.34rem;
+    opacity: 0.78;
+  }
+
+  .stem-one,
+  .stem-two,
+  .stem-five,
+  .stem-six {
+    height: 21.5rem;
+  }
+
+  .stem-three,
+  .stem-four,
+  .stem-seven,
+  .stem-eight {
+    height: 24rem;
+  }
+
+  .eucalyptus-left {
+    left: 8rem;
+    top: 7.8rem;
+    height: 10.5rem;
+    transform: rotate(-18deg) scale(0.86);
+  }
+
+  .eucalyptus-right {
+    right: 5.2rem;
+    top: 9.5rem;
+    height: 10rem;
+    transform: rotate(42deg) scale(0.82);
+  }
+
+  .eucalyptus-low {
+    left: 8rem;
+    top: 27rem;
+    transform: rotate(76deg) scale(0.82);
+  }
+
+  .gerbera-four {
+    right: 3.5rem;
+    top: 21.5rem;
+    transform: rotate(-9deg) scale(0.82);
+  }
+
+  .rose-two {
+    right: 5rem;
+    top: 17.7rem;
+    transform: rotate(13deg) scale(0.88);
+  }
+
+  .rose-ten {
+    right: 2.7rem;
+    top: 31rem;
+    transform: rotate(17deg) scale(0.66);
+  }
+
+  .carnation-three {
+    left: 24.2rem;
+    top: 18.7rem;
+    transform: rotate(3deg) scale(0.66);
+  }
+
+  .mini-rose-six {
+    right: 5.9rem;
+    top: 27.7rem;
+    transform: rotate(12deg) scale(0.7);
+  }
+
+  .bud-three {
+    left: 24.3rem;
+    top: 30rem;
+    transform: rotate(18deg) scale(0.7);
+  }
+
   .butterfly-one {
     top: 18%;
     left: 64%;
@@ -924,6 +999,50 @@ body {
     --scale: 0.61;
     --shift-x: -3.6rem;
     margin-bottom: -2.7rem;
+  }
+
+  .stem-one,
+  .stem-two,
+  .stem-five,
+  .stem-six {
+    height: 20rem;
+  }
+
+  .stem-three,
+  .stem-four,
+  .stem-seven,
+  .stem-eight {
+    height: 22.6rem;
+  }
+
+  .eucalyptus-left {
+    left: 8.4rem;
+    top: 8.8rem;
+    transform: rotate(-18deg) scale(0.78);
+  }
+
+  .eucalyptus-right {
+    right: 5.9rem;
+    top: 10.9rem;
+    transform: rotate(43deg) scale(0.74);
+  }
+
+  .gerbera-four {
+    right: 4.1rem;
+    top: 22.1rem;
+    transform: rotate(-9deg) scale(0.78);
+  }
+
+  .rose-two {
+    right: 5.8rem;
+    top: 18.3rem;
+    transform: rotate(13deg) scale(0.82);
+  }
+
+  .carnation-three {
+    left: 23.9rem;
+    top: 19.3rem;
+    transform: rotate(3deg) scale(0.6);
   }
 
   .back-link {
