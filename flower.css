@@ -177,106 +177,6 @@ body {
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
-.constellations {
-  position: absolute;
-  left: 50%;
-  top: calc(8.5rem + env(safe-area-inset-top, 0px));
-  z-index: 12;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(1.5rem, 8vw, 4.5rem);
-  width: min(92vw, 28rem);
-  transform: translateX(-50%);
-  pointer-events: none;
-  opacity: 0;
-  animation: constellation-soft-in 1.4s ease 0.6s forwards;
-}
-
-.constellation {
-  position: relative;
-  margin: 0;
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.constellation svg {
-  width: clamp(6rem, 22vw, 8.5rem);
-  height: auto;
-  display: block;
-  overflow: visible;
-  filter: drop-shadow(0 0 0.8rem rgba(255, 245, 215, 0.18));
-}
-
-.constellation__lines {
-  fill: none;
-  stroke: rgba(255, 240, 210, 0.34);
-  stroke-width: 0.42;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.constellation__stars circle {
-  fill: rgba(255, 250, 232, 0.95);
-  filter: drop-shadow(0 0 0.32rem rgba(255, 234, 168, 0.92));
-  animation: constellation-twinkle 3.2s ease-in-out infinite;
-}
-
-.constellation__stars circle:nth-child(3n) {
-  animation-duration: 4.1s;
-  animation-delay: 0.4s;
-}
-
-.constellation__stars circle:nth-child(4n) {
-  animation-duration: 5s;
-  animation-delay: 0.9s;
-}
-
-.constellation__stars circle:nth-child(5n) {
-  animation-duration: 3.7s;
-  animation-delay: 1.3s;
-}
-
-.constellation__stars .constellation__eye {
-  fill: #fff7d9;
-  filter: drop-shadow(0 0 0.55rem rgba(255, 220, 140, 0.95));
-}
-
-.constellation figcaption {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(0.58rem, 2.2vw, 0.7rem);
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 232, 200, 0.62);
-  text-shadow: 0 0 12px rgba(255, 220, 160, 0.28);
-}
-
-@keyframes constellation-soft-in {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-0.4rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-@keyframes constellation-twinkle {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(0.92);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.18);
-  }
-}
 
 .flower-note {
   top: 7.6rem;
@@ -983,16 +883,6 @@ body {
   .bouquet-intro {
     top: calc(4.7rem + env(safe-area-inset-top, 0px));
     width: min(88vw, 22rem);
-  }
-
-  .constellations {
-    top: calc(9rem + env(safe-area-inset-top, 0px));
-    width: min(94vw, 24rem);
-    gap: clamp(0.5rem, 4vw, 2rem);
-  }
-
-  .constellation svg {
-    width: clamp(5rem, 19vw, 7rem);
   }
 
   .bouquet-intro p {
