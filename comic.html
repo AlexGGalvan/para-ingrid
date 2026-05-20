@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1d1018">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comic.css">
+    <title>Hasta que nos encontramos — Comic</title>
+    <script>
+        (function registerFreshSW() {
+            if (!("serviceWorker" in navigator)) return;
+            try {
+                navigator.serviceWorker.register("sw.js").then(function (reg) {
+                    if (reg && typeof reg.update === "function") {
+                        reg.update().catch(function () {});
+                    }
+                }).catch(function () {});
+            } catch (err) {}
+        })();
+    </script>
+</head>
+
+<body>
+    <main class="comic-scene" aria-label="Comic Hasta que nos encontramos">
+        <a class="comic-back-link" href="index.html" aria-label="Volver al menú">Volver</a>
+
+        <header class="comic-intro">
+            <p class="comic-intro__kicker">Una historia ilustrada</p>
+            <h1 class="comic-intro__title">Hasta que nos encontramos</h1>
+            <p class="comic-intro__hint">Toca a los lados o desliza para pasar las páginas</p>
+        </header>
+
+        <section class="comic-stage" aria-label="Lectura del comic">
+            <div class="comic-book" id="comic-book" role="group" aria-roledescription="libro" aria-label="Páginas del comic">
+                <div class="comic-book__shadow" aria-hidden="true"></div>
+
+                <article class="comic-page is-current" data-page-index="0">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/portada.png" alt="Portada: Hasta que nos encontramos">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="1">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/1.png" alt="Página 1" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="2">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/2.png" alt="Página 2" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="3">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/3.png" alt="Página 3" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="4">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/4.png" alt="Página 4" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="5">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/5.png" alt="Página 5" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <article class="comic-page" data-page-index="6">
+                    <div class="comic-page__inner">
+                        <div class="comic-page__face comic-page__face--front">
+                            <img src="assets/comic/contraportada.png" alt="Contraportada" loading="lazy">
+                        </div>
+                        <div class="comic-page__face comic-page__face--back" aria-hidden="true"></div>
+                    </div>
+                </article>
+
+                <button type="button" class="comic-edge comic-edge--prev" id="comic-prev"
+                    aria-label="Página anterior">‹</button>
+                <button type="button" class="comic-edge comic-edge--next" id="comic-next"
+                    aria-label="Página siguiente">›</button>
+            </div>
+        </section>
+
+        <footer class="comic-controls">
+            <span class="comic-pager" id="comic-pager" aria-live="polite">1 / 7</span>
+            <span class="comic-controls__hint">Toca la mitad izquierda para volver, la derecha para avanzar</span>
+        </footer>
+    </main>
+    <script src="comic.js"></script>
+</body>
+
+</html>
