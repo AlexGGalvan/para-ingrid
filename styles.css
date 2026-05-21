@@ -1914,15 +1914,29 @@ body {
   cursor: default;
 }
 
+.playlist-embed-slot + .playlist-embed-slot {
+  margin-top: 2.2rem;
+}
+
 .playlist-embed-label {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.35rem;
   text-align: center;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(0.68rem, 2.6vw, 0.74rem);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(244, 232, 236, 0.48);
+  color: rgba(255, 224, 232, 0.7);
+}
+
+.playlist-embed-sub {
+  margin: 0 0 0.7rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(0.92rem, 3.2vw, 1.02rem);
+  color: rgba(244, 226, 232, 0.62);
+  line-height: 1.35;
 }
 
 .playlist-embed-frame {
