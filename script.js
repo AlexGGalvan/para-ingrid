@@ -1705,5 +1705,138 @@
     obs.observe(section);
   })();
 
+  // =============================================================
+  // Índice de capítulos como pestañas (rediseño v2 - modo tabs)
+  // =============================================================
+  (function setupChapterTabs() {
+    var nav = document.getElementById("menu-nav");
+    var toggle = document.getElementById("menu-nav-toggle");
+    var list = document.getElementById("menu-nav-list");
+    if (!nav || !list) return;
+
+    var links = list.querySelectorAll(".menu-nav__link");
+    if (!links.length) return;
+
+    var menuViewEl = document.getElementById("menu-view");
+    var scrollContainer = menuViewEl
+      ? menuViewEl.querySelector(".verses-column")
+      : null;
+
+    var tabs = [];
+    for (var i = 0; i < links.length; i++) {
+      var target = links[i].getAttribute("data-target");
+      if (!target) continue;
+      var sec = document.getElementById(target);
+      if (sec) {
+        tabs.push({ id: target, link: links[i], section: sec });
+      }
+    }
+    if (!tabs.length) return;
+
+    // Pestaña activa actual (se preserva al entrar/salir de poemas)
+    var activeId = null;
+    for (var p = 0; p < tabs.length; p++) {
+      if (tabs[p].section.classList.contains("is-active")) {
+        activeId = tabs[p].id;
+        break;
+      }
+    }
+    if (!activeId) activeId = tabs[0].id;
+
+    function isMobile() {
+      return window.matchMedia("(max-width: 760px)").matches;
+    }
+
+    function setOpen(open) {
+      if (!toggle) return;
+      nav.setAttribute("data-open", open ? "true" : "false");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute(
+        "aria-label",
+        open ? "Cerrar índice de capítulos" : "Abrir índice de capítulos"
+      );
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        var isOpen = nav.getAttribute("data-open") === "true";
+        setOpen(!isOpen);
+      });
+    }
+
+    function scrollToTop() {
+      if (scrollContainer && scrollContainer.scrollHeight - scrollContainer.clientHeight > 4) {
+        scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function activateTab(targetId, opts) {
+      opts = opts || {};
+      if (!targetId) return;
+      activeId = targetId;
+      for (var k = 0; k < tabs.length; k++) {
+        var on = tabs[k].id === targetId;
+        tabs[k].section.classList.toggle("is-active", on);
+        tabs[k].link.classList.toggle("is-active", on);
+        tabs[k].link.setAttribute("aria-selected", on ? "true" : "false");
+        // Reinicia la animación cuando una pestaña vuelve a activarse
+        if (on) {
+          var node = tabs[k].section;
+          node.style.animation = "none";
+          // Forzar reflow para que el animation: none surta efecto
+          void node.offsetWidth;
+          node.style.animation = "";
+        }
+      }
+      if (opts.scroll !== false) scrollToTop();
+    }
+
+    for (var j = 0; j < tabs.length; j++) {
+      (function (entry) {
+        entry.link.addEventListener("click", function (ev) {
+          ev.preventDefault();
+          activateTab(entry.id);
+          if (isMobile()) {
+            window.setTimeout(function () {
+              setOpen(false);
+            }, 80);
+          }
+        });
+      })(tabs[j]);
+    }
+
+    // Cierra el drawer móvil al tocar fuera del nav
+    document.addEventListener("click", function (ev) {
+      if (!isMobile()) return;
+      if (nav.getAttribute("data-open") !== "true") return;
+      if (nav.contains(ev.target)) return;
+      setOpen(false);
+    });
+
+    // Estado inicial coherente con el HTML
+    activateTab(activeId, { scroll: false });
+
+    // Oculta el nav cuando no estamos en la vista de menú,
+    // pero conserva la pestaña activa para cuando se vuelva.
+    function syncNavVisibility() {
+      var visible = menuViewEl && !menuViewEl.hidden;
+      nav.style.display = visible ? "" : "none";
+      if (!visible) {
+        setOpen(false);
+      } else {
+        // Re-aplica la pestaña activa por si algo cambió mientras estaba oculto.
+        activateTab(activeId, { scroll: false });
+      }
+    }
+    syncNavVisibility();
+    var observer = new MutationObserver(syncNavVisibility);
+    if (menuViewEl) {
+      observer.observe(menuViewEl, { attributes: true, attributeFilter: ["hidden"] });
+    }
+  })();
+
   showView("menu");
 })();

@@ -30,7 +30,24 @@
 <body>
     <main class="poem-app">
         <section id="menu-view" aria-label="Menú de poemas">
+            <nav class="menu-nav" id="menu-nav" aria-label="Capítulos">
+                <button type="button" class="menu-nav__toggle" id="menu-nav-toggle"
+                    aria-expanded="false" aria-controls="menu-nav-list" aria-label="Abrir índice de capítulos">
+                    <span class="menu-nav__toggle-bar" aria-hidden="true"></span>
+                    <span class="menu-nav__toggle-bar" aria-hidden="true"></span>
+                    <span class="menu-nav__toggle-bar" aria-hidden="true"></span>
+                </button>
+                <ol class="menu-nav__list" id="menu-nav-list" role="tablist" aria-label="Capítulos">
+                    <li role="presentation"><button type="button" class="menu-nav__link is-active" data-target="cap-hero" role="tab" aria-selected="true" aria-controls="cap-hero"><span class="menu-nav__num">·</span><span class="menu-nav__label">Inicio</span></button></li>
+                    <li role="presentation"><button type="button" class="menu-nav__link" data-target="cap-cartas" role="tab" aria-selected="false" aria-controls="cap-cartas"><span class="menu-nav__num">I</span><span class="menu-nav__label">Cartas</span></button></li>
+                    <li role="presentation"><button type="button" class="menu-nav__link" data-target="cap-regalos" role="tab" aria-selected="false" aria-controls="cap-regalos"><span class="menu-nav__num">II</span><span class="menu-nav__label">Regalos</span></button></li>
+                    <li role="presentation"><button type="button" class="menu-nav__link" data-target="cap-poemas" role="tab" aria-selected="false" aria-controls="cap-poemas"><span class="menu-nav__num">III</span><span class="menu-nav__label">Poemas</span></button></li>
+                    <li role="presentation"><button type="button" class="menu-nav__link" data-target="cap-juntos" role="tab" aria-selected="false" aria-controls="cap-juntos"><span class="menu-nav__num">IV</span><span class="menu-nav__label">De los dos</span></button></li>
+                </ol>
+            </nav>
             <div class="verses-column">
+                <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
+                    <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
                 <div class="verse-panel has-text menu-title">
                     Proverbios 18:22
                 </div>
@@ -69,6 +86,17 @@
                             aria-selected="false" aria-label="Mensaje 8"></button>
                     </div>
                 </div>
+                </section>
+
+                <div class="menu-chapter-divider" aria-hidden="true"></div>
+
+                <section class="menu-chapter" id="cap-cartas" data-tab role="tabpanel" aria-labelledby="cap-cartas-title">
+                    <header class="menu-chapter__head">
+                        <p class="menu-chapter__num">Capítulo I</p>
+                        <h2 class="menu-chapter__title" id="cap-cartas-title">Cartas y palabras largas</h2>
+                        <p class="menu-chapter__epigraph">Lo que se siente cuando uno se sienta despacio a escribirte.</p>
+                    </header>
+
                 <section class="menu-presentation-slot" aria-labelledby="presentation-heading">
                     <h2 class="menu-presentation-title" id="presentation-heading">Por qué me gustas, Ingrid</h2>
                     <p class="menu-presentation-intro">«Te quiero sin saber cómo, ni cuándo, ni de dónde.»</p>
@@ -93,6 +121,42 @@
                             loading="lazy"></iframe>
                     </div>
                 </section>
+
+                <section class="menu-letter-slot" aria-labelledby="letter-card-heading">
+                    <button type="button" class="letter-card" id="btn-ingrid-letter" aria-label="Abrir la carta de amor para Ingrid">
+                        <span class="letter-card__kicker">Carta breve</span>
+                        <span class="letter-card__title" id="letter-card-heading">Una vida sin ti…</span>
+                        <span class="letter-card__copy">Una carta cortita, escrita para que tu nombre sepa que aquí también es suyo.</span>
+                        <span class="letter-card__cta">Leer la carta</span>
+                    </button>
+                </section>
+
+                <div class="menu-story-slot">
+                    <div class="story-card">
+                        <header class="story-card__head">
+                            <h1 class="story-card__title">¿Ya le pongo punto?</h1>
+                            <p class="story-card__subtitle">Una historia que sí sentí.</p>
+                        </header>
+                        <div class="story-card__intro">
+                            <p>Hay historias que no terminan de golpe.</p>
+                            <p>A veces uno no sabe si debe cerrarlas, esperarlas, soltarlas<br>o simplemente agradecer que existieron.</p>
+                            <p>Esta es una de esas historias.</p>
+                        </div>
+                        <button type="button" class="extra-cta is-visible story-read-btn" id="btn-leer-historia">Leer Historia</button>
+                        <p class="story-card__sign">— Para Ingrid</p>
+                    </div>
+                </div>
+                </section>
+
+                <div class="menu-chapter-divider" aria-hidden="true"></div>
+
+                <section class="menu-chapter" id="cap-regalos" data-tab role="tabpanel" aria-labelledby="cap-regalos-title">
+                    <header class="menu-chapter__head">
+                        <p class="menu-chapter__num">Capítulo II</p>
+                        <h2 class="menu-chapter__title" id="cap-regalos-title">Regalos para tus ojos</h2>
+                        <p class="menu-chapter__epigraph">Pequeñas cosas hechas para que las mires sin prisa.</p>
+                    </header>
+
                 <section class="menu-flower-slot" aria-labelledby="flower-page-heading">
                     <a class="flower-page-link" href="flower.html" aria-label="Abrir ramo virtual para Ingrid">
                         <span class="flower-page-link__kicker"></span>
@@ -109,17 +173,190 @@
                         <span class="comic-page-link__cta">Abrir historia</span>
                     </a>
                 </section>
-                <div class="menu-poem-actions" aria-label="Ingrid">
-                    <button type="button" class="extra-cta is-visible menu-poem-actions__main" id="btn-ingrid">INGRID</button>
-                    <button type="button" class="extra-cta is-visible extra-cta--sub" id="btn-ingrid-letter">Carta de amor</button>
-                </div>
-                <button type="button" class="extra-cta is-visible" id="btn-prisa">¿Lo nuestro fue prisa?</button>
-                <button type="button" class="extra-cta is-visible" id="btn-perfume">¿Dónde consigo tu perfume?</button>
-                <button type="button" class="extra-cta is-visible" id="btn-amor">¿Cuándo se termina el amor?</button>
-                <button type="button" class="extra-cta is-visible" id="btn-quedarme">Donde quedarme</button>
-                <button type="button" class="extra-cta is-visible" id="btn-nudo">Nudo en la garganta</button>
-                <button type="button" class="extra-cta is-visible" id="btn-ternura">La ternura que baja la guardia</button>
-                <button type="button" class="extra-cta is-visible" id="btn-ocaso">Mas bella que el ocaso</button>
+                </section>
+
+                <div class="menu-chapter-divider" aria-hidden="true"></div>
+
+                <section class="menu-chapter" id="cap-poemas" data-tab role="tabpanel" aria-labelledby="cap-poemas-title">
+                    <header class="menu-chapter__head">
+                        <p class="menu-chapter__num">Capítulo III</p>
+                        <h2 class="menu-chapter__title" id="cap-poemas-title">Poemas para ti</h2>
+                        <p class="menu-chapter__epigraph">Los versos que nacieron pensándote, agrupados según lo que sentí al escribirlos.</p>
+                    </header>
+
+                    <section class="menu-subchapter" aria-labelledby="sub-estas">
+                        <h3 class="menu-subchapter__title" id="sub-estas">Cuando estás</h3>
+                        <p class="menu-subchapter__epigraph">Lo que despierta cuando te tengo cerca.</p>
+                        <ul class="poem-grid" role="list">
+                            <li>
+                                <button type="button" class="poem-card" id="btn-ocaso" data-mood="estas" aria-label="Abrir poema: Más bella que el ocaso">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <defs>
+                                                <linearGradient id="pc-ocaso-sky" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#3d2850"/>
+                                                    <stop offset="55%" stop-color="#a8436a"/>
+                                                    <stop offset="100%" stop-color="#ff8348"/>
+                                                </linearGradient>
+                                                <linearGradient id="pc-ocaso-sun" x1="0" y1="0" x2="1" y2="0">
+                                                    <stop offset="0%" stop-color="#fff2c8"/>
+                                                    <stop offset="100%" stop-color="#ff6340"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <rect x="6" y="6" width="36" height="24" rx="2.5" fill="url(#pc-ocaso-sky)"/>
+                                            <circle cx="24" cy="32" r="11" fill="url(#pc-ocaso-sun)"/>
+                                            <rect x="4" y="30" width="40" height="13" rx="1.5" fill="rgba(28,16,30,0.85)"/>
+                                            <path d="M3 30h42" stroke="rgba(255,212,156,0.4)" stroke-width="0.6" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Más bella que el ocaso</span>
+                                        <span class="poem-card__line">La luz que dejas cuando sonríes.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-amor" data-mood="estas" aria-label="Abrir poema: ¿Cuándo se termina el amor?">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M24 41s-13-8.4-13-18.1c0-4.6 3.6-8.4 8.2-8.4 2.5 0 4.8 1.2 6.3 3.1 1.5-1.9 3.8-3.1 6.3-3.1 4.6 0 8.2 3.8 8.2 8.4 0 9.7-13 18.1-13 18.1z"
+                                                fill="none" stroke="url(#pc-heart-fill)" stroke-width="2.2" stroke-linejoin="round"/>
+                                            <defs>
+                                                <linearGradient id="pc-heart-fill" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#ffc4d6"/>
+                                                    <stop offset="100%" stop-color="#ff7a99"/>
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">¿Cuándo se termina el amor?</span>
+                                        <span class="poem-card__line">Un amor que también se queda en lo difícil.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-quedarme" data-mood="estas" aria-label="Abrir poema: Donde quedarme">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <circle cx="24" cy="24" r="8" fill="#ffd17a" stroke="#ff9a3c" stroke-width="1.5"/>
+                                            <g stroke="#ffc46b" stroke-width="1.8" stroke-linecap="round">
+                                                <path d="M24 5v5"/><path d="M24 38v5"/>
+                                                <path d="M5 24h5"/><path d="M38 24h5"/>
+                                                <path d="M10.5 10.5l3.6 3.6"/><path d="M33.9 33.9l3.6 3.6"/>
+                                                <path d="M37.5 10.5l-3.6 3.6"/><path d="M14.1 33.9l-3.6 3.6"/>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Donde quedarme</span>
+                                        <span class="poem-card__line">Saber dónde quiere amanecer el corazón.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-ternura" data-mood="estas" aria-label="Abrir poema: La ternura que baja la guardia">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <g transform="rotate(-22 24 24)">
+                                                <rect x="6" y="18" width="36" height="12" rx="5.5" fill="#ffd9a8" stroke="#c98e5c" stroke-width="1.4"/>
+                                                <rect x="18" y="20.6" width="12" height="6.8" rx="1.8" fill="#fff1d8"/>
+                                                <g fill="#c98e5c">
+                                                    <circle cx="10" cy="24" r="0.8"/><circle cx="13" cy="21.5" r="0.8"/><circle cx="13" cy="26.5" r="0.8"/>
+                                                    <circle cx="38" cy="24" r="0.8"/><circle cx="35" cy="21.5" r="0.8"/><circle cx="35" cy="26.5" r="0.8"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">La ternura que baja la guardia</span>
+                                        <span class="poem-card__line">Dejar entrar un querer suave y nuevo.</span>
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="menu-subchapter" aria-labelledby="sub-faltas">
+                        <h3 class="menu-subchapter__title" id="sub-faltas">Cuando faltas</h3>
+                        <p class="menu-subchapter__epigraph">Lo que queda cuando no estás y, aún así, sigues estando.</p>
+                        <ul class="poem-grid" role="list">
+                            <li>
+                                <button type="button" class="poem-card poem-card--featured" id="btn-ingrid" data-mood="faltas" aria-label="Abrir acróstico: INGRID">
+                                    <span class="poem-card__icon poem-card__icon--letters" aria-hidden="true">
+                                        <span>I</span><span>N</span><span>G</span><span>R</span><span>I</span><span>D</span>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Ingrid <span class="poem-card__tag">acróstico</span></span>
+                                        <span class="poem-card__line">Lo que no se va contigo: tu nombre, letra por letra.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-perfume" data-mood="faltas" aria-label="Abrir poema: ¿Dónde consigo tu perfume?">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M20 8h8M22 8v-3h4v3M18 14h12" stroke="#f4d6c0" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                                            <path d="M18 14v2c0 2 2 3.4 4 3.4h4c2 0 4-1.4 4-3.4v-2" stroke="#f4d6c0" stroke-width="1.6" fill="none"/>
+                                            <path d="M16 22.6c-1.2 2.4-2.6 4.6-2.6 8 0 5 4 8 10.6 8s10.6-3 10.6-8c0-3.4-1.4-5.6-2.6-8l-2-3.6h-12z"
+                                                fill="url(#pc-perfume-glass)" stroke="#e8b894" stroke-width="1.4"/>
+                                            <defs>
+                                                <linearGradient id="pc-perfume-glass" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#ffe2cf"/>
+                                                    <stop offset="100%" stop-color="#d99975"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <path d="M19 30c2-1.4 4-1.8 5-1.8 1.6 0 3 .4 5 1.8" stroke="#fff3e6" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">¿Dónde consigo tu perfume?</span>
+                                        <span class="poem-card__line">Tu aroma sigue cuando ya no estás.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-prisa" data-mood="faltas" aria-label="Abrir poema: ¿Lo nuestro fue prisa?">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M24 41s-13-8.4-13-18.1c0-4.6 3.6-8.4 8.2-8.4 2.5 0 4.8 1.2 6.3 3.1 1.5-1.9 3.8-3.1 6.3-3.1 4.6 0 8.2 3.8 8.2 8.4 0 9.7-13 18.1-13 18.1z"
+                                                fill="rgba(255,160,190,0.18)" stroke="#ff9bc1" stroke-width="2.2" stroke-linejoin="round"/>
+                                            <path d="M24 18v6l4 3" stroke="#ffe7ef" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">¿Lo nuestro fue prisa?</span>
+                                        <span class="poem-card__line">Por qué encontrarte no fue correr.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-nudo" data-mood="faltas" aria-label="Abrir poema: Nudo en la garganta">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M19 14c-5 0-9 4-9 9s4 9 9 9 9-4 9-9c0-5-4-9-9-9z" fill="none" stroke="#e7c8d5" stroke-width="2"/>
+                                            <path d="M29 14c5 0 9 4 9 9s-4 9-9 9-9-4-9-9c0-5 4-9 9-9z" fill="none" stroke="#e7c8d5" stroke-width="2"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Nudo en la garganta</span>
+                                        <span class="poem-card__line">La palabra que no quiso salir de mí.</span>
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <div class="menu-chapter-divider" aria-hidden="true"></div>
+
+                <section class="menu-chapter" id="cap-juntos" data-tab role="tabpanel" aria-labelledby="cap-juntos-title">
+                    <header class="menu-chapter__head">
+                        <p class="menu-chapter__num">Capítulo IV</p>
+                        <h2 class="menu-chapter__title" id="cap-juntos-title">Lo que es de los dos</h2>
+                        <p class="menu-chapter__epigraph">Recuerdos compartidos y una lista para acompañarnos.</p>
+                    </header>
+
                 <section class="shared-feelings-section" id="archivo-sentimientos-compartidos"
                     aria-labelledby="shared-feelings-heading">
                     <h2 class="shared-feelings-title" id="shared-feelings-heading">
@@ -168,21 +405,6 @@
                         </div>
                     </div>
                 </section>
-                <div class="menu-story-slot">
-                    <div class="story-card">
-                        <header class="story-card__head">
-                            <h1 class="story-card__title">¿Ya le pongo punto?</h1>
-                            <p class="story-card__subtitle">Una historia que sí sentí.</p>
-                        </header>
-                        <div class="story-card__intro">
-                            <p>Hay historias que no terminan de golpe.</p>
-                            <p>A veces uno no sabe si debe cerrarlas, esperarlas, soltarlas<br>o simplemente agradecer que existieron.</p>
-                            <p>Esta es una de esas historias.</p>
-                        </div>
-                        <button type="button" class="extra-cta is-visible story-read-btn" id="btn-leer-historia">Leer Historia</button>
-                        <p class="story-card__sign">— Para Ingrid</p>
-                    </div>
-                </div>
                 <div class="playlist-embed-slot" aria-label="Playlist en Apple Music">
                     <p class="playlist-embed-label">Una lista para escuchar</p>
                     <div class="playlist-embed-frame">
@@ -194,14 +416,20 @@
                             src="https://embed.music.apple.com/mx/playlist/ingrid/pl.u-jV890dkTD4a2k7j?l=en-GB"></iframe>
                     </div>
                 </div>
-                <p class="menu-note menu-closing"></p>
-                <p class="menu-note final-note">
-                    Gracias por permitirme llegar a una parte de ti<br>
-                    que quizá estabas intentando proteger.<br>
-                    No quiero lastimar esa parte de ti,<br>
-                    solo recordarle con cariño<br>
-                    que también merece sentir bonito.
-                </p>
+                </section>
+
+                <div class="menu-chapter-divider menu-chapter-divider--final" aria-hidden="true"></div>
+
+                <section class="menu-chapter menu-chapter--closing" id="cap-final" aria-label="Cierre">
+                    <p class="menu-note menu-closing"></p>
+                    <p class="menu-note final-note">
+                        Gracias por permitirme llegar a una parte de ti<br>
+                        que quizá estabas intentando proteger.<br>
+                        No quiero lastimar esa parte de ti,<br>
+                        solo recordarle con cariño<br>
+                        que también merece sentir bonito.
+                    </p>
+                </section>
             </div>
         </section>
 
