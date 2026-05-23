@@ -1706,6 +1706,45 @@
   })();
 
   // =============================================================
+  // Contadores de días (hero)
+  // =============================================================
+  (function setupDayCounters() {
+    var nodes = document.querySelectorAll(".day-counter[data-counter-start]");
+    if (!nodes.length) return;
+
+    function daysSince(year, monthIdx, day) {
+      var start = new Date(year, monthIdx, day, 0, 0, 0, 0);
+      // Compara solo fechas (sin horas) para evitar saltos de día.
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      var oneDay = 24 * 60 * 60 * 1000;
+      return Math.max(0, Math.round((today - start) / oneDay));
+    }
+
+    function update() {
+      for (var i = 0; i < nodes.length; i++) {
+        var raw = nodes[i].getAttribute("data-counter-start");
+        if (!raw) continue;
+        var parts = raw.split("-");
+        if (parts.length !== 3) continue;
+        var y = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10) - 1;
+        var d = parseInt(parts[2], 10);
+        if (isNaN(y) || isNaN(m) || isNaN(d)) continue;
+        var count = daysSince(y, m, d);
+        var label = nodes[i].querySelector("[data-counter-value]");
+        if (label) label.textContent = String(count);
+        var unit = nodes[i].querySelector(".day-counter__unit");
+        if (unit) unit.textContent = count === 1 ? "día" : "días";
+      }
+    }
+
+    update();
+    // Revisa cada hora por si la página queda abierta y cruza la medianoche.
+    window.setInterval(update, 60 * 60 * 1000);
+  })();
+
+  // =============================================================
   // Índice de capítulos como pestañas (rediseño v2 - modo tabs)
   // =============================================================
   (function setupChapterTabs() {
