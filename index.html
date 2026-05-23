@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="styles.css">
     <title>Para Ingrid</title>
     <script>
+        (function envelopeIntroPreflight() {
+            try {
+                if (sessionStorage.getItem("para-ingrid:envelope-intro:v1") !== "1") {
+                    document.documentElement.classList.add("envelope-show");
+                }
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+    <script>
         (function registerFreshSW() {
             if (!("serviceWorker" in navigator)) return;
             try {
@@ -28,6 +37,67 @@
 </head>
 
 <body>
+    <div class="envelope-intro" id="envelope-intro" role="dialog" aria-modal="true" aria-labelledby="envelope-intro-hint" hidden>
+        <div class="envelope-intro__backdrop" aria-hidden="true"></div>
+
+        <div class="envelope-intro__stage" id="envelope-intro-stage">
+            <button type="button" class="envelope" id="envelope-trigger" aria-label="Toca para abrir el sobre">
+                <span class="envelope__shadow" aria-hidden="true"></span>
+                <span class="envelope__body" aria-hidden="true">
+                    <span class="envelope__sprig" aria-hidden="true">
+                        <svg viewBox="0 0 80 60" focusable="false">
+                            <defs>
+                                <radialGradient id="sprig-flower-a" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#fff9ee"/>
+                                    <stop offset="70%" stop-color="#f7e7d4"/>
+                                    <stop offset="100%" stop-color="#dcc4ad"/>
+                                </radialGradient>
+                                <radialGradient id="sprig-flower-b" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#fff5e1"/>
+                                    <stop offset="100%" stop-color="#e6cba8"/>
+                                </radialGradient>
+                            </defs>
+                            <path d="M40 60 Q42 40 60 22" stroke="#b78b6c" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
+                            <path d="M40 60 Q38 42 22 28" stroke="#b78b6c" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.7"/>
+                            <circle cx="56" cy="20" r="9" fill="url(#sprig-flower-a)"/>
+                            <circle cx="64" cy="14" r="7" fill="url(#sprig-flower-b)"/>
+                            <circle cx="48" cy="14" r="6.5" fill="url(#sprig-flower-a)"/>
+                            <circle cx="58" cy="9" r="5" fill="url(#sprig-flower-b)"/>
+                            <circle cx="22" cy="26" r="3.5" fill="#f0c8d4" opacity="0.85"/>
+                            <circle cx="17" cy="22" r="2.6" fill="#f0c8d4" opacity="0.7"/>
+                            <circle cx="28" cy="22" r="2.8" fill="#f3d2dd" opacity="0.75"/>
+                        </svg>
+                    </span>
+                </span>
+                <span class="envelope__letter-peek" aria-hidden="true"></span>
+                <span class="envelope__flap" aria-hidden="true"></span>
+                <span class="envelope__seal" aria-hidden="true">
+                    <span class="envelope__seal-mono" aria-hidden="true">R&nbsp;·&nbsp;I</span>
+                </span>
+            </button>
+
+            <p class="envelope-intro__hint" id="envelope-intro-hint">Toca para abrir el sobre</p>
+
+            <button type="button" class="envelope-intro__skip" id="envelope-intro-skip">Saltar</button>
+        </div>
+
+        <article class="envelope-letter" id="envelope-letter" hidden aria-labelledby="envelope-letter-title">
+            <button type="button" class="envelope-letter__close" id="envelope-letter-close" aria-label="Cerrar carta">×</button>
+            <header class="envelope-letter__head">
+                <p class="envelope-letter__kicker">Para</p>
+                <h2 class="envelope-letter__title" id="envelope-letter-title">Ingrid Joselin Reyes Campos</h2>
+            </header>
+            <div class="envelope-letter__body" id="envelope-letter-body">
+                <p class="envelope-letter__greet">Hola…</p>
+                <p>Esta carta es para pedirte formalmente permiso de robarte un pedacito de tu domingo.</p>
+                <p>El día <span class="envelope-letter__date">24 de mayo de 2026</span>, a partir de las <span class="envelope-letter__date">8:00&nbsp;PM</span>, me gustaría tener al menos una hora contigo. No prometo robarte mucho tiempo, solo el suficiente para verte, compartir contigo y hacer de ese momento algo bonito.</p>
+                <p>Espero contar con tu disposición… y con un poquito de suerte, también con tu sonrisa.</p>
+                <p class="envelope-letter__signature">— Con cariño,<br>Ramiro Alejandro García Galván</p>
+            </div>
+            <button type="button" class="envelope-letter__cta" id="envelope-letter-enter">Cerrar la carta</button>
+        </article>
+    </div>
+
     <main class="poem-app">
         <section id="menu-view" aria-label="Menú de poemas">
             <nav class="menu-nav" id="menu-nav" aria-label="Capítulos">
@@ -48,19 +118,6 @@
             <div class="verses-column">
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
-
-                <aside class="new-poem-pop" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="nada-v1">
-                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir el nuevo poema «No tengo nada»">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">✨</span>
-                        <span class="new-poem-pop__body">
-                            <span class="new-poem-pop__kicker">Nuevo poema agregado</span>
-                            <span class="new-poem-pop__title">«No tengo nada»</span>
-                            <span class="new-poem-pop__hint">Toca para leerlo</span>
-                        </span>
-                    </button>
-                    <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
-                </aside>
-
                 <div class="verse-panel has-text menu-title">
                     Proverbios 18:22
                 </div>

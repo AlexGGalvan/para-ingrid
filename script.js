@@ -1,6 +1,103 @@
 (function () {
   "use strict";
 
+  (function setupEnvelopeIntro() {
+    var intro = document.getElementById("envelope-intro");
+    if (!intro) return;
+    if (!document.documentElement.classList.contains("envelope-show")) {
+      return;
+    }
+
+    var trigger = document.getElementById("envelope-trigger");
+    var skipBtn = document.getElementById("envelope-intro-skip");
+    var letter = document.getElementById("envelope-letter");
+    var letterClose = document.getElementById("envelope-letter-close");
+    var letterEnter = document.getElementById("envelope-letter-enter");
+    var sessionKey = "para-ingrid:envelope-intro:v1";
+
+    function markSeen() {
+      try {
+        if (window.sessionStorage) sessionStorage.setItem(sessionKey, "1");
+      } catch (e) { /* ignore */ }
+    }
+
+    var letterOpened = false;
+    var dismissing = false;
+
+    function openEnvelope() {
+      if (letterOpened) return;
+      letterOpened = true;
+      trigger.classList.add("is-open");
+      trigger.setAttribute("aria-disabled", "true");
+      intro.classList.add("is-opening");
+
+      window.setTimeout(function () {
+        letter.hidden = false;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            letter.classList.add("is-shown");
+            var closeBtn = letter.querySelector(".envelope-letter__close");
+            if (closeBtn) closeBtn.focus({ preventScroll: true });
+          });
+        });
+      }, 900);
+    }
+
+    function dismissIntro() {
+      if (dismissing) return;
+      dismissing = true;
+      markSeen();
+      intro.classList.add("is-leaving");
+      window.setTimeout(function () {
+        document.documentElement.classList.remove("envelope-show");
+        letter.classList.remove("is-shown");
+      }, 640);
+    }
+
+    if (trigger) {
+      trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        openEnvelope();
+      });
+    }
+    if (skipBtn) {
+      skipBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        dismissIntro();
+      });
+    }
+    if (letterClose) {
+      letterClose.addEventListener("click", function (e) {
+        e.preventDefault();
+        dismissIntro();
+      });
+    }
+    if (letterEnter) {
+      letterEnter.addEventListener("click", function (e) {
+        e.preventDefault();
+        dismissIntro();
+      });
+    }
+    function isIntroActive() {
+      return (
+        document.documentElement.classList.contains("envelope-show") &&
+        !dismissing
+      );
+    }
+    document.addEventListener("keydown", function (e) {
+      if (!isIntroActive()) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        dismissIntro();
+      } else if ((e.key === "Enter" || e.key === " ") && !letterOpened) {
+        if (document.activeElement === trigger) {
+          e.preventDefault();
+          openEnvelope();
+        }
+      }
+    });
+  })();
+
   var menuView = document.getElementById("menu-view");
   var storyView = document.getElementById("story-view");
   var ingridLetterView = document.getElementById("ingrid-letter-view");
