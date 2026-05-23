@@ -371,6 +371,7 @@ body {
 #btn-back-6,
 #btn-back-7,
 #btn-back-8,
+#btn-back-9,
 #btn-back-story,
 #btn-back-ingrid-letter {
   max-width: 12rem;
@@ -393,6 +394,7 @@ body {
 #btn-back-6:hover,
 #btn-back-7:hover,
 #btn-back-8:hover,
+#btn-back-9:hover,
 #btn-back-story:hover,
 #btn-back-ingrid-letter:hover {
   filter: brightness(1.05);
@@ -494,38 +496,46 @@ body {
 
 .menu-personal-carousel__strip {
   display: flex;
-  width: 700%;
+  width: 900%;
   transform: translate3d(0, 0, 0);
   transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .menu-personal-carousel[data-index="1"] .menu-personal-carousel__strip {
-  transform: translate3d(-14.285714%, 0, 0);
+  transform: translate3d(-11.111111%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="2"] .menu-personal-carousel__strip {
-  transform: translate3d(-28.571429%, 0, 0);
+  transform: translate3d(-22.222222%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="3"] .menu-personal-carousel__strip {
-  transform: translate3d(-42.857143%, 0, 0);
+  transform: translate3d(-33.333333%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="4"] .menu-personal-carousel__strip {
-  transform: translate3d(-57.142857%, 0, 0);
+  transform: translate3d(-44.444444%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="5"] .menu-personal-carousel__strip {
-  transform: translate3d(-71.428571%, 0, 0);
+  transform: translate3d(-55.555556%, 0, 0);
 }
 
 .menu-personal-carousel[data-index="6"] .menu-personal-carousel__strip {
-  transform: translate3d(-85.714286%, 0, 0);
+  transform: translate3d(-66.666667%, 0, 0);
+}
+
+.menu-personal-carousel[data-index="7"] .menu-personal-carousel__strip {
+  transform: translate3d(-77.777778%, 0, 0);
+}
+
+.menu-personal-carousel[data-index="8"] .menu-personal-carousel__strip {
+  transform: translate3d(-88.888889%, 0, 0);
 }
 
 .menu-personal-carousel__slide {
-  flex: 0 0 14.285714%;
-  width: 14.285714%;
+  flex: 0 0 11.111111%;
+  width: 11.111111%;
   margin: 0;
   padding: 0 0.55rem;
   box-sizing: border-box;
@@ -1092,6 +1102,90 @@ body {
     transform: scale(1.06);
     filter: brightness(1);
   }
+}
+
+/* Poema «No tengo nada» · iconos emoji por bloque */
+.nada-icons {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.55rem, 4vw, 1.1rem);
+  margin: 0.45rem auto 0.7rem;
+  padding: 0.35rem 0.45rem;
+  max-width: 22rem;
+  user-select: none;
+}
+
+.nada-icons .nada-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.1rem, 8.5vw, 2.7rem);
+  height: clamp(2.1rem, 8.5vw, 2.7rem);
+  font-size: clamp(1.45rem, 6.4vw, 1.9rem);
+  line-height: 1;
+  opacity: 0.32;
+  filter: grayscale(0.6) brightness(0.85);
+  transform: scale(0.96);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow 0.5s ease;
+}
+
+.nada-icons .nada-icon.is-full {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.04);
+  text-shadow:
+    0 0 14px rgba(255, 220, 230, 0.32),
+    0 0 28px rgba(255, 184, 206, 0.18);
+}
+
+.nada-icons .nada-icon.is-active {
+  transform: scale(1.16);
+  animation: nada-icon-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes nada-icon-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 14px rgba(255, 220, 230, 0.32),
+      0 0 28px rgba(255, 184, 206, 0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 22px rgba(255, 230, 240, 0.55),
+      0 0 44px rgba(255, 184, 206, 0.32);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nada-icons .nada-icon.is-active {
+    animation: none;
+  }
+}
+
+#nada-panel .nada-stanza-lead,
+#nada-panel .nada-stanza-glow {
+  margin: 0;
+  white-space: pre-line;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.05rem, 4.1vw, 1.28rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+#nada-panel .nada-stanza-lead {
+  color: rgba(240, 226, 232, 0.95);
+  text-shadow: 0 0 24px rgba(255, 200, 220, 0.12);
+}
+
+#nada-panel .nada-stanza-glow {
+  color: rgba(255, 238, 172, 0.98);
+  text-shadow: 0 0 28px rgba(255, 215, 125, 0.25);
+  margin-top: 0.15rem;
 }
 
 /* Poema «Mas bella que el ocaso» · iconos de ocaso */
@@ -2704,6 +2798,198 @@ button.story-followup-submit:disabled {
   letter-spacing: 0.42em;
 }
 
+/* Aviso emergente: "Nuevo poema agregado"
+   -------------------------------------------------------------- */
+.new-poem-pop {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: min(22rem, 100%);
+  margin: 0 auto 1.2rem;
+  opacity: 0;
+  transform: translate3d(0, -10px, 0) scale(0.96);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.32));
+}
+
+.new-poem-pop[hidden] {
+  display: none !important;
+}
+
+.new-poem-pop.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  pointer-events: auto;
+  animation: new-poem-pop-float 5.4s ease-in-out 0.9s infinite;
+}
+
+.new-poem-pop.is-hiding {
+  opacity: 0;
+  transform: translate3d(0, -8px, 0) scale(0.96);
+  pointer-events: none;
+  animation: none;
+}
+
+@keyframes new-poem-pop-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(0, -3px, 0) scale(1.005); }
+}
+
+.new-poem-pop__card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 0.95rem 0.8rem 0.85rem;
+  text-align: left;
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 215, 165, 0.16), transparent 60%),
+    linear-gradient(140deg, rgba(60, 32, 48, 0.92), rgba(34, 18, 30, 0.92));
+  color: rgba(255, 240, 245, 0.95);
+  border: 1px solid rgba(255, 200, 165, 0.28);
+  border-radius: 16px 0 0 16px;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.new-poem-pop__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 230, 195, 0.12) 50%, transparent 70%);
+  transform: translateX(-110%);
+  transition: transform 0.9s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.new-poem-pop.is-visible .new-poem-pop__card::before {
+  animation: new-poem-pop-sheen 4.2s ease 1.2s infinite;
+}
+
+@keyframes new-poem-pop-sheen {
+  0%   { transform: translateX(-110%); }
+  60%  { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+.new-poem-pop__card:hover {
+  border-color: rgba(255, 220, 180, 0.55);
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 215, 165, 0.22), transparent 60%),
+    linear-gradient(140deg, rgba(72, 36, 54, 0.94), rgba(40, 22, 34, 0.94));
+}
+
+.new-poem-pop__card:active {
+  transform: scale(0.985);
+}
+
+.new-poem-pop__card:focus-visible {
+  outline: 2px solid rgba(255, 220, 180, 0.75);
+  outline-offset: 3px;
+}
+
+.new-poem-pop__sparkle {
+  position: relative;
+  z-index: 1;
+  font-size: 1.45rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(255, 220, 170, 0.55));
+  animation: new-poem-pop-sparkle 2.4s ease-in-out infinite;
+}
+
+@keyframes new-poem-pop-sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.92; }
+  50%      { transform: scale(1.18) rotate(8deg); opacity: 1; }
+}
+
+.new-poem-pop__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.new-poem-pop__kicker {
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 220, 180, 0.85);
+}
+
+.new-poem-pop__title {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 245, 240, 0.98);
+  text-shadow: 0 0 16px rgba(255, 215, 175, 0.25);
+}
+
+.new-poem-pop__hint {
+  font-size: 0.72rem;
+  color: rgba(255, 230, 220, 0.7);
+  letter-spacing: 0.05em;
+}
+
+.new-poem-pop__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  padding: 0;
+  background:
+    linear-gradient(140deg, rgba(60, 32, 48, 0.92), rgba(34, 18, 30, 0.92));
+  color: rgba(255, 230, 220, 0.72);
+  border: 1px solid rgba(255, 200, 165, 0.28);
+  border-left: none;
+  border-radius: 0 16px 16px 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.new-poem-pop__close:hover {
+  color: rgba(255, 245, 240, 0.95);
+  border-color: rgba(255, 220, 180, 0.55);
+}
+
+.new-poem-pop__close:focus-visible {
+  outline: 2px solid rgba(255, 220, 180, 0.75);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-poem-pop,
+  .new-poem-pop.is-visible {
+    animation: none !important;
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+  .new-poem-pop.is-visible .new-poem-pop__card::before {
+    animation: none;
+  }
+  .new-poem-pop__sparkle {
+    animation: none;
+  }
+}
+
 /* Contadores de días dentro del hero
    -------------------------------------------------------------- */
 .day-counters {
@@ -2758,13 +3044,44 @@ button.story-followup-submit:disabled {
 
 .day-counter__unit {
   position: relative;
-  margin: 0.18rem 0 0.5rem;
+  margin: 0.18rem 0 0.2rem;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(0.6rem, 2.3vw, 0.68rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(255, 224, 232, 0.6);
+}
+
+.day-counter__hm {
+  position: relative;
+  margin: 0 0 0.55rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18rem;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.66rem, 2.5vw, 0.74rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 234, 240, 0.78);
+  font-variant-numeric: tabular-nums;
+}
+
+.day-counter__hm > span[data-counter-hours],
+.day-counter__hm > span[data-counter-minutes] {
+  font-weight: 700;
+  color: rgba(255, 246, 250, 0.92);
+}
+
+.day-counter__hm > span[data-counter-minutes] {
+  margin-left: 0.32rem;
+}
+
+.day-counter__hm-mark {
+  color: rgba(255, 220, 230, 0.55);
+  font-weight: 500;
+  font-size: 0.88em;
+  letter-spacing: 0;
 }
 
 .day-counter__label {
@@ -3097,6 +3414,14 @@ button.story-followup-submit:disabled {
   background:
     radial-gradient(circle at 50% 50%, rgba(255, 200, 220, 0.14), transparent 75%),
     rgba(36, 18, 28, 0.6);
+}
+
+.poem-card__icon--emoji {
+  font-size: 1.65rem;
+  line-height: 1;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 220, 180, 0.18), transparent 75%),
+    rgba(36, 22, 30, 0.6);
 }
 
 .poem-card__icon--letters span {

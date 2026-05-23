@@ -12,6 +12,7 @@
   var nudoView = document.getElementById("nudo-view");
   var ternuraView = document.getElementById("ternura-view");
   var ocasoView = document.getElementById("ocaso-view");
+  var nadaView = document.getElementById("nada-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnPrisa = document.getElementById("btn-prisa");
@@ -21,6 +22,7 @@
   var btnNudo = document.getElementById("btn-nudo");
   var btnTernura = document.getElementById("btn-ternura");
   var btnOcaso = document.getElementById("btn-ocaso");
+  var btnNada = document.getElementById("btn-nada");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
@@ -29,6 +31,7 @@
   var btnBack6 = document.getElementById("btn-back-6");
   var btnBack7 = document.getElementById("btn-back-7");
   var btnBack8 = document.getElementById("btn-back-8");
+  var btnBack9 = document.getElementById("btn-back-9");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
@@ -40,6 +43,7 @@
   var btnResetNudo = document.getElementById("btn-reset-nudo");
   var btnResetTernura = document.getElementById("btn-reset-ternura");
   var btnResetOcaso = document.getElementById("btn-reset-ocaso");
+  var btnResetNada = document.getElementById("btn-reset-nada");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -82,6 +86,12 @@
   var ocasoPanel = document.getElementById("ocaso-panel");
   var ocasoIcons = document.getElementById("ocaso-icons");
   var ocasoPager = document.getElementById("pager-ocaso");
+  var nadaArea = document.getElementById("poem-area-nada");
+  var nadaHint = document.getElementById("hint-nada");
+  var nadaScrollColumn = document.getElementById("verses-column-nada");
+  var nadaPanel = document.getElementById("nada-panel");
+  var nadaIcons = document.getElementById("nada-icons");
+  var nadaPager = document.getElementById("pager-nada");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -478,6 +488,28 @@
     "que ningún cielo pintado de oro\n" +
     "se compara\n" +
     "con la luz que dejas cuando sonríes.";
+
+  var NADA_BLOCKS = [
+    {
+      lead: ["No tengo nada,"],
+      glow: ["pero todo lo que soy", "es tuyo."]
+    },
+    {
+      lead: ["Y aún con las manos vacías,", "mi corazón te elegiría igual."]
+    },
+    {
+      lead: ["Y si algún día"],
+      glow: ["lo tengo todo,", "será porque te tengo a ti."]
+    },
+    {
+      lead: [
+        "Porque hay riquezas",
+        "que no se guardan en las manos,",
+        "sino en la persona",
+        "que uno ama."
+      ]
+    }
+  ];
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -1184,6 +1216,96 @@
   );
   ocasoArea.addEventListener("keydown", onOcasoActivate);
 
+  var nadaIconEls = Array.prototype.slice.call(
+    nadaIcons.querySelectorAll(".nada-icon")
+  );
+  var nadaFill = 0;
+  var nadaShown = 0;
+
+  function resetNada() {
+    nadaFill = 0;
+    nadaShown = 0;
+    nadaIconEls.forEach(function (el) {
+      el.classList.remove("is-full", "is-active");
+    });
+    nadaHint.classList.remove("is-hidden");
+    nadaPanel.textContent = "";
+    nadaPanel.classList.remove("has-text");
+    setPager(nadaPager, 0, NADA_BLOCKS.length);
+  }
+
+  function fillNextNadaIcon() {
+    if (nadaFill < nadaIconEls.length) {
+      if (nadaFill > 0) {
+        nadaIconEls[nadaFill - 1].classList.remove("is-active");
+      }
+      var el = nadaIconEls[nadaFill];
+      el.classList.add("is-full", "is-active");
+      nadaFill += 1;
+    }
+  }
+
+  function revealNextNadaParagraph() {
+    if (nadaShown >= NADA_BLOCKS.length) return;
+    var block = NADA_BLOCKS[nadaShown];
+    nadaShown += 1;
+    if (!block) return;
+
+    nadaPanel.textContent = "";
+    if (block.lead && block.lead.length) {
+      var leadEl = document.createElement("p");
+      leadEl.className = "nada-stanza-lead";
+      leadEl.textContent = block.lead.join("\n");
+      nadaPanel.appendChild(leadEl);
+    }
+    if (block.glow && block.glow.length) {
+      var glowEl = document.createElement("p");
+      glowEl.className = "nada-stanza-glow";
+      glowEl.textContent = block.glow.join("\n");
+      nadaPanel.appendChild(glowEl);
+    }
+
+    nadaPanel.classList.add("has-text");
+    nadaPanel.classList.remove("verse-enter");
+    void nadaPanel.offsetWidth;
+    nadaPanel.classList.add("verse-enter");
+    nadaPanel.scrollTop = 0;
+    nadaScrollColumn.scrollTop = 0;
+    setPager(nadaPager, nadaShown, NADA_BLOCKS.length);
+  }
+
+  function nadaProgress() {
+    if (nadaFill === 0 && nadaShown === 0) {
+      nadaHint.classList.add("is-hidden");
+    }
+    fillNextNadaIcon();
+    revealNextNadaParagraph();
+    if (
+      nadaFill >= nadaIconEls.length &&
+      nadaShown >= NADA_BLOCKS.length
+    ) {
+      nadaHint.classList.add("is-hidden");
+    }
+  }
+
+  function onNadaActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    nadaProgress();
+  }
+
+  nadaArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-9")) return;
+      if (e.target.closest("#btn-reset-nada")) return;
+      onNadaActivate(e);
+    },
+    { passive: true }
+  );
+  nadaArea.addEventListener("keydown", onNadaActivate);
+
   function resetIngridLetterScroll() {
     window.scrollTo(0, 0);
     ingridLetterView.scrollTop = 0;
@@ -1271,6 +1393,7 @@
     nudoView.hidden = view !== "nudo";
     ternuraView.hidden = view !== "ternura";
     ocasoView.hidden = view !== "ocaso";
+    nadaView.hidden = view !== "nada";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -1328,6 +1451,11 @@
       ocasoArea.focus();
     }
 
+    if (view === "nada") {
+      resetNada();
+      nadaArea.focus();
+    }
+
     if (view === "menu") {
       scheduleIngridLetterBtnIntro();
     }
@@ -1369,6 +1497,10 @@
     showView("ocaso");
   });
 
+  btnNada.addEventListener("click", function () {
+    showView("nada");
+  });
+
   btnLeerHistoria.addEventListener("click", function () {
     showView("story");
   });
@@ -1403,6 +1535,10 @@
   });
 
   btnBack8.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBack9.addEventListener("click", function () {
     showView("menu");
   });
 
@@ -1460,6 +1596,12 @@
     e.stopPropagation();
     resetOcasoIcons();
     ocasoArea.focus();
+  });
+
+  btnResetNada.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetNada();
+    nadaArea.focus();
   });
 
   (function setupStoryFollowup() {
@@ -1706,19 +1848,24 @@
   })();
 
   // =============================================================
-  // Contadores de días (hero)
+  // Contadores de tiempo (hero) — días, horas y minutos
   // =============================================================
   (function setupDayCounters() {
     var nodes = document.querySelectorAll(".day-counter[data-counter-start]");
     if (!nodes.length) return;
 
-    function daysSince(year, monthIdx, day) {
-      var start = new Date(year, monthIdx, day, 0, 0, 0, 0);
-      // Compara solo fechas (sin horas) para evitar saltos de día.
-      var now = new Date();
-      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+    function deltaSince(year, monthIdx, day) {
+      var start = new Date(year, monthIdx, day, 0, 0, 0, 0).getTime();
+      var totalMs = Math.max(0, Date.now() - start);
       var oneDay = 24 * 60 * 60 * 1000;
-      return Math.max(0, Math.round((today - start) / oneDay));
+      var oneHour = 60 * 60 * 1000;
+      var oneMin = 60 * 1000;
+      var days = Math.floor(totalMs / oneDay);
+      var rest = totalMs - days * oneDay;
+      var hours = Math.floor(rest / oneHour);
+      rest -= hours * oneHour;
+      var minutes = Math.floor(rest / oneMin);
+      return { days: days, hours: hours, minutes: minutes };
     }
 
     function update() {
@@ -1731,17 +1878,30 @@
         var m = parseInt(parts[1], 10) - 1;
         var d = parseInt(parts[2], 10);
         if (isNaN(y) || isNaN(m) || isNaN(d)) continue;
-        var count = daysSince(y, m, d);
-        var label = nodes[i].querySelector("[data-counter-value]");
-        if (label) label.textContent = String(count);
-        var unit = nodes[i].querySelector(".day-counter__unit");
-        if (unit) unit.textContent = count === 1 ? "día" : "días";
+
+        var delta = deltaSince(y, m, d);
+
+        var dEl = nodes[i].querySelector("[data-counter-value]");
+        if (dEl) dEl.textContent = String(delta.days);
+
+        var uEl = nodes[i].querySelector("[data-counter-unit]");
+        if (uEl) uEl.textContent = delta.days === 1 ? "día" : "días";
+
+        var hEl = nodes[i].querySelector("[data-counter-hours]");
+        if (hEl) hEl.textContent = String(delta.hours);
+
+        var mEl = nodes[i].querySelector("[data-counter-minutes]");
+        if (mEl) mEl.textContent = String(delta.minutes);
       }
     }
 
     update();
-    // Revisa cada hora por si la página queda abierta y cruza la medianoche.
-    window.setInterval(update, 60 * 60 * 1000);
+    // Refresca cada minuto para que h:m queden al día.
+    window.setInterval(update, 60 * 1000);
+    // Y al volver a la pestaña, refresca al momento.
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) update();
+    });
   })();
 
   // =============================================================
@@ -1874,6 +2034,90 @@
     var observer = new MutationObserver(syncNavVisibility);
     if (menuViewEl) {
       observer.observe(menuViewEl, { attributes: true, attributeFilter: ["hidden"] });
+    }
+  })();
+
+  (function setupNewPoemPop() {
+    var pop = document.getElementById("new-poem-pop");
+    if (!pop) return;
+
+    var openBtn = document.getElementById("new-poem-pop-open");
+    var closeBtn = document.getElementById("new-poem-pop-close");
+    var storageKey = "para-ingrid:new-poem-pop:" + (pop.getAttribute("data-key") || "v1");
+
+    function isDismissed() {
+      try {
+        return window.localStorage && localStorage.getItem(storageKey) === "1";
+      } catch (e) {
+        return false;
+      }
+    }
+    function persistDismiss() {
+      try {
+        if (window.localStorage) localStorage.setItem(storageKey, "1");
+      } catch (e) { /* ignore */ }
+    }
+
+    function reveal() {
+      if (isDismissed()) return;
+      pop.hidden = false;
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          pop.classList.add("is-visible");
+        });
+      });
+    }
+
+    function hide(immediate) {
+      pop.classList.remove("is-visible");
+      pop.classList.add("is-hiding");
+      var done = function () {
+        pop.hidden = true;
+        pop.classList.remove("is-hiding");
+      };
+      if (immediate) return done();
+      window.setTimeout(done, 480);
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener("click", function () {
+        persistDismiss();
+        hide(true);
+        showView("nada");
+      });
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        persistDismiss();
+        hide(false);
+      });
+    }
+
+    var menuViewEl = document.getElementById("menu-view");
+    function trySync() {
+      if (!menuViewEl || menuViewEl.hidden) {
+        if (!pop.hidden && !pop.classList.contains("is-hiding")) hide(true);
+        return;
+      }
+      var hero = document.getElementById("cap-hero");
+      var onHero = hero && hero.classList.contains("is-active");
+      if (isDismissed() || !onHero) {
+        if (!pop.hidden) hide(true);
+        return;
+      }
+      if (pop.hidden) reveal();
+    }
+    trySync();
+    if (menuViewEl) {
+      new MutationObserver(trySync).observe(menuViewEl, {
+        attributes: true, attributeFilter: ["hidden"]
+      });
+    }
+    var hero = document.getElementById("cap-hero");
+    if (hero) {
+      new MutationObserver(trySync).observe(hero, {
+        attributes: true, attributeFilter: ["class"]
+      });
     }
   })();
 

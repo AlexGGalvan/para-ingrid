@@ -48,6 +48,19 @@
             <div class="verses-column">
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
+
+                <aside class="new-poem-pop" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="nada-v1">
+                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir el nuevo poema «No tengo nada»">
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">✨</span>
+                        <span class="new-poem-pop__body">
+                            <span class="new-poem-pop__kicker">Nuevo poema agregado</span>
+                            <span class="new-poem-pop__title">«No tengo nada»</span>
+                            <span class="new-poem-pop__hint">Toca para leerlo</span>
+                        </span>
+                    </button>
+                    <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
+                </aside>
+
                 <div class="verse-panel has-text menu-title">
                     Proverbios 18:22
                 </div>
@@ -57,6 +70,7 @@
                     <p class="menu-personal-carousel__kicker">Mensaje de hoy</p>
                     <div class="menu-personal-carousel__viewport">
                         <div class="menu-personal-carousel__strip" id="menu-personal-carousel-strip">
+                            <p class="menu-personal-carousel__slide">A ti te amaré, y contigo viviré mi vida.</p>
                             <p class="menu-personal-carousel__slide">Perdoname por no haber subido nada... estaba preparandote algo especial...</p>
                             <p class="menu-personal-carousel__slide">Cuando te acaricié me di cuenta que había vivido toda mi vida con las manos vacías</p>
                             <p class="menu-personal-carousel__slide">La vida es la flor de la que el amor es la miel</p>
@@ -84,19 +98,29 @@
                             aria-selected="false" aria-label="Mensaje 7"></button>
                         <button type="button" class="menu-personal-carousel__dot" role="tab"
                             aria-selected="false" aria-label="Mensaje 8"></button>
+                        <button type="button" class="menu-personal-carousel__dot" role="tab"
+                            aria-selected="false" aria-label="Mensaje 9"></button>
                     </div>
                 </div>
 
-                <div class="day-counters" aria-label="Días que han pasado">
+                <div class="day-counters" aria-label="Tiempo que ha pasado">
                     <article class="day-counter" data-counter-start="2026-04-07">
                         <p class="day-counter__number" data-counter-value>—</p>
-                        <p class="day-counter__unit">días</p>
+                        <p class="day-counter__unit" data-counter-unit>días</p>
+                        <p class="day-counter__hm">
+                            <span data-counter-hours>—</span><span class="day-counter__hm-mark">h</span>
+                            <span data-counter-minutes>—</span><span class="day-counter__hm-mark">m</span>
+                        </p>
                         <p class="day-counter__label">desde que echamos chisme por primera vez</p>
                         <p class="day-counter__since">7 de abril</p>
                     </article>
                     <article class="day-counter" data-counter-start="2026-04-11">
                         <p class="day-counter__number" data-counter-value>—</p>
-                        <p class="day-counter__unit">días</p>
+                        <p class="day-counter__unit" data-counter-unit>días</p>
+                        <p class="day-counter__hm">
+                            <span data-counter-hours>—</span><span class="day-counter__hm-mark">h</span>
+                            <span data-counter-minutes>—</span><span class="day-counter__hm-mark">m</span>
+                        </p>
                         <p class="day-counter__label">desde que te invité a salir</p>
                         <p class="day-counter__since">11 de abril</p>
                     </article>
@@ -207,6 +231,15 @@
                         <h3 class="menu-subchapter__title" id="sub-estas">Cuando estás</h3>
                         <p class="menu-subchapter__epigraph">Lo que despierta cuando te tengo cerca.</p>
                         <ul class="poem-grid" role="list">
+                            <li>
+                                <button type="button" class="poem-card poem-card--featured" id="btn-nada" data-mood="estas" aria-label="Abrir poema: No tengo nada">
+                                    <span class="poem-card__icon poem-card__icon--emoji" aria-hidden="true">🤲</span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">No tengo nada</span>
+                                        <span class="poem-card__line">Pero todo lo que soy es tuyo.</span>
+                                    </span>
+                                </button>
+                            </li>
                             <li>
                                 <button type="button" class="poem-card" id="btn-ocaso" data-mood="estas" aria-label="Abrir poema: Más bella que el ocaso">
                                     <span class="poem-card__icon" aria-hidden="true">
@@ -1192,6 +1225,26 @@
                 <p class="pager" id="pager-ocaso" aria-label="Progreso del poema">0/5</p>
                 <div class="verses-column" id="verses-column-ocaso">
                     <div class="verse-panel" id="ocaso-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="nada-view" hidden aria-label="Poema: No tengo nada">
+            <button type="button" class="extra-cta is-visible" id="btn-back-9">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-nada">Reiniciar</button>
+            <div id="poem-area-nada" tabindex="0" role="application" aria-label="Poema — toca la pantalla para avanzar">
+                <p class="poem-meta" id="date-nada">Viernes 22 de Mayo de 2026</p>
+                <div class="nada-icons" id="nada-icons" aria-label="Emociones del poema" role="img">
+                    <span class="nada-icon" data-icon="hands" aria-hidden="true">🤲</span>
+                    <span class="nada-icon" data-icon="heart" aria-hidden="true">♡</span>
+                    <span class="nada-icon" data-icon="sparkles" aria-hidden="true">✨</span>
+                    <span class="nada-icon" data-icon="ring" aria-hidden="true">💍</span>
+                </div>
+                <p class="hint" id="hint-nada">Toca la pantalla para avanzar al siguiente bloque</p>
+                <p class="pager" id="pager-nada" aria-label="Progreso del poema">0/4</p>
+                <div class="verses-column" id="verses-column-nada">
+                    <div class="verse-panel" id="nada-panel" aria-live="polite"></div>
                     <p class="signature">— Para Ingrid</p>
                 </div>
             </div>
