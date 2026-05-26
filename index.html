@@ -14,15 +14,6 @@
     <link rel="stylesheet" href="styles.css">
     <title>Para Ingrid</title>
     <script>
-        (function envelopeIntroPreflight() {
-            try {
-                if (sessionStorage.getItem("para-ingrid:envelope-intro:v1") !== "1") {
-                    document.documentElement.classList.add("envelope-show");
-                }
-            } catch (e) { /* ignore */ }
-        })();
-    </script>
-    <script>
         (function registerFreshSW() {
             if (!("serviceWorker" in navigator)) return;
             try {
@@ -181,9 +172,24 @@
                         <p class="day-counter__label">desde que te invité a salir</p>
                         <p class="day-counter__since">11 de abril</p>
                     </article>
-                    <article class="day-counter day-counter--pending">
-                        <p class="day-counter__number day-counter__number--placeholder" aria-hidden="true">···</p>
-                        <p class="day-counter__label day-counter__label--pending">Este contador está por aparecer...</p>
+                    <article class="day-counter day-counter--novios" data-counter-start="2026-05-24" data-counter-time="20:44">
+                        <span class="day-counter__petals" aria-hidden="true">
+                            <span class="day-counter__petal"></span>
+                            <span class="day-counter__petal"></span>
+                            <span class="day-counter__petal"></span>
+                            <span class="day-counter__petal"></span>
+                            <span class="day-counter__petal"></span>
+                            <span class="day-counter__petal"></span>
+                        </span>
+                        <span class="day-counter__badge" aria-hidden="true">♡</span>
+                        <p class="day-counter__number" data-counter-value>—</p>
+                        <p class="day-counter__unit" data-counter-unit>días</p>
+                        <p class="day-counter__hm">
+                            <span data-counter-hours>—</span><span class="day-counter__hm-mark">h</span>
+                            <span data-counter-minutes>—</span><span class="day-counter__hm-mark">m</span>
+                        </p>
+                        <p class="day-counter__label">desde que nos hicimos novios</p>
+                        <p class="day-counter__since">24 de mayo</p>
                     </article>
                 </div>
                 </section>
@@ -228,6 +234,39 @@
                         <span class="letter-card__title" id="letter-card-heading">Una vida sin ti…</span>
                         <span class="letter-card__copy">Una carta cortita, escrita para que tu nombre sepa que aquí también es suyo.</span>
                         <span class="letter-card__cta">Leer la carta</span>
+                    </button>
+                </section>
+
+                <section class="menu-letter-slot" aria-labelledby="para-ti-card-heading">
+                    <button type="button" class="letter-card letter-card--soul" id="btn-para-ti-letter" aria-label="Abrir la carta «Para ti»">
+                        <span class="letter-card__kicker">Carta del alma</span>
+                        <span class="letter-card__title" id="para-ti-card-heading">Para ti</span>
+                        <span class="letter-card__copy">Algo que llevo sintiendo desde hace tiempo, dicho hoy con el corazón en la mano.</span>
+                        <span class="letter-card__cta">Leer la carta</span>
+                    </button>
+                </section>
+
+                <section class="menu-letter-slot" aria-labelledby="envelope-card-heading">
+                    <button type="button" class="letter-card letter-card--envelope" id="btn-open-envelope-letter" aria-label="Abrir el sobre con la invitación de domingo">
+                        <span class="letter-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 48" focusable="false">
+                                <defs>
+                                    <linearGradient id="env-card-grad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#f3c8d2"/>
+                                        <stop offset="100%" stop-color="#cd91a3"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect x="3" y="6" width="58" height="38" rx="3" fill="url(#env-card-grad)" stroke="rgba(120,50,75,0.45)" stroke-width="0.9"/>
+                                <path d="M3 9 L32 28 L61 9" fill="none" stroke="rgba(120,50,75,0.55)" stroke-width="1.1" stroke-linejoin="round"/>
+                                <path d="M3 44 L25 27 M61 44 L39 27" stroke="rgba(120,50,75,0.32)" stroke-width="0.8" fill="none"/>
+                                <circle cx="32" cy="24" r="6.5" fill="#b86a82" stroke="rgba(60,18,28,0.45)" stroke-width="0.7"/>
+                                <text x="32" y="26.5" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="6" fill="#fff3f5" opacity="0.85">R·I</text>
+                            </svg>
+                        </span>
+                        <span class="letter-card__kicker">Sobre sellado</span>
+                        <span class="letter-card__title" id="envelope-card-heading">Una invitación</span>
+                        <span class="letter-card__copy">Para robarte un pedacito de domingo — abre el sobre cuando quieras volver a leerla.</span>
+                        <span class="letter-card__cta">Abrir el sobre</span>
                     </button>
                 </section>
 
@@ -823,6 +862,40 @@
                                 </div>
                                 <p>Porque te quiero de una forma que no llegó a interrumpir mi vida, sino a encajar en ella. Como si una parte de mí ya tuviera tu espacio guardado sin saberlo, y cuando llegaste, todo simplemente encontró dónde quedarse.</p>
                                 <p class="ingrid-letter__sign">— Ramiro Alejandro Garcia Galvan</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="para-ti-letter-view" hidden aria-label="Carta: Para ti">
+            <button type="button" class="extra-cta is-visible" id="btn-back-para-ti-letter">Volver al menú</button>
+            <div id="para-ti-letter-area" class="story-area" tabindex="0" aria-label="Carta «Para ti» — desplázate para leer">
+                <header class="story-view-head">
+                    <h1 class="story-view-title">Para ti</h1>
+                    <p class="story-view-sub">Una carta del alma</p>
+                </header>
+                <div class="verses-column story-verses" id="verses-column-para-ti-letter">
+                    <div class="story-body story-body--page">
+                        <article class="story-chapter ingrid-letter para-ti-letter">
+                            <div class="story-prose">
+                                <p>Hay algo que llevo sintiendo desde hace tiempo y que hoy quiero decirte con el corazón en la mano.</p>
+                                <p>Siento que nuestras almas se tocaron antes de que nuestros labios tuvieran la suerte de encontrarse. Como si algo entre nosotros hubiera empezado mucho antes de que pudiéramos ponerle nombre, antes de entenderlo del todo, antes incluso de atrevernos a decirlo.</p>
+                                <p>Y aunque todavía no he tenido la fortuna de besarte, hay algo en mí que ya te reconoce. Como si mi corazón supiera, sin necesidad de pruebas, que cuando ese día llegue no será el comienzo de lo nuestro… será la confirmación de algo que mi alma ya sabía: <em class="para-ti-letter__soft">que siempre ibas a ser tú.</em></p>
+                                <p>Yo te quiero. Pero quererte no me hace especial, porque siendo sincero, cualquiera que tenga la dicha de conocerte podría llegar a amarte. Basta con ver tu rostro, escuchar tu voz, conocer tu forma de ser, tu manera de mirar la vida, tu ternura, tu fuerza y tu corazón, para darse cuenta de que eres única. De que como tú no hay nadie.</p>
+                                <div class="story-stanza ingrid-letter__highlight">
+                                    <p>Lo que sí me hace sentir especial es que tú me quieras a mí.</p>
+                                </div>
+                                <p>Porque entre tantas personas, entre tantas posibilidades, entre tantos caminos, tú decidiste mirarme a mí. Decidiste darme un lugar en tu vida, en tus días, en tus pensamientos y en tu corazón. Y yo, que me siento un simple mortal frente a todo lo que eres, no puedo evitar sentirme afortunado de que alguien como tú me haya elegido.</p>
+                                <p>Por eso hoy no estoy aquí para decirte algo nacido solo de la emoción, ni de un impulso. Estoy aquí porque mi corazón está seguro de lo que siente por ti. Porque cuando pienso en ti, no pienso en algo pasajero; pienso en cuidado, en paciencia, en amor, en Dios, en construir algo bonito, real y sincero.</p>
+                                <p>Y si me permites caminar a tu lado, quiero hacerlo bien. Quiero cuidarte, respetarte, elegirte, escucharte y demostrarte con hechos que lo que siento por ti no solo es bonito… también es verdadero.</p>
+                                <p>Porque desde que llegaste, algo en mí supo que no eras cualquier persona.</p>
+                                <div class="story-stanza para-ti-letter__final">
+                                    <p>Eras tú.</p>
+                                </div>
+                                <p>Y por eso, con todo mi corazón, hoy quiero preguntarte algo…</p>
+                                <p class="ingrid-letter__sign">— Ramiro Alejandro García Galván</p>
                             </div>
                         </article>
                     </div>

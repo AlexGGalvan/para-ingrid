@@ -4,25 +4,38 @@
   (function setupEnvelopeIntro() {
     var intro = document.getElementById("envelope-intro");
     if (!intro) return;
-    if (!document.documentElement.classList.contains("envelope-show")) {
-      return;
-    }
 
     var trigger = document.getElementById("envelope-trigger");
     var skipBtn = document.getElementById("envelope-intro-skip");
     var letter = document.getElementById("envelope-letter");
     var letterClose = document.getElementById("envelope-letter-close");
     var letterEnter = document.getElementById("envelope-letter-enter");
-    var sessionKey = "para-ingrid:envelope-intro:v1";
-
-    function markSeen() {
-      try {
-        if (window.sessionStorage) sessionStorage.setItem(sessionKey, "1");
-      } catch (e) { /* ignore */ }
-    }
+    var openCardBtn = document.getElementById("btn-open-envelope-letter");
 
     var letterOpened = false;
     var dismissing = false;
+
+    function resetEnvelopeState() {
+      letterOpened = false;
+      dismissing = false;
+      if (trigger) {
+        trigger.classList.remove("is-open");
+        trigger.removeAttribute("aria-disabled");
+      }
+      intro.classList.remove("is-opening", "is-leaving");
+      if (letter) {
+        letter.classList.remove("is-shown");
+        letter.hidden = true;
+      }
+    }
+
+    function openEnvelopeIntro() {
+      resetEnvelopeState();
+      document.documentElement.classList.add("envelope-show");
+      requestAnimationFrame(function () {
+        if (trigger) trigger.focus({ preventScroll: true });
+      });
+    }
 
     function openEnvelope() {
       if (letterOpened) return;
@@ -46,11 +59,10 @@
     function dismissIntro() {
       if (dismissing) return;
       dismissing = true;
-      markSeen();
       intro.classList.add("is-leaving");
       window.setTimeout(function () {
         document.documentElement.classList.remove("envelope-show");
-        letter.classList.remove("is-shown");
+        resetEnvelopeState();
       }, 640);
     }
 
@@ -78,6 +90,12 @@
         dismissIntro();
       });
     }
+    if (openCardBtn) {
+      openCardBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openEnvelopeIntro();
+      });
+    }
     function isIntroActive() {
       return (
         document.documentElement.classList.contains("envelope-show") &&
@@ -101,6 +119,7 @@
   var menuView = document.getElementById("menu-view");
   var storyView = document.getElementById("story-view");
   var ingridLetterView = document.getElementById("ingrid-letter-view");
+  var paraTiLetterView = document.getElementById("para-ti-letter-view");
   var ingridView = document.getElementById("ingrid-view");
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
@@ -112,6 +131,7 @@
   var nadaView = document.getElementById("nada-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
+  var btnParaTiLetter = document.getElementById("btn-para-ti-letter");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
@@ -131,6 +151,7 @@
   var btnBack9 = document.getElementById("btn-back-9");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
+  var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
   var btnLeerHistoria = document.getElementById("btn-leer-historia");
   var btnResetIngrid = document.getElementById("btn-reset-ingrid");
   var btnResetPrisa = document.getElementById("btn-reset-prisa");
@@ -202,6 +223,8 @@
   var versesColumnStory = document.getElementById("verses-column-story");
   var ingridLetterArea = document.getElementById("ingrid-letter-area");
   var versesColumnIngridLetter = document.getElementById("verses-column-ingrid-letter");
+  var paraTiLetterArea = document.getElementById("para-ti-letter-area");
+  var versesColumnParaTiLetter = document.getElementById("verses-column-para-ti-letter");
 
   /**
    * Respuestas a «¿Ya le pongo punto?» · regístrate en https://formspree.io ,
@@ -1410,6 +1433,14 @@
     versesColumnIngridLetter.scrollTop = 0;
   }
 
+  function resetParaTiLetterScroll() {
+    if (!paraTiLetterView) return;
+    window.scrollTo(0, 0);
+    paraTiLetterView.scrollTop = 0;
+    if (paraTiLetterArea) paraTiLetterArea.scrollTop = 0;
+    if (versesColumnParaTiLetter) versesColumnParaTiLetter.scrollTop = 0;
+  }
+
   var letterBtnIntroTimer = null;
   var letterBtnIntroCleanupTimer = null;
   var letterBtnIntroRaf = 0;
@@ -1482,6 +1513,7 @@
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
     ingridLetterView.hidden = view !== "ingrid-letter";
+    paraTiLetterView.hidden = view !== "para-ti-letter";
     ingridView.hidden = view !== "ingrid";
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
@@ -1504,6 +1536,17 @@
         requestAnimationFrame(function () {
           resetIngridLetterScroll();
           ingridLetterArea.focus({ preventScroll: true });
+        });
+      });
+    }
+
+    if (view === "para-ti-letter") {
+      resetParaTiLetterScroll();
+      requestAnimationFrame(function () {
+        resetParaTiLetterScroll();
+        requestAnimationFrame(function () {
+          resetParaTiLetterScroll();
+          paraTiLetterArea.focus({ preventScroll: true });
         });
       });
     }
@@ -1565,6 +1608,12 @@
   btnIngridLetter.addEventListener("click", function () {
     showView("ingrid-letter");
   });
+
+  if (btnParaTiLetter) {
+    btnParaTiLetter.addEventListener("click", function () {
+      showView("para-ti-letter");
+    });
+  }
 
   btnPrisa.addEventListener("click", function () {
     showView("prisa");
@@ -1646,6 +1695,12 @@
   btnBackIngridLetter.addEventListener("click", function () {
     showView("menu");
   });
+
+  if (btnBackParaTiLetter) {
+    btnBackParaTiLetter.addEventListener("click", function () {
+      showView("menu");
+    });
+  }
 
   btnResetIngrid.addEventListener("click", function (e) {
     e.stopPropagation();
@@ -1951,8 +2006,10 @@
     var nodes = document.querySelectorAll(".day-counter[data-counter-start]");
     if (!nodes.length) return;
 
-    function deltaSince(year, monthIdx, day) {
-      var start = new Date(year, monthIdx, day, 0, 0, 0, 0).getTime();
+    function deltaSince(year, monthIdx, day, hour, minute) {
+      var h = typeof hour === "number" && !isNaN(hour) ? hour : 0;
+      var min = typeof minute === "number" && !isNaN(minute) ? minute : 0;
+      var start = new Date(year, monthIdx, day, h, min, 0, 0).getTime();
       var totalMs = Math.max(0, Date.now() - start);
       var oneDay = 24 * 60 * 60 * 1000;
       var oneHour = 60 * 60 * 1000;
@@ -1976,7 +2033,20 @@
         var d = parseInt(parts[2], 10);
         if (isNaN(y) || isNaN(m) || isNaN(d)) continue;
 
-        var delta = deltaSince(y, m, d);
+        var hour = 0;
+        var minute = 0;
+        var timeRaw = nodes[i].getAttribute("data-counter-time");
+        if (timeRaw) {
+          var tp = timeRaw.split(":");
+          if (tp.length >= 2) {
+            hour = parseInt(tp[0], 10);
+            minute = parseInt(tp[1], 10);
+            if (isNaN(hour)) hour = 0;
+            if (isNaN(minute)) minute = 0;
+          }
+        }
+
+        var delta = deltaSince(y, m, d, hour, minute);
 
         var dEl = nodes[i].querySelector("[data-counter-value]");
         if (dEl) dEl.textContent = String(delta.days);
