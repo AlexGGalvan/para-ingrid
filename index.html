@@ -5,26 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1a0f14">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Para Ingrid</title>
-    <script>
-        (function registerFreshSW() {
-            if (!("serviceWorker" in navigator)) return;
-            try {
-                navigator.serviceWorker.register("sw.js").then(function (reg) {
-                    if (reg && typeof reg.update === "function") {
-                        reg.update().catch(function () {});
-                    }
-                }).catch(function () {});
-            } catch (err) {}
-        })();
-    </script>
 </head>
 
 <body>
@@ -109,6 +94,19 @@
             <div class="verses-column">
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
+
+                <aside class="new-poem-pop new-poem-pop--garden" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="garden-v1">
+                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir El Jardín de Ingrid">
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">🌸</span>
+                        <span class="new-poem-pop__body">
+                            <span class="new-poem-pop__kicker">Algo nuevo para ti</span>
+                            <span class="new-poem-pop__title">«El Jardín de Ingrid»</span>
+                            <span class="new-poem-pop__hint">Toca para cuidar tu jardín</span>
+                        </span>
+                    </button>
+                    <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
+                </aside>
+
                 <div class="verse-panel has-text menu-title">
                     Proverbios 18:22
                 </div>
@@ -118,6 +116,7 @@
                     <p class="menu-personal-carousel__kicker">Mensaje de hoy</p>
                     <div class="menu-personal-carousel__viewport">
                         <div class="menu-personal-carousel__strip" id="menu-personal-carousel-strip">
+                            <p class="menu-personal-carousel__slide">Mi corazón siempre te ha pertenecido y siempre lo hará.</p>
                             <p class="menu-personal-carousel__slide">A ti te amaré, y contigo viviré mi vida.</p>
                             <p class="menu-personal-carousel__slide">Perdoname por no haber subido nada... estaba preparandote algo especial...</p>
                             <p class="menu-personal-carousel__slide">Cuando te acaricié me di cuenta que había vivido toda mi vida con las manos vacías</p>
@@ -148,6 +147,8 @@
                             aria-selected="false" aria-label="Mensaje 8"></button>
                         <button type="button" class="menu-personal-carousel__dot" role="tab"
                             aria-selected="false" aria-label="Mensaje 9"></button>
+                        <button type="button" class="menu-personal-carousel__dot" role="tab"
+                            aria-selected="false" aria-label="Mensaje 10"></button>
                     </div>
                 </div>
 
@@ -310,6 +311,15 @@
                         <span class="comic-page-link__title" id="comic-page-heading">Hasta que nos encontramos</span>
                         <span class="comic-page-link__copy">Una pequeña historieta sobre cómo dos corazones cansados de no ser entendidos, terminaron encontrándose en el momento correcto.</span>
                         <span class="comic-page-link__cta">Abrir historia</span>
+                    </a>
+                </section>
+
+                <section class="menu-garden-slot" aria-labelledby="garden-page-heading">
+                    <a class="garden-page-link" href="garden.html" aria-label="Abrir El Jardín de Ingrid">
+                        <span class="garden-page-link__kicker">Un regalo interactivo</span>
+                        <span class="garden-page-link__title" id="garden-page-heading">El Jardín de Ingrid</span>
+                        <span class="garden-page-link__copy">Aprende a cuidar tus flores mientras desbloqueas un jardín hecho solo para ti.</span>
+                        <span class="garden-page-link__cta">Entrar al jardín</span>
                     </a>
                 </section>
                 </section>

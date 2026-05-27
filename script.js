@@ -2250,7 +2250,7 @@
       openBtn.addEventListener("click", function () {
         persistDismiss();
         hide(true);
-        showView("nada");
+        window.location.href = "garden.html";
       });
     }
     if (closeBtn) {

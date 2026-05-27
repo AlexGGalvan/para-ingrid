@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a2820">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="garden.css">
+    <title>El Jardín de Ingrid</title>
+</head>
+
+<body>
+    <main class="garden-scene" aria-label="El Jardín de Ingrid">
+        <a class="garden-back-link" href="index.html#cap-regalos">Volver</a>
+
+        <div class="garden-meadow" aria-hidden="true">
+            <span class="garden-meadow__glow garden-meadow__glow--left"></span>
+            <span class="garden-meadow__glow garden-meadow__glow--right"></span>
+            <span class="garden-meadow__hill"></span>
+            <div class="garden-meadow__petals">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="garden-app" id="ingrid-garden">
+            <header class="garden-head">
+                <p class="garden-head__kicker">Un regalo para ti</p>
+                <h1 class="garden-head__title" id="garden-heading">El Jardín de Ingrid</h1>
+                <p class="garden-head__intro">Porque cada flor que te regalo merece quedarse contigo un poquito más, hice este pequeño jardín para ti. Un lugar donde puedas aprender a cuidarlas mientras yo sigo aprendiendo nuevas formas de hacerte sonreír.</p>
+            </header>
+
+            <div class="garden-screen garden-screen--intro" id="garden-intro">
+                <div class="garden-intro__visual" aria-hidden="true">
+                    <span class="garden-intro__pot"></span>
+                </div>
+                <button type="button" class="garden-btn garden-btn--primary" id="garden-start">Empezar a cuidar mi jardín</button>
+            </div>
+
+            <div class="garden-screen garden-screen--play" id="garden-play" hidden>
+                <div class="garden-status">
+                    <p class="garden-status__msg" id="garden-status-msg">Tu jardín está esperando por ti.</p>
+                    <div class="garden-progress" aria-label="Progreso del jardín">
+                        <p class="garden-progress__label">Flores cuidadas: <span id="garden-progress-count">0</span> de 8</p>
+                        <div class="garden-progress__track">
+                            <div class="garden-progress__fill" id="garden-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="garden-grid" id="garden-grid" role="list" aria-label="Flores del jardín"></div>
+
+                <div class="garden-question" id="garden-question-panel" aria-live="polite"></div>
+            </div>
+
+            <div class="garden-screen garden-screen--final" id="garden-final" hidden>
+                <div class="garden-confetti" id="garden-confetti" aria-hidden="true"></div>
+                <header class="garden-final__head">
+                    <p class="garden-final__kicker">Para ti, amor</p>
+                    <h2 class="garden-final__title">Tu jardín está completo</h2>
+                </header>
+                <div class="garden-final__letter">
+                    <p>Terminaste de cuidar tu primer jardín, mi amor.</p>
+                    <p>Me gusta verte ponerle atención a las flores que te regalo, porque no las ves como algo cualquiera. Las cuidas, las observas, las procuras… y eso me parece demasiado bonito de ti.</p>
+                    <p>Por eso hice este jardín: para que aprendas a cuidar tus flores mientras yo sigo aprendiendo nuevas formas de cuidarte a ti.</p>
+                    <p>Este jardín no es experto, igual que tú todavía estás aprendiendo, pero nació con mucho amor.</p>
+                    <p>Y así como tus flores, también quiero que lo nuestro crezca bonito: con paciencia, cuidado, ternura y mucho corazón.</p>
+                    <p>Últimamente sí he tenido la cabeza un poco enfrascada en temas de trabajo, no sé si se me ha notado o no, si he estado pesado, pero aun así el verte me hace tan feliz y hace que todo mi ser respire; eres de lo mejor que le ha pasado a mi vida, amor.</p>
+                    <p class="garden-final__sign">Te quiero mucho, Ingrid.</p>
+                </div>
+                <button type="button" class="garden-btn garden-btn--secondary" id="garden-back-to-play">Ver mi jardín</button>
+            </div>
+
+            <button type="button" class="garden-reset" id="garden-reset">Reiniciar jardín</button>
+        </div>
+    </main>
+    <script src="garden.js"></script>
+</body>
+
+</html>
