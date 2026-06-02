@@ -2098,6 +2098,32 @@ body.is-envelope-lock {
   }
 }
 
+#tiempo-panel .tiempo-stanza-lead,
+#tiempo-panel .tiempo-stanza-glow {
+  margin: 0;
+  white-space: pre-line;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.05rem, 4.1vw, 1.28rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+#tiempo-panel .tiempo-stanza-lead {
+  color: rgba(240, 226, 232, 0.95);
+  text-shadow: 0 0 24px rgba(255, 200, 220, 0.12);
+}
+
+#tiempo-panel .tiempo-stanza-glow {
+  color: rgba(255, 238, 172, 0.98);
+  text-shadow: 0 0 28px rgba(255, 215, 125, 0.25);
+  margin-top: 0.15rem;
+}
+
+#tiempo-panel .tiempo-stanza-lead + .tiempo-stanza-glow + .tiempo-stanza-lead {
+  margin-top: 0.15rem;
+}
+
 .extra-panel {
   margin: 1.75rem auto 0;
   padding: 1.35rem 0.15rem 0;

@@ -641,82 +641,99 @@
     }
   ];
 
-  var TIEMPO_POEM =
-    "¿Qué es el tiempo realmente?\n" +
-    "Dicen que el día tiene veinticuatro horas,\n" +
-    "pero yo empiezo a dudarlo cuando pienso en ti,\n" +
-    "porque hay jornadas que se estiran demasiado\n" +
-    "si no te veo,\n" +
-    "y hay tardes contigo que se me van completas\n" +
-    "en lo que dura una mirada.\n" +
-    "\n" +
-    "A veces me pregunto cómo le haces,\n" +
-    "si tu día viene cargado de pendientes,\n" +
-    "si tu mundo no siempre te da descanso,\n" +
-    "si hay cosas que reclaman tu nombre\n" +
-    "antes de que yo pueda hacerlo.\n" +
-    "Y aun así, entre todo lo que te ocupa,\n" +
-    "encuentras la manera de hacerme espacio,\n" +
-    "como si verme no fuera un sobrante de tu agenda,\n" +
-    "sino una elección pequeña\n" +
-    "que vale más que cualquier hora libre.\n" +
-    "\n" +
-    "Y entonces ya no sé si el tiempo se cuenta en minutos,\n" +
-    "o en ganas.\n" +
-    "Porque dos meses, para cualquiera,\n" +
-    "podrían parecer apenas el principio;\n" +
-    "pero para mí tienen el peso de algo que no llegó de paso.\n" +
-    "Se sienten como la primera página\n" +
-    "de una historia que todavía no termina de escribirse,\n" +
-    "pero que ya sabe hacia dónde quiere ir.\n" +
-    "\n" +
-    "Contigo el calendario pierde autoridad.\n" +
-    "No me importa tanto cuánto llevamos,\n" +
-    "sino la forma en que todo se vuelve más claro\n" +
-    "cuando estás cerca.\n" +
-    "Hay personas que tardan años en sentirse importantes,\n" +
-    "y luego estás tú,\n" +
-    "haciéndome pensar en un futuro entero\n" +
-    "sin que el presente me parezca insuficiente.\n" +
-    "\n" +
-    "Qué extraño es esto:\n" +
-    "las horas se vuelven pesadas cuando no estás,\n" +
-    "como si cada una caminara más lento\n" +
-    "solo para recordarme tu ausencia;\n" +
-    "pero cuando te tengo enfrente,\n" +
-    "quisiera negociar con el mundo una pausa,\n" +
-    "pedirle al reloj que no avance,\n" +
-    "a la tarde que no se acabe,\n" +
-    "al instante que nos permita quedarnos\n" +
-    "un poquito más dentro de él.\n" +
-    "\n" +
-    "Sé que todavía falta tiempo.\n" +
-    "Faltan días, conversaciones, pruebas, paciencia,\n" +
-    "momentos que tendrán que llegar sin prisa.\n" +
-    "Pero también sé que hay certezas\n" +
-    "que no necesitan tener fecha para existir.\n" +
-    "Y una de ellas eres tú:\n" +
-    "yo sé que vas a ser mi esposa,\n" +
-    "no porque quiera adelantar la historia,\n" +
-    "sino porque cuando miro hacia adelante,\n" +
-    "tu nombre aparece con una naturalidad\n" +
-    "que no me asusta,\n" +
-    "me afirma.\n" +
-    "\n" +
-    "Por eso, si el tiempo insiste en pasar,\n" +
-    "que pase.\n" +
-    "Que traiga lo que tenga que traer,\n" +
-    "que acomode lo que tenga que acomodar,\n" +
-    "que nos enseñe a llegar bien\n" +
-    "a todo lo que todavía nos espera.\n" +
-    "Porque si al final de cada espera\n" +
-    "estás tú,\n" +
-    "entonces el tiempo no es distancia,\n" +
-    "ni demora,\n" +
-    "ni amenaza.\n" +
-    "Es solamente la forma en que la vida\n" +
-    "nos está preparando\n" +
-    "para pertenecernos mejor.";
+  var TIEMPO_BLOCKS = [
+    [
+      "¿Qué es el tiempo realmente?",
+      "Dicen que el día tiene veinticuatro horas,",
+      "pero yo empiezo a dudarlo cuando pienso en ti,",
+      "porque hay jornadas que se estiran demasiado",
+      "si no te veo,",
+      "y hay tardes contigo que se me van completas",
+      "en lo que dura una mirada."
+    ].join("\n"),
+    {
+      lead: [
+        "A veces me pregunto cómo le haces,",
+        "si tu día viene cargado de pendientes,",
+        "si tu mundo no siempre te da descanso,",
+        "si hay cosas que reclaman tu nombre",
+        "antes de que yo pueda hacerlo."
+      ],
+      glow: [
+        "Y aun así, entre todo lo que te ocupa,",
+        "encuentras la manera de hacerme espacio,",
+        "como si verme no fuera un sobrante de tu agenda,",
+        "sino una elección pequeña"
+      ],
+      tail: ["que vale más que cualquier hora libre."]
+    },
+    [
+      "Y entonces ya no sé si el tiempo se cuenta en minutos,",
+      "o en ganas.",
+      "Porque dos meses, para cualquiera,",
+      "podrían parecer apenas el principio;",
+      "pero para mí tienen el peso de algo que no llegó de paso.",
+      "Se sienten como la primera página",
+      "de una historia que todavía no termina de escribirse,",
+      "pero que ya sabe hacia dónde quiere ir."
+    ].join("\n"),
+    [
+      "Contigo el calendario pierde autoridad.",
+      "No me importa tanto cuánto llevamos,",
+      "sino la forma en que todo se vuelve más claro",
+      "cuando estás cerca.",
+      "Hay personas que tardan años en sentirse importantes,",
+      "y luego estás tú,",
+      "haciéndome pensar en un futuro entero",
+      "sin que el presente me parezca insuficiente."
+    ].join("\n"),
+    [
+      "Qué extraño es esto:",
+      "las horas se vuelven pesadas cuando no estás,",
+      "como si cada una caminara más lento",
+      "solo para recordarme tu ausencia;",
+      "pero cuando te tengo enfrente,",
+      "quisiera negociar con el mundo una pausa,",
+      "pedirle al reloj que no avance,",
+      "a la tarde que no se acabe,",
+      "al instante que nos permita quedarnos",
+      "un poquito más dentro de él."
+    ].join("\n"),
+    {
+      lead: [
+        "Sé que todavía falta tiempo.",
+        "Faltan días, conversaciones, pruebas, paciencia,",
+        "momentos que tendrán que llegar sin prisa.",
+        "Pero también sé que hay certezas",
+        "que no necesitan tener fecha para existir.",
+        "Y una de ellas eres tú:"
+      ],
+      glow: [
+        "yo sé que vas a ser mi esposa,",
+        "no porque quiera adelantar la historia,",
+        "sino porque cuando miro hacia adelante,",
+        "tu nombre aparece con una naturalidad",
+        "que no me asusta,",
+        "me afirma."
+      ]
+    },
+    [
+      "Por eso, si el tiempo insiste en pasar,",
+      "que pase.",
+      "Que traiga lo que tenga que traer,",
+      "que acomode lo que tenga que acomodar,",
+      "que nos enseñe a llegar bien",
+      "a todo lo que todavía nos espera.",
+      "Porque si al final de cada espera",
+      "estás tú,",
+      "entonces el tiempo no es distancia,",
+      "ni demora,",
+      "ni amenaza.",
+      "Es solamente la forma en que la vida",
+      "nos está preparando",
+      "para pertenecernos mejor."
+    ].join("\n")
+  ];
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -1517,8 +1534,40 @@
     ? Array.prototype.slice.call(tiempoHourglasses.querySelectorAll(".hourglass"))
     : [];
   var tiempoFill = 0;
-  var tiempoParas = TIEMPO_POEM.split(/\n\s*\n/);
   var tiempoShown = 0;
+
+  function renderTiempoBlock(block) {
+    if (!tiempoPanel || !block) return;
+
+    tiempoPanel.textContent = "";
+    tiempoPanel.classList.remove("tiempo-panel--structured");
+
+    if (typeof block === "string") {
+      tiempoPanel.textContent = block.trim();
+      return;
+    }
+
+    tiempoPanel.classList.add("tiempo-panel--structured");
+
+    if (block.lead && block.lead.length) {
+      var leadEl = document.createElement("p");
+      leadEl.className = "tiempo-stanza-lead";
+      leadEl.textContent = block.lead.join("\n");
+      tiempoPanel.appendChild(leadEl);
+    }
+    if (block.glow && block.glow.length) {
+      var glowEl = document.createElement("p");
+      glowEl.className = "tiempo-stanza-glow";
+      glowEl.textContent = block.glow.join("\n");
+      tiempoPanel.appendChild(glowEl);
+    }
+    if (block.tail && block.tail.length) {
+      var tailEl = document.createElement("p");
+      tailEl.className = "tiempo-stanza-lead";
+      tailEl.textContent = block.tail.join("\n");
+      tiempoPanel.appendChild(tailEl);
+    }
+  }
 
   function resetTiempo() {
     tiempoFill = 0;
@@ -1529,9 +1578,9 @@
     if (tiempoHint) tiempoHint.classList.remove("is-hidden");
     if (tiempoPanel) {
       tiempoPanel.textContent = "";
-      tiempoPanel.classList.remove("has-text");
+      tiempoPanel.classList.remove("has-text", "tiempo-panel--structured");
     }
-    setPager(tiempoPager, 0, tiempoParas.length);
+    setPager(tiempoPager, 0, TIEMPO_BLOCKS.length);
   }
 
   function fillNextHourglass() {
@@ -1542,19 +1591,19 @@
   }
 
   function revealNextTiempoParagraph() {
-    if (tiempoShown >= tiempoParas.length || !tiempoPanel) return;
-    var nextT = tiempoParas[tiempoShown].trim();
+    if (tiempoShown >= TIEMPO_BLOCKS.length || !tiempoPanel) return;
+    var block = TIEMPO_BLOCKS[tiempoShown];
     tiempoShown += 1;
-    if (!nextT) return;
+    if (!block) return;
 
-    tiempoPanel.textContent = nextT;
+    renderTiempoBlock(block);
     tiempoPanel.classList.add("has-text");
     tiempoPanel.classList.remove("verse-enter");
     void tiempoPanel.offsetWidth;
     tiempoPanel.classList.add("verse-enter");
     tiempoPanel.scrollTop = 0;
     if (tiempoScrollColumn) tiempoScrollColumn.scrollTop = 0;
-    setPager(tiempoPager, tiempoShown, tiempoParas.length);
+    setPager(tiempoPager, tiempoShown, TIEMPO_BLOCKS.length);
   }
 
   function tiempoProgress() {
@@ -1565,7 +1614,7 @@
     revealNextTiempoParagraph();
     if (
       tiempoFill >= tiempoHourglassEls.length &&
-      tiempoShown >= tiempoParas.length &&
+      tiempoShown >= TIEMPO_BLOCKS.length &&
       tiempoHint
     ) {
       tiempoHint.classList.add("is-hidden");
