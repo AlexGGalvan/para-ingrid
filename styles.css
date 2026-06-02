@@ -874,6 +874,7 @@ body.is-envelope-lock {
 #btn-back-7,
 #btn-back-8,
 #btn-back-9,
+#btn-back-10,
 #btn-back-story,
 #btn-back-ingrid-letter {
   max-width: 12rem;
@@ -897,6 +898,7 @@ body.is-envelope-lock {
 #btn-back-7:hover,
 #btn-back-8:hover,
 #btn-back-9:hover,
+#btn-back-10:hover,
 #btn-back-story:hover,
 #btn-back-ingrid-letter:hover {
   filter: brightness(1.05);
@@ -2007,6 +2009,88 @@ body.is-envelope-lock {
   55% {
     transform: scale(1.16) rotate(4deg);
     filter: brightness(1.12);
+  }
+  100% {
+    transform: scale(1.08) rotate(0deg);
+    filter: brightness(1.08);
+  }
+}
+
+/* Relojes de arena del poema «El Tiempo Contigo» */
+.hourglasses {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.35rem 0 0.6rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: none;
+}
+
+.hourglasses .hourglass {
+  width: clamp(22px, 7vw, 28px);
+  height: clamp(28px, 9vw, 34px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.28;
+  color: rgba(255, 230, 210, 0.72);
+  transform: translateZ(0) scale(0.98);
+  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease, color 0.25s ease;
+}
+
+.hourglasses .hourglass svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 160, 0.08));
+}
+
+.hourglasses .hourglass .hourglass-sand-top,
+.hourglasses .hourglass .hourglass-sand-bottom {
+  fill: rgba(232, 200, 120, 0.35);
+  transition: fill 0.35s ease, opacity 0.35s ease;
+}
+
+.hourglasses .hourglass .hourglass-sand-top {
+  opacity: 0.85;
+}
+
+.hourglasses .hourglass .hourglass-sand-bottom {
+  opacity: 0.15;
+}
+
+.hourglasses .hourglass.is-full {
+  opacity: 1;
+  color: rgba(255, 215, 175, 0.96);
+  filter: brightness(1.08);
+  transform: translateZ(0) scale(1.08);
+  animation: hourglass-turn 0.62s ease both;
+}
+
+.hourglasses .hourglass.is-full svg {
+  filter: drop-shadow(0 0 12px rgba(255, 190, 140, 0.45));
+}
+
+.hourglasses .hourglass.is-full .hourglass-sand-top {
+  opacity: 0.2;
+  fill: rgba(232, 200, 120, 0.45);
+}
+
+.hourglasses .hourglass.is-full .hourglass-sand-bottom {
+  opacity: 1;
+  fill: rgba(232, 200, 120, 0.95);
+}
+
+@keyframes hourglass-turn {
+  0% {
+    transform: scale(0.96) rotate(-12deg);
+    filter: brightness(1);
+  }
+  45% {
+    transform: scale(1.14) rotate(6deg);
+    filter: brightness(1.14);
   }
   100% {
     transform: scale(1.08) rotate(0deg);
@@ -3511,6 +3595,38 @@ button.story-followup-submit:disabled {
 
 .new-poem-pop--garden .new-poem-pop__close:hover {
   border-color: rgba(210, 245, 190, 0.55);
+}
+
+/* Variante poema — tonos ámbar y reloj de arena */
+.new-poem-pop--tiempo .new-poem-pop__card {
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 220, 160, 0.18), transparent 60%),
+    linear-gradient(140deg, rgba(48, 36, 28, 0.94), rgba(28, 20, 16, 0.96));
+  border-color: rgba(230, 190, 140, 0.32);
+}
+
+.new-poem-pop--tiempo .new-poem-pop__card:hover {
+  border-color: rgba(245, 210, 165, 0.55);
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 230, 180, 0.24), transparent 60%),
+    linear-gradient(140deg, rgba(58, 42, 32, 0.96), rgba(32, 22, 18, 0.98));
+}
+
+.new-poem-pop--tiempo .new-poem-pop__kicker {
+  color: rgba(245, 215, 175, 0.88);
+}
+
+.new-poem-pop--tiempo .new-poem-pop__title {
+  text-shadow: 0 0 16px rgba(255, 200, 140, 0.28);
+}
+
+.new-poem-pop--tiempo .new-poem-pop__close {
+  background: linear-gradient(140deg, rgba(48, 36, 28, 0.94), rgba(28, 20, 16, 0.96));
+  border-color: rgba(230, 190, 140, 0.32);
+}
+
+.new-poem-pop--tiempo .new-poem-pop__close:hover {
+  border-color: rgba(245, 210, 165, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

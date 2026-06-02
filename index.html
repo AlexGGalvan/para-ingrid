@@ -95,13 +95,13 @@
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
 
-                <aside class="new-poem-pop new-poem-pop--garden" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="garden-v1">
-                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir El Jardín de Ingrid">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">🌸</span>
+                <aside class="new-poem-pop new-poem-pop--tiempo" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="tiempo-v1">
+                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir poema El Tiempo Contigo">
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">⌛</span>
                         <span class="new-poem-pop__body">
                             <span class="new-poem-pop__kicker">Algo nuevo para ti</span>
-                            <span class="new-poem-pop__title">«El Jardín de Ingrid»</span>
-                            <span class="new-poem-pop__hint">Toca para cuidar tu jardín</span>
+                            <span class="new-poem-pop__title">«El Tiempo Contigo»</span>
+                            <span class="new-poem-pop__hint">Toca para leer el poema</span>
                         </span>
                     </button>
                     <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
@@ -343,6 +343,21 @@
                                     <span class="poem-card__body">
                                         <span class="poem-card__title">No tengo nada</span>
                                         <span class="poem-card__line">Pero todo lo que soy es tuyo.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-tiempo" data-mood="estas" aria-label="Abrir poema: El Tiempo Contigo">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M10 6h28l-9 16 9 16H10l9-16z" fill="none" stroke="rgba(255,220,180,0.85)" stroke-width="2" stroke-linejoin="round"/>
+                                            <path d="M14 10h20l-6.5 12H20.5z" fill="rgba(232,200,120,0.55)"/>
+                                            <path d="M20.5 26h7l6.5 14H14z" fill="rgba(232,200,120,0.9)"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">El Tiempo Contigo</span>
+                                        <span class="poem-card__line">Cuando el calendario pierde autoridad.</span>
                                     </span>
                                 </button>
                             </li>
@@ -1385,6 +1400,71 @@
                 <p class="pager" id="pager-nada" aria-label="Progreso del poema">0/4</p>
                 <div class="verses-column" id="verses-column-nada">
                     <div class="verse-panel" id="nada-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tiempo-view" hidden aria-label="Poema: El Tiempo Contigo">
+            <button type="button" class="extra-cta is-visible" id="btn-back-10">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-tiempo">Reiniciar</button>
+            <div id="poem-area-tiempo" tabindex="0" role="application" aria-label="Poema — toca para voltear cada reloj de arena">
+                <p class="poem-meta" id="date-tiempo">Lunes 1 de Junio de 2026</p>
+                <div class="hourglasses" id="tiempo-hourglasses" aria-label="Relojes de arena" role="img">
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                    <span class="hourglass" aria-hidden="true">
+                        <svg viewBox="0 0 20 26" aria-hidden="true" focusable="false">
+                            <path class="hourglass-outline" d="M3 1h14l-4 10 4 10H3l4-10z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path class="hourglass-sand-top" d="M5.5 3h9l-3.2 7.5H8.7z"/>
+                            <path class="hourglass-sand-bottom" d="M8.7 15.5h2.6l3.2 8H5.5z"/>
+                        </svg>
+                    </span>
+                </div>
+                <p class="hint" id="hint-tiempo">Toca la pantalla para voltear cada reloj de arena</p>
+                <p class="pager" id="pager-tiempo" aria-label="Progreso del poema">0/7</p>
+                <div class="verses-column" id="verses-column-tiempo">
+                    <div class="verse-panel" id="tiempo-panel" aria-live="polite"></div>
                     <p class="signature">— Para Ingrid</p>
                 </div>
             </div>

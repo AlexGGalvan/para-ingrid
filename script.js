@@ -129,6 +129,7 @@
   var ternuraView = document.getElementById("ternura-view");
   var ocasoView = document.getElementById("ocaso-view");
   var nadaView = document.getElementById("nada-view");
+  var tiempoView = document.getElementById("tiempo-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnParaTiLetter = document.getElementById("btn-para-ti-letter");
@@ -140,6 +141,7 @@
   var btnTernura = document.getElementById("btn-ternura");
   var btnOcaso = document.getElementById("btn-ocaso");
   var btnNada = document.getElementById("btn-nada");
+  var btnTiempo = document.getElementById("btn-tiempo");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
@@ -149,6 +151,7 @@
   var btnBack7 = document.getElementById("btn-back-7");
   var btnBack8 = document.getElementById("btn-back-8");
   var btnBack9 = document.getElementById("btn-back-9");
+  var btnBack10 = document.getElementById("btn-back-10");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
@@ -162,6 +165,7 @@
   var btnResetTernura = document.getElementById("btn-reset-ternura");
   var btnResetOcaso = document.getElementById("btn-reset-ocaso");
   var btnResetNada = document.getElementById("btn-reset-nada");
+  var btnResetTiempo = document.getElementById("btn-reset-tiempo");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -210,6 +214,12 @@
   var nadaPanel = document.getElementById("nada-panel");
   var nadaIcons = document.getElementById("nada-icons");
   var nadaPager = document.getElementById("pager-nada");
+  var tiempoArea = document.getElementById("poem-area-tiempo");
+  var tiempoHint = document.getElementById("hint-tiempo");
+  var tiempoScrollColumn = document.getElementById("verses-column-tiempo");
+  var tiempoPanel = document.getElementById("tiempo-panel");
+  var tiempoHourglasses = document.getElementById("tiempo-hourglasses");
+  var tiempoPager = document.getElementById("pager-tiempo");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -630,6 +640,83 @@
       ]
     }
   ];
+
+  var TIEMPO_POEM =
+    "¿Qué es el tiempo realmente?\n" +
+    "Dicen que el día tiene veinticuatro horas,\n" +
+    "pero yo empiezo a dudarlo cuando pienso en ti,\n" +
+    "porque hay jornadas que se estiran demasiado\n" +
+    "si no te veo,\n" +
+    "y hay tardes contigo que se me van completas\n" +
+    "en lo que dura una mirada.\n" +
+    "\n" +
+    "A veces me pregunto cómo le haces,\n" +
+    "si tu día viene cargado de pendientes,\n" +
+    "si tu mundo no siempre te da descanso,\n" +
+    "si hay cosas que reclaman tu nombre\n" +
+    "antes de que yo pueda hacerlo.\n" +
+    "Y aun así, entre todo lo que te ocupa,\n" +
+    "encuentras la manera de hacerme espacio,\n" +
+    "como si verme no fuera un sobrante de tu agenda,\n" +
+    "sino una elección pequeña\n" +
+    "que vale más que cualquier hora libre.\n" +
+    "\n" +
+    "Y entonces ya no sé si el tiempo se cuenta en minutos,\n" +
+    "o en ganas.\n" +
+    "Porque dos meses, para cualquiera,\n" +
+    "podrían parecer apenas el principio;\n" +
+    "pero para mí tienen el peso de algo que no llegó de paso.\n" +
+    "Se sienten como la primera página\n" +
+    "de una historia que todavía no termina de escribirse,\n" +
+    "pero que ya sabe hacia dónde quiere ir.\n" +
+    "\n" +
+    "Contigo el calendario pierde autoridad.\n" +
+    "No me importa tanto cuánto llevamos,\n" +
+    "sino la forma en que todo se vuelve más claro\n" +
+    "cuando estás cerca.\n" +
+    "Hay personas que tardan años en sentirse importantes,\n" +
+    "y luego estás tú,\n" +
+    "haciéndome pensar en un futuro entero\n" +
+    "sin que el presente me parezca insuficiente.\n" +
+    "\n" +
+    "Qué extraño es esto:\n" +
+    "las horas se vuelven pesadas cuando no estás,\n" +
+    "como si cada una caminara más lento\n" +
+    "solo para recordarme tu ausencia;\n" +
+    "pero cuando te tengo enfrente,\n" +
+    "quisiera negociar con el mundo una pausa,\n" +
+    "pedirle al reloj que no avance,\n" +
+    "a la tarde que no se acabe,\n" +
+    "al instante que nos permita quedarnos\n" +
+    "un poquito más dentro de él.\n" +
+    "\n" +
+    "Sé que todavía falta tiempo.\n" +
+    "Faltan días, conversaciones, pruebas, paciencia,\n" +
+    "momentos que tendrán que llegar sin prisa.\n" +
+    "Pero también sé que hay certezas\n" +
+    "que no necesitan tener fecha para existir.\n" +
+    "Y una de ellas eres tú:\n" +
+    "yo sé que vas a ser mi esposa,\n" +
+    "no porque quiera adelantar la historia,\n" +
+    "sino porque cuando miro hacia adelante,\n" +
+    "tu nombre aparece con una naturalidad\n" +
+    "que no me asusta,\n" +
+    "me afirma.\n" +
+    "\n" +
+    "Por eso, si el tiempo insiste en pasar,\n" +
+    "que pase.\n" +
+    "Que traiga lo que tenga que traer,\n" +
+    "que acomode lo que tenga que acomodar,\n" +
+    "que nos enseñe a llegar bien\n" +
+    "a todo lo que todavía nos espera.\n" +
+    "Porque si al final de cada espera\n" +
+    "estás tú,\n" +
+    "entonces el tiempo no es distancia,\n" +
+    "ni demora,\n" +
+    "ni amenaza.\n" +
+    "Es solamente la forma en que la vida\n" +
+    "nos está preparando\n" +
+    "para pertenecernos mejor.";
 
   function createAcronymPlayer(opts) {
     var letters = opts.letters;
@@ -1426,6 +1513,85 @@
   );
   nadaArea.addEventListener("keydown", onNadaActivate);
 
+  var tiempoHourglassEls = tiempoHourglasses
+    ? Array.prototype.slice.call(tiempoHourglasses.querySelectorAll(".hourglass"))
+    : [];
+  var tiempoFill = 0;
+  var tiempoParas = TIEMPO_POEM.split(/\n\s*\n/);
+  var tiempoShown = 0;
+
+  function resetTiempo() {
+    tiempoFill = 0;
+    tiempoShown = 0;
+    tiempoHourglassEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    if (tiempoHint) tiempoHint.classList.remove("is-hidden");
+    if (tiempoPanel) {
+      tiempoPanel.textContent = "";
+      tiempoPanel.classList.remove("has-text");
+    }
+    setPager(tiempoPager, 0, tiempoParas.length);
+  }
+
+  function fillNextHourglass() {
+    if (tiempoFill < tiempoHourglassEls.length) {
+      tiempoHourglassEls[tiempoFill].classList.add("is-full");
+      tiempoFill += 1;
+    }
+  }
+
+  function revealNextTiempoParagraph() {
+    if (tiempoShown >= tiempoParas.length || !tiempoPanel) return;
+    var nextT = tiempoParas[tiempoShown].trim();
+    tiempoShown += 1;
+    if (!nextT) return;
+
+    tiempoPanel.textContent = nextT;
+    tiempoPanel.classList.add("has-text");
+    tiempoPanel.classList.remove("verse-enter");
+    void tiempoPanel.offsetWidth;
+    tiempoPanel.classList.add("verse-enter");
+    tiempoPanel.scrollTop = 0;
+    if (tiempoScrollColumn) tiempoScrollColumn.scrollTop = 0;
+    setPager(tiempoPager, tiempoShown, tiempoParas.length);
+  }
+
+  function tiempoProgress() {
+    if (tiempoFill === 0 && tiempoShown === 0 && tiempoHint) {
+      tiempoHint.classList.add("is-hidden");
+    }
+    fillNextHourglass();
+    revealNextTiempoParagraph();
+    if (
+      tiempoFill >= tiempoHourglassEls.length &&
+      tiempoShown >= tiempoParas.length &&
+      tiempoHint
+    ) {
+      tiempoHint.classList.add("is-hidden");
+    }
+  }
+
+  function onTiempoActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    tiempoProgress();
+  }
+
+  if (tiempoArea) {
+    tiempoArea.addEventListener(
+      "pointerup",
+      function (e) {
+        if (e.button !== 0 && e.button !== -1) return;
+        if (e.target.closest("#btn-back-10")) return;
+        if (e.target.closest("#btn-reset-tiempo")) return;
+        onTiempoActivate(e);
+      },
+      { passive: true }
+    );
+    tiempoArea.addEventListener("keydown", onTiempoActivate);
+  }
+
   function resetIngridLetterScroll() {
     window.scrollTo(0, 0);
     ingridLetterView.scrollTop = 0;
@@ -1523,6 +1689,7 @@
     ternuraView.hidden = view !== "ternura";
     ocasoView.hidden = view !== "ocaso";
     nadaView.hidden = view !== "nada";
+    if (tiempoView) tiempoView.hidden = view !== "tiempo";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -1596,6 +1763,11 @@
       nadaArea.focus();
     }
 
+    if (view === "tiempo") {
+      resetTiempo();
+      if (tiempoArea) tiempoArea.focus();
+    }
+
     if (view === "menu") {
       scheduleIngridLetterBtnIntro();
     }
@@ -1647,6 +1819,12 @@
     showView("nada");
   });
 
+  if (btnTiempo) {
+    btnTiempo.addEventListener("click", function () {
+      showView("tiempo");
+    });
+  }
+
   btnLeerHistoria.addEventListener("click", function () {
     showView("story");
   });
@@ -1687,6 +1865,12 @@
   btnBack9.addEventListener("click", function () {
     showView("menu");
   });
+
+  if (btnBack10) {
+    btnBack10.addEventListener("click", function () {
+      showView("menu");
+    });
+  }
 
   btnBackStory.addEventListener("click", function () {
     showView("menu");
@@ -1755,6 +1939,14 @@
     resetNada();
     nadaArea.focus();
   });
+
+  if (btnResetTiempo) {
+    btnResetTiempo.addEventListener("click", function (e) {
+      e.stopPropagation();
+      resetTiempo();
+      if (tiempoArea) tiempoArea.focus();
+    });
+  }
 
   (function setupStoryFollowup() {
     var form = document.getElementById("story-followup-form");
@@ -2250,7 +2442,7 @@
       openBtn.addEventListener("click", function () {
         persistDismiss();
         hide(true);
-        window.location.href = "garden.html";
+        showView("tiempo");
       });
     }
     if (closeBtn) {
