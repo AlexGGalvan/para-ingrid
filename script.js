@@ -2508,7 +2508,9 @@
       openBtn.addEventListener("click", function () {
         persistDismiss();
         hide(true);
-        showView("tiempo");
+        showView("menu");
+        var recuerdosTab = document.querySelector('.menu-nav__link[data-target="cap-recuerdos"]');
+        if (recuerdosTab) recuerdosTab.click();
       });
     }
     if (closeBtn) {
