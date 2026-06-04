@@ -243,6 +243,23 @@
    */
   var STORY_RESPONSE_FORM_URL = "https://formspree.io/f/xkoypgpl";
 
+  /**
+   * Recuerdos con fotos · crea un proyecto en Supabase, ejecuta
+   * supabase-recuerdos-setup.sql y pega aquí los valores públicos.
+   */
+  var PHOTO_MEMORY_SUPABASE_URL = "https://ewmvgauuvppjosthllrr.supabase.co";
+  var PHOTO_MEMORY_SUPABASE_ANON_KEY = "sb_publishable_-oCMCeTdP9uJNw9uuZWnUg_gHtS6nJN";
+  var PHOTO_MEMORY_BUCKET = "ingrid-recuerdos";
+  var PHOTO_MEMORY_TABLE = "photo_memories";
+  var PHOTO_MEMORY_MAX_SIZE_BYTES = 5 * 1024 * 1024;
+  var PHOTO_MEMORY_ALLOWED_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/heic",
+    "image/heif"
+  ];
+
   if (
     !menuView ||
     !storyView ||
@@ -2527,6 +2544,447 @@
         attributes: true, attributeFilter: ["class"]
       });
     }
+  })();
+
+  (function setupPhotoMemories() {
+    var toggleBtn = document.getElementById("photo-memory-toggle");
+    var formShell = document.getElementById("photo-memory-form-shell");
+    var form = document.getElementById("photo-memory-form");
+    var fileInput = document.getElementById("photo-memory-file");
+    var descriptionInput = document.getElementById("photo-memory-description");
+    var frameInput = document.getElementById("photo-memory-frame");
+    var preview = document.getElementById("photo-memory-preview");
+    var previewCard = document.getElementById("photo-memory-preview-card");
+    var previewImg = document.getElementById("photo-memory-preview-img");
+    var previewCaption = document.getElementById("photo-memory-preview-caption");
+    var submitBtn = document.getElementById("photo-memory-submit");
+    var statusEl = document.getElementById("photo-memory-status");
+    var configNote = document.getElementById("photo-memory-config-note");
+    var gallery = document.getElementById("photo-memory-gallery");
+    var empty = document.getElementById("photo-memory-empty");
+    if (
+      !toggleBtn ||
+      !formShell ||
+      !form ||
+      !fileInput ||
+      !descriptionInput ||
+      !frameInput ||
+      !preview ||
+      !previewCard ||
+      !previewImg ||
+      !previewCaption ||
+      !submitBtn ||
+      !statusEl ||
+      !gallery ||
+      !empty
+    ) {
+      return;
+    }
+
+    var frames = {
+      polaroid: "Polaroid suave",
+      rosa: "Rosa romantico",
+      dorado: "Dorado calido",
+      jardin: "Jardin"
+    };
+    var previewUrl = "";
+    var client = null;
+    var uploadOpen = false;
+
+    function hasOwn(obj, key) {
+      return Object.prototype.hasOwnProperty.call(obj, key);
+    }
+
+    function isConfigured() {
+      return (
+        typeof PHOTO_MEMORY_SUPABASE_URL === "string" &&
+        PHOTO_MEMORY_SUPABASE_URL.indexOf("https://") === 0 &&
+        typeof PHOTO_MEMORY_SUPABASE_ANON_KEY === "string" &&
+        PHOTO_MEMORY_SUPABASE_ANON_KEY.length > 20
+      );
+    }
+
+    function getClient() {
+      if (client) return client;
+      if (!isConfigured()) return null;
+      if (!window.supabase || typeof window.supabase.createClient !== "function") {
+        return null;
+      }
+      client = window.supabase.createClient(
+        PHOTO_MEMORY_SUPABASE_URL,
+        PHOTO_MEMORY_SUPABASE_ANON_KEY
+      );
+      return client;
+    }
+
+    function setStatus(message, kind) {
+      statusEl.textContent = message || "";
+      statusEl.classList.remove("is-ok", "is-err", "is-warn");
+      if (kind) statusEl.classList.add("is-" + kind);
+    }
+
+    function setFormEnabled(enabled) {
+      fileInput.disabled = !enabled;
+      descriptionInput.disabled = !enabled;
+      frameInput.disabled = !enabled;
+      submitBtn.disabled = !enabled;
+      submitBtn.setAttribute("aria-disabled", enabled ? "false" : "true");
+    }
+
+    function setUploadOpen(open) {
+      uploadOpen = !!open;
+      formShell.hidden = !uploadOpen;
+      toggleBtn.classList.toggle("is-open", uploadOpen);
+      toggleBtn.setAttribute("aria-expanded", uploadOpen ? "true" : "false");
+      toggleBtn.setAttribute(
+        "aria-label",
+        uploadOpen
+          ? "Ocultar formulario para subir una foto"
+          : "Mostrar formulario para subir una foto"
+      );
+      var text = toggleBtn.querySelector(".photo-memory-toggle__text");
+      if (text) text.textContent = uploadOpen ? "Ocultar formulario" : "Agregar recuerdo";
+      if (uploadOpen) {
+        window.setTimeout(function () {
+          fileInput.focus({ preventScroll: true });
+        }, 80);
+      }
+    }
+
+    function normalizeFrame(frame) {
+      return hasOwn(frames, frame) ? frame : "polaroid";
+    }
+
+    function frameLabel(frame) {
+      frame = normalizeFrame(frame);
+      return frames[frame];
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      try {
+        return new Date(value).toLocaleDateString("es-MX", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+      } catch (e) {
+        return "";
+      }
+    }
+
+    function fileExtension(file) {
+      var name = file && file.name ? file.name.toLowerCase() : "";
+      var idx = name.lastIndexOf(".");
+      if (idx === -1) return "jpg";
+      var ext = name.slice(idx + 1).replace(/[^a-z0-9]/g, "");
+      if (ext === "jpeg" || ext === "jpg") return "jpg";
+      if (ext === "png" || ext === "webp" || ext === "heic" || ext === "heif") return ext;
+      return "jpg";
+    }
+
+    function hasAllowedType(file) {
+      if (!file) return false;
+      if (file.type && PHOTO_MEMORY_ALLOWED_TYPES.indexOf(file.type) !== -1) {
+        return true;
+      }
+      return /(\.jpe?g|\.png|\.webp|\.heic|\.heif)$/i.test(file.name || "");
+    }
+
+    function makeUploadPath(file) {
+      var now = new Date();
+      var day = now.toISOString().slice(0, 10);
+      var suffix = Math.random().toString(36).slice(2, 8);
+      return (
+        "uploads/" +
+        day +
+        "/" +
+        String(now.getTime()) +
+        "-" +
+        suffix +
+        "." +
+        fileExtension(file)
+      );
+    }
+
+    function validate(file, description) {
+      if (!file) return "Elige una foto antes de guardar.";
+      if (!hasAllowedType(file)) {
+        return "Solo puedo guardar fotos JPG, PNG, WebP o HEIC.";
+      }
+      if (file.size > PHOTO_MEMORY_MAX_SIZE_BYTES) {
+        return "La foto debe pesar menos de 5 MB.";
+      }
+      if (!description.length) {
+        return "Escribe una descripcion cortita para la foto.";
+      }
+      if (description.length > 240) {
+        return "La descripcion no puede pasar de 240 caracteres.";
+      }
+      return "";
+    }
+
+    function revokePreviewUrl() {
+      if (previewUrl) {
+        try {
+          URL.revokeObjectURL(previewUrl);
+        } catch (e) {}
+        previewUrl = "";
+      }
+    }
+
+    function updatePreview() {
+      var file = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+      var frame = normalizeFrame(frameInput.value);
+      var description = descriptionInput.value.trim();
+
+      previewCard.className =
+        "photo-memory-card photo-memory-card--preview photo-memory-frame--" + frame;
+      previewCaption.textContent = description || "Tu descripcion aparecera aqui.";
+
+      if (!file) {
+        revokePreviewUrl();
+        previewImg.removeAttribute("src");
+        preview.hidden = true;
+        return;
+      }
+
+      revokePreviewUrl();
+      previewUrl = URL.createObjectURL(file);
+      previewImg.src = previewUrl;
+      preview.hidden = false;
+    }
+
+    function publicUrlFor(path) {
+      var api = getClient();
+      if (!api || !path) return "";
+      var result = api.storage.from(PHOTO_MEMORY_BUCKET).getPublicUrl(path);
+      return result && result.data ? result.data.publicUrl : "";
+    }
+
+    function createMemoryCard(item) {
+      var frame = normalizeFrame(item.frame);
+      var article = document.createElement("article");
+      article.className = "photo-memory-card photo-memory-frame--" + frame;
+      article.setAttribute("data-memory-id", item.id || "");
+
+      var img = document.createElement("img");
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.src = item.public_url || publicUrlFor(item.image_path);
+      img.alt = item.description
+        ? "Recuerdo subido por Ingrid: " + item.description
+        : "Recuerdo subido por Ingrid";
+
+      var body = document.createElement("div");
+      body.className = "photo-memory-card__body";
+
+      var desc = document.createElement("p");
+      desc.className = "photo-memory-card__description";
+      desc.textContent = item.description || "Un recuerdo guardado con carino.";
+
+      var meta = document.createElement("p");
+      meta.className = "photo-memory-card__meta";
+      var dateText = formatDate(item.created_at);
+      meta.textContent = dateText
+        ? frameLabel(frame) + " · " + dateText
+        : frameLabel(frame);
+
+      var deleteBtn = document.createElement("button");
+      deleteBtn.type = "button";
+      deleteBtn.className = "photo-memory-delete";
+      deleteBtn.textContent = "Borrar";
+      deleteBtn.setAttribute(
+        "aria-label",
+        item.description
+          ? "Borrar recuerdo: " + item.description
+          : "Borrar recuerdo"
+      );
+      deleteBtn.addEventListener("click", function () {
+        deleteMemory(item, deleteBtn);
+      });
+
+      body.appendChild(desc);
+      body.appendChild(meta);
+      article.appendChild(img);
+      article.appendChild(body);
+      article.appendChild(deleteBtn);
+      return article;
+    }
+
+    function deleteMemory(item, button) {
+      var api = getClient();
+      if (!api || !item || !item.id || !item.image_path) return;
+      if (!window.confirm("¿Quieres borrar esta foto de recuerdos?")) return;
+
+      if (button) {
+        button.disabled = true;
+        button.setAttribute("aria-busy", "true");
+      }
+      setStatus("Borrando recuerdo...", "");
+
+      api
+        .from(PHOTO_MEMORY_TABLE)
+        .delete()
+        .eq("id", item.id)
+        .select("id")
+        .then(function (deleteResult) {
+          if (deleteResult.error) throw deleteResult.error;
+          if (!deleteResult.data || !deleteResult.data.length) {
+            throw new Error("No rows deleted");
+          }
+          return api.storage.from(PHOTO_MEMORY_BUCKET).remove([item.image_path]);
+        })
+        .then(
+          function () {
+            setStatus("Recuerdo borrado.", "ok");
+            loadMemories();
+          },
+          function () {
+            setStatus(
+              "No pude borrar el recuerdo. Vuelve a ejecutar supabase-recuerdos-setup.sql para activar permisos de borrado.",
+              "err"
+            );
+            if (button) {
+              button.disabled = false;
+              button.removeAttribute("aria-busy");
+            }
+          }
+        );
+    }
+
+    function renderMemories(items) {
+      gallery.textContent = "";
+      if (!items || !items.length) {
+        empty.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+      items.forEach(function (item) {
+        gallery.appendChild(createMemoryCard(item));
+      });
+    }
+
+    function loadMemories() {
+      var api = getClient();
+      if (!api) return;
+
+      gallery.textContent = "";
+      var loading = document.createElement("p");
+      loading.className = "photo-memory-loading";
+      loading.textContent = "Cargando recuerdos...";
+      gallery.appendChild(loading);
+      empty.hidden = true;
+
+      api
+        .from(PHOTO_MEMORY_TABLE)
+        .select("id,image_path,description,frame,created_at")
+        .order("created_at", { ascending: false })
+        .limit(60)
+        .then(function (result) {
+          if (result.error) {
+            setStatus("No pude cargar la galeria. Revisa la configuracion de Supabase.", "err");
+            renderMemories([]);
+            return;
+          }
+          renderMemories(result.data || []);
+        });
+    }
+
+    function resetFormAfterUpload() {
+      form.reset();
+      revokePreviewUrl();
+      previewImg.removeAttribute("src");
+      preview.hidden = true;
+      updatePreview();
+    }
+
+    fileInput.addEventListener("change", updatePreview);
+    descriptionInput.addEventListener("input", updatePreview);
+    frameInput.addEventListener("change", updatePreview);
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+
+      var api = getClient();
+      if (!api) {
+        setStatus("Todavia falta conectar Supabase para poder subir fotos.", "warn");
+        if (configNote) configNote.hidden = false;
+        return;
+      }
+
+      var file = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+      var description = descriptionInput.value.trim();
+      var frame = normalizeFrame(frameInput.value);
+      var validationError = validate(file, description);
+      if (validationError) {
+        setStatus(validationError, "err");
+        return;
+      }
+
+      var path = makeUploadPath(file);
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-busy", "true");
+      setStatus("Guardando recuerdo...", "");
+
+      api.storage
+        .from(PHOTO_MEMORY_BUCKET)
+        .upload(path, file, {
+          cacheControl: "3600",
+          contentType: file.type || "image/jpeg",
+          upsert: false
+        })
+        .then(function (uploadResult) {
+          if (uploadResult.error) throw uploadResult.error;
+          return api
+            .from(PHOTO_MEMORY_TABLE)
+            .insert({
+              image_path: path,
+              description: description,
+              frame: frame
+            })
+            .select("id,image_path,description,frame,created_at")
+            .single();
+        })
+        .then(
+          function (insertResult) {
+            if (insertResult.error) {
+              setStatus("La foto subio, pero no pude guardar la descripcion.", "err");
+              return;
+            }
+            setStatus("Recuerdo guardado. Ya vive en nuestra galeria.", "ok");
+            resetFormAfterUpload();
+            setUploadOpen(false);
+            loadMemories();
+          },
+          function () {
+            setStatus("No pude guardar el recuerdo. Intenta otra vez en un momento.", "err");
+          }
+        )
+        .then(function () {
+          submitBtn.removeAttribute("aria-busy");
+          submitBtn.disabled = false;
+        });
+    });
+
+    toggleBtn.addEventListener("click", function () {
+      setUploadOpen(!uploadOpen);
+    });
+
+    if (!getClient()) {
+      setFormEnabled(false);
+      if (configNote) configNote.hidden = false;
+      setStatus("La pestaña esta lista; falta pegar las credenciales publicas de Supabase.", "warn");
+      renderMemories([]);
+      setUploadOpen(false);
+      return;
+    }
+
+    setFormEnabled(true);
+    if (configNote) configNote.hidden = true;
+    setUploadOpen(false);
+    updatePreview();
+    loadMemories();
   })();
 
   showView("menu");
