@@ -3655,6 +3655,38 @@ button.story-followup-submit:disabled {
   border-color: rgba(245, 210, 165, 0.55);
 }
 
+/* Variante «Una palabra» — tonos rosa pastel */
+.new-poem-pop--palabra .new-poem-pop__card {
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 190, 215, 0.2), transparent 60%),
+    linear-gradient(140deg, rgba(48, 28, 38, 0.94), rgba(28, 16, 24, 0.96));
+  border-color: rgba(240, 170, 195, 0.35);
+}
+
+.new-poem-pop--palabra .new-poem-pop__card:hover {
+  border-color: rgba(255, 200, 220, 0.58);
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 210, 225, 0.26), transparent 60%),
+    linear-gradient(140deg, rgba(58, 32, 44, 0.96), rgba(32, 18, 28, 0.98));
+}
+
+.new-poem-pop--palabra .new-poem-pop__kicker {
+  color: rgba(255, 190, 215, 0.88);
+}
+
+.new-poem-pop--palabra .new-poem-pop__title {
+  text-shadow: 0 0 16px rgba(240, 150, 185, 0.32);
+}
+
+.new-poem-pop--palabra .new-poem-pop__close {
+  background: linear-gradient(140deg, rgba(48, 28, 38, 0.94), rgba(28, 16, 24, 0.96));
+  border-color: rgba(240, 170, 195, 0.35);
+}
+
+.new-poem-pop--palabra .new-poem-pop__close:hover {
+  border-color: rgba(255, 200, 220, 0.58);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .new-poem-pop,
   .new-poem-pop.is-visible {
@@ -5963,9 +5995,32 @@ html.word-game-open {
   opacity: 1;
 }
 
+.word-game-poem-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.word-game-poem-confetti__piece {
+  position: absolute;
+  top: -10%;
+  font-size: clamp(0.85rem, 3.5vw, 1.05rem);
+  opacity: 0;
+  animation: word-game-poem-confetti-fall linear infinite;
+}
+
+@keyframes word-game-poem-confetti-fall {
+  0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+  10%  { opacity: 0.92; }
+  90%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(110vh) rotate(360deg); }
+}
+
 .word-game-poem-overlay__stage {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(480px, 96vw);
   min-height: 200px;
   display: flex;
@@ -6165,7 +6220,8 @@ html.word-game-open {
   .word-game__slot.is-revealed .word-game__slot-char,
   .word-game__win-card,
   .word-game-poem-envelope__flap,
-  .word-game-poem-letter {
+  .word-game-poem-letter,
+  .word-game-poem-confetti__piece {
     animation: none !important;
     transition-duration: 0.2s !important;
   }

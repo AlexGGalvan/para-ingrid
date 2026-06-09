@@ -2509,8 +2509,14 @@
         persistDismiss();
         hide(true);
         showView("menu");
-        var recuerdosTab = document.querySelector('.menu-nav__link[data-target="cap-recuerdos"]');
-        if (recuerdosTab) recuerdosTab.click();
+        var regalosTab = document.querySelector('.menu-nav__link[data-target="cap-regalos"]');
+        if (regalosTab) regalosTab.click();
+        var wordGameBtn = document.getElementById("btn-word-game");
+        if (wordGameBtn) {
+          window.setTimeout(function () {
+            wordGameBtn.click();
+          }, 120);
+        }
       });
     }
     if (closeBtn) {
@@ -3019,6 +3025,7 @@
     var poemEnvelope = document.getElementById("word-game-poem-envelope");
     var poemLetter = document.getElementById("word-game-poem-letter");
     var poemClose = document.getElementById("word-game-poem-close");
+    var poemConfetti = document.getElementById("word-game-poem-confetti");
 
     if (!wordEl || !keyboardEl || !gameModal) return;
 
@@ -3207,8 +3214,28 @@
       buildKeyboard();
     }
 
+    function spawnPoemConfetti() {
+      if (!poemConfetti) return;
+      poemConfetti.textContent = "";
+      var hearts = ["❤️", "💕", "💗", "💓", "💞", "🩷", "♥️", "💖"];
+      for (var i = 0; i < 20; i++) {
+        var piece = document.createElement("span");
+        piece.className = "word-game-poem-confetti__piece";
+        piece.textContent = hearts[i % hearts.length];
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.animationDelay = Math.random() * 2.5 + "s";
+        piece.style.animationDuration = 3 + Math.random() * 2 + "s";
+        poemConfetti.appendChild(piece);
+      }
+    }
+
+    function clearPoemConfetti() {
+      if (poemConfetti) poemConfetti.textContent = "";
+    }
+
     function openPoemOverlay() {
       if (!overlay || !poemEnvelope || !poemLetter) return;
+      clearPoemConfetti();
       overlay.hidden = false;
       poemEnvelope.hidden = false;
       poemEnvelope.classList.remove("is-hidden", "is-opening");
@@ -3223,6 +3250,7 @@
             poemLetter.hidden = false;
             requestAnimationFrame(function () {
               poemLetter.classList.add("is-shown");
+              spawnPoemConfetti();
             });
           }, 750);
         }, 400);
@@ -3231,6 +3259,7 @@
 
     function closePoemOverlay() {
       if (!overlay) return;
+      clearPoemConfetti();
       overlay.classList.remove("is-open");
       window.setTimeout(function () {
         overlay.hidden = true;
