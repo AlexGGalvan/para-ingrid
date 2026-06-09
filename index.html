@@ -323,6 +323,15 @@
                         <span class="garden-page-link__cta">Entrar al jardín</span>
                     </a>
                 </section>
+
+                <section class="menu-word-slot" aria-labelledby="word-page-heading">
+                    <button type="button" class="word-page-link" id="btn-word-game" aria-label="Abrir el juego «Una palabra»">
+                        <span class="word-page-link__kicker">Un regalo interactivo</span>
+                        <span class="word-page-link__title" id="word-page-heading">Una palabra</span>
+                        <span class="word-page-link__copy">Hay palabras que tardan años en aparecer. Esta es una de ellas — adivínala y descubre por qué.</span>
+                        <span class="word-page-link__cta">Jugar</span>
+                    </button>
+                </section>
                 </section>
 
                 <div class="menu-chapter-divider" aria-hidden="true"></div>
@@ -1535,6 +1544,115 @@
             </div>
         </section>
     </main>
+
+    <div class="word-game-modal" id="word-game-modal" hidden role="dialog" aria-modal="true" aria-labelledby="word-game-modal-title">
+        <div class="word-game-modal__backdrop" id="word-game-modal-backdrop" aria-hidden="true"></div>
+        <div class="word-game-modal__panel">
+            <button type="button" class="word-game-modal__close" id="word-game-modal-close" aria-label="Cerrar juego">×</button>
+            <p class="word-game-modal__kicker">Regalo interactivo</p>
+            <h2 class="word-game-modal__title" id="word-game-modal-title">Una palabra</h2>
+
+            <section class="word-game" id="word-game" aria-labelledby="word-game-modal-title">
+                <div class="word-game__flowers" aria-hidden="true">
+                    <span class="word-game__flower word-game__flower--1"></span>
+                    <span class="word-game__flower word-game__flower--2"></span>
+                    <span class="word-game__flower word-game__flower--3"></span>
+                    <span class="word-game__flower word-game__flower--4"></span>
+                    <span class="word-game__flower word-game__flower--5"></span>
+                    <span class="word-game__flower word-game__flower--6"></span>
+                    <span class="word-game__flower word-game__flower--7"></span>
+                    <span class="word-game__flower word-game__flower--8"></span>
+                </div>
+
+                <div class="word-game__intro" id="word-game-intro">
+                    <p>Hay palabras que tardan años en aparecer.</p>
+                    <p>Otras llegan rápido.</p>
+                    <p>Pero existen algunas que simplemente se sienten correctas desde el principio.</p>
+                    <p class="word-game__intro-accent">Esta es una de ellas.</p>
+                </div>
+
+                <div class="word-game__play" id="word-game-play">
+                    <div class="word-game__board" id="word-game-board">
+                        <div class="word-game__hangman-wrap">
+                            <svg class="word-game__hangman" id="word-game-hangman" viewBox="0 0 200 220" aria-hidden="true" focusable="false">
+                                <g class="word-game__gallows" stroke="rgba(180,120,140,0.55)" stroke-width="3" stroke-linecap="round" fill="none">
+                                    <line x1="30" y1="210" x2="170" y2="210"/>
+                                    <line x1="70" y1="210" x2="70" y2="30"/>
+                                    <line x1="70" y1="30" x2="140" y2="30"/>
+                                    <line x1="140" y1="30" x2="140" y2="55"/>
+                                </g>
+                                <circle class="word-game__hangman-part" data-part="1" cx="140" cy="72" r="17" stroke="rgba(200,100,130,0.85)" stroke-width="3" fill="none" opacity="0"/>
+                                <line class="word-game__hangman-part" data-part="2" x1="140" y1="89" x2="140" y2="145" stroke="rgba(200,100,130,0.85)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+                                <line class="word-game__hangman-part" data-part="3" x1="140" y1="105" x2="115" y2="125" stroke="rgba(200,100,130,0.85)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+                                <line class="word-game__hangman-part" data-part="4" x1="140" y1="105" x2="165" y2="125" stroke="rgba(200,100,130,0.85)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+                                <line class="word-game__hangman-part" data-part="5" x1="140" y1="145" x2="118" y2="185" stroke="rgba(200,100,130,0.85)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+                                <line class="word-game__hangman-part" data-part="6" x1="140" y1="145" x2="162" y2="185" stroke="rgba(200,100,130,0.85)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+                            </svg>
+                            <p class="word-game__errors" id="word-game-errors" aria-live="polite">
+                                <span class="word-game__errors-label">Intentos restantes</span>
+                                <span class="word-game__errors-dots" id="word-game-errors-dots" aria-hidden="true">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="word-game__word" id="word-game-word" role="group" aria-label="Palabra secreta"></div>
+
+                        <p class="word-game__wrong-letters" id="word-game-wrong-letters" aria-live="polite" hidden>
+                            <span class="word-game__wrong-label">Letras incorrectas:</span>
+                            <span class="word-game__wrong-list" id="word-game-wrong-list"></span>
+                        </p>
+
+                        <div class="word-game__keyboard" id="word-game-keyboard" role="group" aria-label="Seleccionar letra"></div>
+                    </div>
+
+                    <div class="word-game__lose" id="word-game-lose" hidden>
+                        <p class="word-game__lose-msg">A veces las palabras importantes tardan un poco más en encontrarse ❤️</p>
+                        <button type="button" class="word-game__retry" id="word-game-retry">Intentar de nuevo</button>
+                    </div>
+                </div>
+
+                <div class="word-game__win" id="word-game-win" hidden>
+                    <article class="word-game__win-card" id="word-game-win-card">
+                        <p>Porque si existe una palabra que describa cómo se sintió todo desde el principio, sería esta.</p>
+                        <p class="word-game__win-word">Familiar.</p>
+                        <p>Como si nuestras conversaciones no hubieran sido el comienzo de algo.</p>
+                        <p>Como si simplemente hubiéramos retomado algo que llevaba mucho tiempo esperando encontrarnos.</p>
+                        <button type="button" class="word-game__reward-btn" id="word-game-reward-btn">Desbloquear recompensa ❤️</button>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <div class="word-game-poem-overlay" id="word-game-poem-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="word-game-poem-title">
+            <div class="word-game-poem-overlay__backdrop" id="word-game-poem-backdrop" aria-hidden="true"></div>
+            <div class="word-game-poem-overlay__stage" id="word-game-poem-stage">
+                <div class="word-game-poem-envelope" id="word-game-poem-envelope" aria-hidden="true">
+                    <span class="word-game-poem-envelope__body"></span>
+                    <span class="word-game-poem-envelope__flap"></span>
+                    <span class="word-game-poem-envelope__seal">♡</span>
+                </div>
+                <article class="word-game-poem-letter" id="word-game-poem-letter" hidden aria-labelledby="word-game-poem-title">
+                    <button type="button" class="word-game-poem-letter__close" id="word-game-poem-close" aria-label="Cerrar carta">×</button>
+                    <div class="word-game-poem-letter__paper">
+                        <h3 class="word-game-poem-letter__title" id="word-game-poem-title">Te amo</h3>
+                        <div class="word-game-poem-letter__body">
+                            <p>Te amo,<br>te amo de una manera inexplicable,<br>de una forma inconfesable,<br>de un modo contradictorio.</p>
+                            <p>Te amo<br>con mis estados de ánimo que son muchos,<br>y cambian de humor continuamente.<br>por lo que ya sabes,<br>el tiempo, la vida, la muerte.</p>
+                            <p>Te amo…<br>con el mundo que no entiendo,<br>con la gente que no comprende,<br>con la ambivalencia de mi alma,<br>con la incoherencia de mis actos,<br>con la fatalidad del destino,<br>con la conspiración del deseo,<br>con la ambigüedad de los hechos.</p>
+                            <p>Aún cuando te digo que no te amo, te amo,<br>hasta cuando te engaño, no te engaño,<br>en el fondo, llevo a cabo un plan,<br>para amarte mejor.</p>
+                            <p>Te amo…<br>sin reflexionar, inconscientemente,<br>irresponsablemente,<br>involuntariamente, por instinto,<br>por impulso, irracionalmente.</p>
+                            <p>En efecto no tengo argumentos lógicos,<br>ni siquiera improvisados<br>para fundamentar este amor que siento por ti,<br>que surgió misteriosamente de la nada,<br>que no ha resuelto mágicamente nada,<br>y que milagrosamente, de a poco, con poco y nada<br>ha mejorado lo peor de mí.</p>
+                            <p>Te amo,<br>te amo con un cuerpo que no piensa,<br>con un corazón que no razona,<br>con una cabeza que no coordina.</p>
+                            <p>Te amo<br>incomprensiblemente,<br>sin preguntarme por qué te amo,<br>sin importarme por qué te amo,<br>sin cuestionarme por qué te amo.</p>
+                            <p>Te amo<br>sencillamente porque te amo,<br>yo mismo no sé por qué te amo…</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
     <noscript>
         <style>
             .shared-feelings-section .shared-collage-wrapper {

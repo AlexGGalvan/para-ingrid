@@ -2989,5 +2989,321 @@
     loadMemories();
   })();
 
+  // =============================================================
+  // Una palabra — ahorcado (modal desde Regalos)
+  // =============================================================
+  (function initWordGame() {
+    var SECRET = "FAMILIAR";
+    var MAX_ERRORS = 6;
+    var ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+
+    var openBtn = document.getElementById("btn-word-game");
+    var gameModal = document.getElementById("word-game-modal");
+    var gameModalClose = document.getElementById("word-game-modal-close");
+    var gameModalBackdrop = document.getElementById("word-game-modal-backdrop");
+    var wordEl = document.getElementById("word-game-word");
+    var keyboardEl = document.getElementById("word-game-keyboard");
+    var boardEl = document.getElementById("word-game-board");
+    var playEl = document.getElementById("word-game-play");
+    var loseEl = document.getElementById("word-game-lose");
+    var winEl = document.getElementById("word-game-win");
+    var introEl = document.getElementById("word-game-intro");
+    var retryBtn = document.getElementById("word-game-retry");
+    var rewardBtn = document.getElementById("word-game-reward-btn");
+    var wrongWrap = document.getElementById("word-game-wrong-letters");
+    var wrongList = document.getElementById("word-game-wrong-list");
+    var errorDots = document.getElementById("word-game-errors-dots");
+    var hangmanEl = document.getElementById("word-game-hangman");
+    var overlay = document.getElementById("word-game-poem-overlay");
+    var overlayBackdrop = document.getElementById("word-game-poem-backdrop");
+    var poemEnvelope = document.getElementById("word-game-poem-envelope");
+    var poemLetter = document.getElementById("word-game-poem-letter");
+    var poemClose = document.getElementById("word-game-poem-close");
+
+    if (!wordEl || !keyboardEl || !gameModal) return;
+
+    var guessed = {};
+    var wrongCount = 0;
+    var gameOver = false;
+    var slots = [];
+    var gameOpen = false;
+
+    function buildWord() {
+      wordEl.innerHTML = "";
+      slots = [];
+      for (var i = 0; i < SECRET.length; i++) {
+        var slot = document.createElement("span");
+        slot.className = "word-game__slot";
+        slot.setAttribute("aria-label", "Letra " + (i + 1));
+        var charSpan = document.createElement("span");
+        charSpan.className = "word-game__slot-char";
+        charSpan.textContent = SECRET.charAt(i);
+        slot.appendChild(charSpan);
+        wordEl.appendChild(slot);
+        slots.push({ el: slot, letter: SECRET.charAt(i), revealed: false });
+      }
+    }
+
+    function buildKeyboard() {
+      keyboardEl.innerHTML = "";
+      for (var i = 0; i < ALPHABET.length; i++) {
+        (function (letter) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "word-game__key";
+          btn.textContent = letter;
+          btn.setAttribute("aria-label", "Letra " + letter);
+          btn.addEventListener("click", function () {
+            guessLetter(letter);
+          });
+          keyboardEl.appendChild(btn);
+        })(ALPHABET.charAt(i));
+      }
+    }
+
+    function resetErrorDots() {
+      if (!errorDots) return;
+      var dots = errorDots.querySelectorAll("span");
+      for (var d = 0; d < dots.length; d++) {
+        dots[d].classList.remove("is-used");
+      }
+    }
+
+    function updateErrorDots() {
+      if (!errorDots) return;
+      var dots = errorDots.querySelectorAll("span");
+      for (var d = 0; d < dots.length; d++) {
+        dots[d].classList.toggle("is-used", d < wrongCount);
+      }
+    }
+
+    function getKeyButton(letter) {
+      var btns = keyboardEl.querySelectorAll(".word-game__key");
+      for (var k = 0; k < btns.length; k++) {
+        if (btns[k].textContent === letter) return btns[k];
+      }
+      return null;
+    }
+
+    function revealLetter(letter) {
+      var anyNew = false;
+      for (var s = 0; s < slots.length; s++) {
+        if (slots[s].letter === letter && !slots[s].revealed) {
+          slots[s].revealed = true;
+          slots[s].el.classList.add("is-revealed");
+          window.setTimeout(
+            (function (el) {
+              return function () {
+                el.classList.add("is-shine");
+                window.setTimeout(function () {
+                  el.classList.remove("is-shine");
+                }, 650);
+              };
+            })(slots[s].el),
+            120
+          );
+          anyNew = true;
+        }
+      }
+      return anyNew;
+    }
+
+    function drawHangmanPart() {
+      var part = hangmanEl.querySelector('[data-part="' + wrongCount + '"]');
+      if (part) part.classList.add("is-drawn");
+    }
+
+    function isWin() {
+      for (var s = 0; s < slots.length; s++) {
+        if (!slots[s].revealed) return false;
+      }
+      return true;
+    }
+
+    function handleWin() {
+      gameOver = true;
+      if (boardEl) boardEl.classList.add("is-fading-out");
+      window.setTimeout(function () {
+        if (playEl) playEl.hidden = true;
+        if (introEl) introEl.style.display = "none";
+        if (winEl) {
+          winEl.hidden = false;
+          winEl.classList.add("is-visible");
+        }
+      }, 750);
+    }
+
+    function handleLose() {
+      gameOver = true;
+      if (boardEl) boardEl.hidden = true;
+      if (loseEl) loseEl.hidden = false;
+    }
+
+    function guessLetter(raw) {
+      if (gameOver) return;
+      var letter = String(raw).toUpperCase();
+      if (letter.length !== 1 || ALPHABET.indexOf(letter) === -1) return;
+      if (guessed[letter]) return;
+
+      guessed[letter] = true;
+      var keyBtn = getKeyButton(letter);
+      var inWord = SECRET.indexOf(letter) !== -1;
+
+      if (inWord) {
+        if (keyBtn) {
+          keyBtn.disabled = true;
+          keyBtn.classList.add("is-correct");
+        }
+        revealLetter(letter);
+        if (isWin()) handleWin();
+      } else {
+        wrongCount++;
+        if (keyBtn) {
+          keyBtn.disabled = true;
+          keyBtn.classList.add("is-wrong");
+        }
+        drawHangmanPart();
+        updateErrorDots();
+        if (wrongWrap && wrongList) {
+          wrongWrap.hidden = false;
+          wrongList.textContent = wrongList.textContent
+            ? wrongList.textContent + " " + letter
+            : letter;
+        }
+        if (boardEl) {
+          boardEl.classList.remove("is-shake");
+          void boardEl.offsetWidth;
+          boardEl.classList.add("is-shake");
+        }
+        if (wrongCount >= MAX_ERRORS) handleLose();
+      }
+    }
+
+    function resetGame() {
+      guessed = {};
+      wrongCount = 0;
+      gameOver = false;
+      if (boardEl) {
+        boardEl.hidden = false;
+        boardEl.classList.remove("is-fading-out", "is-shake");
+      }
+      if (playEl) playEl.hidden = false;
+      if (loseEl) loseEl.hidden = true;
+      if (winEl) {
+        winEl.hidden = true;
+        winEl.classList.remove("is-visible");
+      }
+      if (introEl) introEl.style.display = "";
+      if (wrongWrap) wrongWrap.hidden = true;
+      if (wrongList) wrongList.textContent = "";
+      if (hangmanEl) {
+        var parts = hangmanEl.querySelectorAll(".word-game__hangman-part");
+        for (var p = 0; p < parts.length; p++) {
+          parts[p].classList.remove("is-drawn");
+        }
+      }
+      resetErrorDots();
+      buildWord();
+      buildKeyboard();
+    }
+
+    function openPoemOverlay() {
+      if (!overlay || !poemEnvelope || !poemLetter) return;
+      overlay.hidden = false;
+      poemEnvelope.hidden = false;
+      poemEnvelope.classList.remove("is-hidden", "is-opening");
+      poemLetter.hidden = true;
+      poemLetter.classList.remove("is-shown");
+      requestAnimationFrame(function () {
+        overlay.classList.add("is-open");
+        window.setTimeout(function () {
+          poemEnvelope.classList.add("is-opening");
+          window.setTimeout(function () {
+            poemEnvelope.classList.add("is-hidden");
+            poemLetter.hidden = false;
+            requestAnimationFrame(function () {
+              poemLetter.classList.add("is-shown");
+            });
+          }, 750);
+        }, 400);
+      });
+    }
+
+    function closePoemOverlay() {
+      if (!overlay) return;
+      overlay.classList.remove("is-open");
+      window.setTimeout(function () {
+        overlay.hidden = true;
+        if (poemEnvelope) {
+          poemEnvelope.classList.remove("is-hidden", "is-opening");
+        }
+        if (poemLetter) {
+          poemLetter.hidden = true;
+          poemLetter.classList.remove("is-shown");
+        }
+      }, 450);
+    }
+
+    function openGameModal() {
+      resetGame();
+      gameModal.hidden = false;
+      gameOpen = true;
+      document.documentElement.classList.add("word-game-open");
+      requestAnimationFrame(function () {
+        gameModal.classList.add("is-open");
+        if (gameModalClose) gameModalClose.focus({ preventScroll: true });
+      });
+    }
+
+    function closeGameModal() {
+      if (!gameOpen) return;
+      gameOpen = false;
+      gameModal.classList.remove("is-open");
+      closePoemOverlay();
+      document.documentElement.classList.remove("word-game-open");
+      window.setTimeout(function () {
+        gameModal.hidden = true;
+      }, 450);
+    }
+
+    function isGameActive() {
+      return gameOpen && !gameModal.hidden;
+    }
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") {
+        if (overlay && !overlay.hidden) {
+          closePoemOverlay();
+          ev.preventDefault();
+          return;
+        }
+        if (isGameActive()) {
+          closeGameModal();
+          ev.preventDefault();
+          return;
+        }
+      }
+      if (gameOver || !playEl || playEl.hidden) return;
+      if (!isGameActive()) return;
+      if (overlay && !overlay.hidden) return;
+      var key = ev.key.toUpperCase();
+      if (key === "Ñ" || (key.length === 1 && key >= "A" && key <= "Z")) {
+        guessLetter(key);
+      }
+    });
+
+    if (openBtn) openBtn.addEventListener("click", openGameModal);
+    if (gameModalClose) gameModalClose.addEventListener("click", closeGameModal);
+    if (gameModalBackdrop) gameModalBackdrop.addEventListener("click", closeGameModal);
+    if (retryBtn) retryBtn.addEventListener("click", resetGame);
+    if (rewardBtn) rewardBtn.addEventListener("click", openPoemOverlay);
+    if (poemClose) poemClose.addEventListener("click", closePoemOverlay);
+    if (overlayBackdrop) overlayBackdrop.addEventListener("click", closePoemOverlay);
+
+    buildWord();
+    buildKeyboard();
+    resetErrorDots();
+  })();
+
   showView("menu");
 })();
