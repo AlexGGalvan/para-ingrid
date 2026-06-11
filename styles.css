@@ -3687,6 +3687,50 @@ button.story-followup-submit:disabled {
   border-color: rgba(255, 200, 220, 0.58);
 }
 
+/* Variante cielo — tonos noche profunda y dorado astral */
+.new-poem-pop--sky .new-poem-pop__card {
+  background:
+    radial-gradient(circle at 16% 30%, rgba(244, 203, 132, 0.2), transparent 60%),
+    radial-gradient(circle at 84% 18%, rgba(160, 190, 230, 0.16), transparent 46%),
+    linear-gradient(140deg, rgba(7, 22, 39, 0.96), rgba(3, 9, 18, 0.98));
+  border-color: rgba(224, 169, 95, 0.42);
+}
+
+.new-poem-pop--sky .new-poem-pop__card:hover {
+  border-color: rgba(255, 214, 142, 0.68);
+  background:
+    radial-gradient(circle at 16% 30%, rgba(255, 218, 154, 0.26), transparent 60%),
+    radial-gradient(circle at 84% 18%, rgba(180, 208, 246, 0.2), transparent 46%),
+    linear-gradient(140deg, rgba(10, 30, 52, 0.98), rgba(4, 12, 24, 0.98));
+}
+
+.new-poem-pop--sky .new-poem-pop__sparkle {
+  color: #ffd68e;
+  text-shadow: 0 0 14px rgba(255, 214, 142, 0.62);
+}
+
+.new-poem-pop--sky .new-poem-pop__kicker {
+  color: rgba(255, 218, 154, 0.9);
+}
+
+.new-poem-pop--sky .new-poem-pop__title {
+  color: rgba(255, 241, 214, 0.98);
+  text-shadow: 0 0 16px rgba(224, 169, 95, 0.34);
+}
+
+.new-poem-pop--sky .new-poem-pop__hint {
+  color: rgba(255, 237, 204, 0.76);
+}
+
+.new-poem-pop--sky .new-poem-pop__close {
+  background: linear-gradient(140deg, rgba(7, 22, 39, 0.96), rgba(3, 9, 18, 0.98));
+  border-color: rgba(224, 169, 95, 0.42);
+}
+
+.new-poem-pop--sky .new-poem-pop__close:hover {
+  border-color: rgba(255, 214, 142, 0.68);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .new-poem-pop,
   .new-poem-pop.is-visible {
@@ -6229,5 +6273,566 @@ html.word-game-open {
   .word-game__slot.is-revealed .word-game__slot-char {
     opacity: 1;
     transform: none;
+  }
+}
+
+.menu-sky-slot {
+  width: 100%;
+  max-width: min(100%, 30rem);
+  margin: 0 auto 1.35rem;
+  padding: 0 0.35rem;
+}
+
+.sky-page-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 1.25rem clamp(1rem, 5vw, 1.6rem) 1.2rem;
+  text-align: left;
+  text-decoration: none;
+  color: #f9e8c4;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(244, 203, 132, 0.22), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(130, 168, 214, 0.18), transparent 34%),
+    linear-gradient(145deg, #071525 0%, #0a2039 58%, #050b14 100%);
+  border: 1px solid rgba(223, 170, 91, 0.46);
+  border-radius: 1.15rem;
+  box-shadow: 0 20px 44px rgba(6, 12, 24, 0.34), inset 0 0 0 1px rgba(255, 240, 202, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sky-page-link::before,
+.sky-page-link::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.sky-page-link::before {
+  inset: 0.62rem;
+  border: 1px solid rgba(223, 170, 91, 0.38);
+  border-radius: 0.82rem;
+}
+
+.sky-page-link::after {
+  top: 0.95rem;
+  right: 1rem;
+  width: 4.25rem;
+  height: 4.25rem;
+  background:
+    radial-gradient(circle, rgba(255, 246, 220, 0.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 35%, rgba(255, 218, 143, 0.85) 0 1px, transparent 2px),
+    radial-gradient(circle at 28% 76%, rgba(255, 218, 143, 0.75) 0 1px, transparent 2px);
+  opacity: 0.85;
+}
+
+.sky-page-link:hover,
+.sky-page-link:focus-visible {
+  outline: none;
+  border-color: rgba(255, 211, 137, 0.78);
+  transform: translateY(-1px);
+}
+
+.sky-page-link__kicker,
+.sky-message__kicker,
+.sky-section__kicker {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sky-page-link__kicker {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 0.38rem;
+  padding-right: 5rem;
+  color: rgba(255, 218, 154, 0.78);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+}
+
+.sky-page-link__title {
+  position: relative;
+  display: block;
+  z-index: 1;
+  margin: 0;
+  padding-right: 5rem;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  line-height: 1.08;
+}
+
+.sky-page-link__copy {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 22rem;
+  margin: 0.62rem 0 0;
+  padding-right: 1rem;
+  color: rgba(255, 244, 224, 0.82);
+  font-size: clamp(0.78rem, 2.9vw, 0.88rem);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.sky-page-link__cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.92rem;
+  min-height: 2.25rem;
+  padding: 0.58rem 0.95rem;
+  border-radius: 999px;
+  color: #ffedc5;
+  background: rgba(224, 169, 95, 0.16);
+  border: 1px solid rgba(224, 169, 95, 0.28);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sky-section {
+  position: relative;
+  width: min(100%, 1080px);
+  margin: clamp(1.35rem, 5vw, 2.5rem) auto 0;
+  padding: clamp(1rem, 4vw, 2rem);
+  color: #f8e7c5;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(33, 66, 108, 0.72), transparent 40%),
+    radial-gradient(circle at 18% 86%, rgba(225, 170, 91, 0.12), transparent 27%),
+    linear-gradient(180deg, #020713 0%, #071522 52%, #03080f 100%);
+  border: 1px solid rgba(220, 168, 92, 0.55);
+  border-radius: 8px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38), inset 0 0 0 1px rgba(255, 236, 194, 0.07);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sky-section::before,
+.sky-section::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sky-section::before {
+  inset: 0.65rem;
+  border: 1px solid rgba(221, 167, 92, 0.5);
+  border-radius: 6px;
+}
+
+.sky-section::after {
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 9% 13%, rgba(255, 222, 154, 0.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 12%, rgba(255, 222, 154, 0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 92% 80%, rgba(255, 222, 154, 0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 15% 87%, rgba(255, 222, 154, 0.85) 0 1px, transparent 2px);
+  opacity: 0.75;
+}
+
+.sky-section__stars {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(255, 238, 198, 0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 30%, rgba(255, 238, 198, 0.62) 0 1px, transparent 2px),
+    radial-gradient(circle at 42% 78%, rgba(255, 238, 198, 0.72) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 64%, rgba(255, 238, 198, 0.7) 0 1px, transparent 2px);
+  animation: sky-twinkle 5s ease-in-out infinite alternate;
+}
+
+.sky-section__header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto clamp(1rem, 4vw, 1.7rem);
+  text-align: center;
+}
+
+.sky-section__kicker {
+  margin: 0 0 0.35rem;
+  color: rgba(255, 218, 154, 0.72);
+}
+
+.sky-section__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(2.25rem, 9vw, 4.7rem);
+  font-weight: 600;
+  line-height: 0.94;
+  color: #f2c47f;
+  text-shadow: 0 0 28px rgba(233, 184, 105, 0.24);
+}
+
+.sky-section__subtitle {
+  margin: 0.35rem 0 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.15rem, 4.8vw, 2rem);
+  font-style: italic;
+  color: rgba(255, 241, 214, 0.9);
+}
+
+.sky-section__layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 330px);
+  gap: clamp(1rem, 4vw, 1.6rem);
+  align-items: center;
+}
+
+.sky-map {
+  position: relative;
+  min-width: 0;
+}
+
+.sky-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sky-map__dome {
+  fill: url(#sky-dome-gradient);
+  stroke: rgba(231, 176, 96, 0.35);
+  stroke-width: 1.2;
+}
+
+.sky-map__ring {
+  fill: none;
+  stroke: #d9a35f;
+}
+
+.sky-map__ring--outer {
+  stroke-width: 4;
+}
+
+.sky-map__ring--inner {
+  stroke-width: 1.5;
+  opacity: 0.75;
+}
+
+.sky-map__milky-way {
+  fill: none;
+  stroke: rgba(167, 191, 226, 0.24);
+  stroke-width: 78;
+  stroke-linecap: round;
+  filter: blur(10px);
+}
+
+.sky-map__tiny-stars circle {
+  fill: #fff8e7;
+  opacity: 0.82;
+  animation: sky-twinkle 3.8s ease-in-out infinite alternate;
+}
+
+.sky-map__horizon--far {
+  fill: rgba(10, 17, 28, 0.94);
+}
+
+.sky-map__horizon--near {
+  fill: rgba(4, 9, 15, 0.98);
+}
+
+.sky-map__desert {
+  fill: rgba(5, 8, 10, 0.98);
+}
+
+.sky-map__yucca {
+  fill: none;
+  stroke: rgba(3, 7, 9, 0.95);
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.sky-map__compass text {
+  fill: #ecc283;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.sky-map__compass path {
+  fill: #e0a95f;
+}
+
+.sky-constellation {
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sky-constellation__line {
+  fill: none;
+  stroke: rgba(230, 232, 242, 0.6);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: sky-draw 1.7s ease forwards;
+}
+
+.sky-constellation circle:not(.sky-orb):not(.sky-orb__mark),
+.sky-constellation--special path {
+  fill: #fff8e8;
+  filter: url(#sky-soft-glow);
+}
+
+.sky-constellation text {
+  fill: rgba(255, 250, 239, 0.92);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  pointer-events: none;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.sky-constellation__small {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.sky-constellation:hover .sky-constellation__line,
+.sky-constellation:focus-visible .sky-constellation__line,
+.sky-constellation.is-active .sky-constellation__line {
+  stroke: #ffd88f;
+  stroke-width: 3.4;
+  filter: url(#sky-soft-glow);
+}
+
+.sky-constellation:hover circle:not(.sky-orb__mark),
+.sky-constellation:focus-visible circle:not(.sky-orb__mark),
+.sky-constellation.is-active circle:not(.sky-orb__mark) {
+  fill: #ffd88f;
+}
+
+.sky-constellation:hover text,
+.sky-constellation:focus-visible text,
+.sky-constellation.is-active text {
+  fill: #ffd88f;
+}
+
+.sky-constellation.is-active {
+  animation: sky-selected-pulse 1.8s ease-in-out infinite alternate;
+}
+
+.sky-orb {
+  filter: url(#sky-soft-glow);
+}
+
+.sky-orb--moon {
+  fill: url(#sky-moon);
+}
+
+.sky-orb--jupiter {
+  fill: #fff7df;
+  stroke: #ffd38b;
+  stroke-width: 2;
+}
+
+.sky-orb--venus {
+  fill: #ffe1a2;
+  stroke: #fff5d1;
+  stroke-width: 2;
+}
+
+.sky-orb__mark {
+  fill: rgba(95, 96, 103, 0.32);
+  pointer-events: none;
+}
+
+.sky-constellation--special circle {
+  fill: #ffc96f !important;
+}
+
+.sky-constellation--special text {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 600;
+  fill: #f4c781;
+}
+
+.sky-message {
+  position: relative;
+  min-height: 250px;
+  padding: clamp(1.2rem, 4vw, 1.6rem);
+  color: #fff2d9;
+  background:
+    linear-gradient(180deg, rgba(255, 246, 223, 0.09), rgba(255, 246, 223, 0.035)),
+    rgba(4, 13, 25, 0.76);
+  border: 1px solid rgba(222, 170, 92, 0.42);
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(255, 225, 166, 0.04);
+  backdrop-filter: blur(8px);
+  transform: translateY(0);
+  transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.sky-message.is-changing {
+  opacity: 0.5;
+  transform: translateY(8px);
+}
+
+.sky-message.is-open {
+  border-color: rgba(255, 213, 139, 0.72);
+}
+
+.sky-message__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  color: #f7d397;
+  background: rgba(255, 236, 199, 0.08);
+  border: 1px solid rgba(247, 211, 151, 0.3);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sky-message__close:hover,
+.sky-message__close:focus-visible {
+  outline: none;
+  color: #08111d;
+  background: #f7d397;
+}
+
+.sky-message__kicker {
+  margin: 0 2.5rem 0.55rem 0;
+  color: rgba(255, 218, 154, 0.74);
+}
+
+.sky-message__title {
+  margin: 0 0 0.85rem;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.6rem, 6vw, 2.35rem);
+  line-height: 1;
+  color: #f2c47f;
+}
+
+.sky-message__text {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.12rem, 4vw, 1.38rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.92);
+}
+
+.sky-section__footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  justify-content: center;
+  margin-top: clamp(1rem, 4vw, 1.5rem);
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(221, 167, 92, 0.28);
+  color: rgba(255, 235, 199, 0.84);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 0.82rem;
+}
+
+.sky-section__footer span:not(:last-child)::after {
+  content: "·";
+  margin-left: 1rem;
+  color: rgba(230, 176, 96, 0.72);
+}
+
+@keyframes sky-twinkle {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes sky-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sky-selected-pulse {
+  from { filter: drop-shadow(0 0 2px rgba(255, 216, 143, 0.2)); }
+  to { filter: drop-shadow(0 0 12px rgba(255, 216, 143, 0.62)); }
+}
+
+@media (max-width: 860px) {
+  .sky-section__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sky-message {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .sky-section {
+    padding: 1rem 0.7rem 1.1rem;
+  }
+
+  .sky-section::before {
+    inset: 0.45rem;
+  }
+
+  .sky-map__svg {
+    width: 112%;
+    margin-left: -6%;
+  }
+
+  .sky-constellation__line {
+    stroke-width: 3;
+  }
+
+  .sky-constellation text {
+    font-size: 24px;
+  }
+
+  .sky-constellation__small {
+    font-size: 17px !important;
+  }
+
+  .sky-section__footer {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .sky-section__footer span::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-section__stars,
+  .sky-map__tiny-stars circle,
+  .sky-constellation,
+  .sky-constellation__line,
+  .sky-message,
+  .sky-page-link {
+    animation: none !important;
+    transition-duration: 0.1s !important;
+  }
+
+  .sky-constellation__line {
+    stroke-dashoffset: 0;
   }
 }

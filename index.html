@@ -96,13 +96,13 @@
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
 
-                <aside class="new-poem-pop new-poem-pop--palabra" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="una-palabra-v1">
-                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir el juego «Una palabra»">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">💌</span>
+                <aside class="new-poem-pop new-poem-pop--sky" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="nuestro-cielo-v1">
+                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir el cielo de nuestra noche">
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">✦</span>
                         <span class="new-poem-pop__body">
-                            <span class="new-poem-pop__kicker">Nuevo regalo para ti</span>
-                            <span class="new-poem-pop__title">«Una palabra»</span>
-                            <span class="new-poem-pop__hint">Toca para jugar y descubrir la sorpresa</span>
+                            <span class="new-poem-pop__kicker">Nuevo cielo para ti</span>
+                            <span class="new-poem-pop__title">«Bajo este mismo cielo»</span>
+                            <span class="new-poem-pop__hint">Toca para abrir la noche en que empezó nuestra historia</span>
                         </span>
                     </button>
                     <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
@@ -331,6 +331,183 @@
                         <span class="word-page-link__copy">Hay palabras que tardan años en aparecer. Esta es una de ellas — adivínala y descubre por qué.</span>
                         <span class="word-page-link__cta">Jugar</span>
                     </button>
+                </section>
+
+                <section class="menu-sky-slot" aria-labelledby="sky-page-heading">
+                    <a class="sky-page-link" href="sky.html" aria-label="Abrir el cielo de la noche en que nos hicimos novios">
+                        <span class="sky-page-link__kicker">Un cielo interactivo</span>
+                        <span class="sky-page-link__title" id="sky-page-heading">Bajo este mismo cielo</span>
+                        <span class="sky-page-link__copy">El mapa astral de la noche en que nos hicimos novios, con estrellas que guardan mensajes para ti.</span>
+                        <span class="sky-page-link__cta">Ver nuestra noche</span>
+                    </a>
+                </section>
+
+                <section id="nuestro-cielo" class="sky-section sky-section--legacy" aria-labelledby="sky-section-title" hidden>
+                    <div class="sky-section__stars" aria-hidden="true"></div>
+                    <header class="sky-section__header">
+                        <p class="sky-section__kicker">24 de mayo de 2026 · 8:44 PM · Matamoros, Coahuila</p>
+                        <h2 class="sky-section__title" id="sky-section-title">Bajo este mismo cielo</h2>
+                        <p class="sky-section__subtitle">El cielo de la noche en que nos hicimos novios</p>
+                    </header>
+
+                    <div class="sky-section__layout">
+                        <div class="sky-map" aria-label="Mapa interactivo del cielo de Ingrid y Ramiro">
+                            <svg class="sky-map__svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="sky-map-title sky-map-desc">
+                                <title id="sky-map-title">Mapa del cielo de Ingrid y Ramiro</title>
+                                <desc id="sky-map-desc">Constelaciones, luna y planetas interactivos inspirados en el cielo del 24 de mayo de 2026.</desc>
+                                <defs>
+                                    <radialGradient id="sky-dome-gradient" cx="50%" cy="34%" r="68%">
+                                        <stop offset="0%" stop-color="#173255"/>
+                                        <stop offset="56%" stop-color="#071a31"/>
+                                        <stop offset="100%" stop-color="#020911"/>
+                                    </radialGradient>
+                                    <radialGradient id="sky-star-glow" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#fff7de"/>
+                                        <stop offset="45%" stop-color="#f3c879"/>
+                                        <stop offset="100%" stop-color="rgba(243, 200, 121, 0)"/>
+                                    </radialGradient>
+                                    <radialGradient id="sky-moon" cx="36%" cy="32%" r="58%">
+                                        <stop offset="0%" stop-color="#fff8e6"/>
+                                        <stop offset="54%" stop-color="#d9d0c2"/>
+                                        <stop offset="100%" stop-color="#7f8790"/>
+                                    </radialGradient>
+                                    <filter id="sky-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
+                                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                                        <feMerge>
+                                            <feMergeNode in="blur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <clipPath id="sky-dome-clip">
+                                        <circle cx="500" cy="500" r="420"/>
+                                    </clipPath>
+                                </defs>
+
+                                <circle class="sky-map__dome" cx="500" cy="500" r="420"/>
+                                <circle class="sky-map__ring sky-map__ring--outer" cx="500" cy="500" r="436"/>
+                                <circle class="sky-map__ring sky-map__ring--inner" cx="500" cy="500" r="423"/>
+
+                                <g class="sky-map__background" clip-path="url(#sky-dome-clip)" aria-hidden="true">
+                                    <rect x="80" y="80" width="840" height="840" fill="url(#sky-dome-gradient)"/>
+                                    <path class="sky-map__milky-way" d="M315 850 C260 690 322 590 292 464 C270 372 318 262 410 145" />
+                                    <g class="sky-map__tiny-stars">
+                                        <circle cx="202" cy="248" r="2"/><circle cx="244" cy="352" r="1.4"/><circle cx="320" cy="198" r="1.6"/>
+                                        <circle cx="392" cy="284" r="1.2"/><circle cx="470" cy="220" r="1.6"/><circle cx="554" cy="272" r="1.3"/>
+                                        <circle cx="650" cy="220" r="1.8"/><circle cx="736" cy="318" r="1.2"/><circle cx="806" cy="412" r="1.7"/>
+                                        <circle cx="250" cy="520" r="1.4"/><circle cx="346" cy="610" r="1.7"/><circle cx="438" cy="546" r="1.2"/>
+                                        <circle cx="526" cy="644" r="1.5"/><circle cx="622" cy="566" r="1.2"/><circle cx="722" cy="666" r="1.7"/>
+                                        <circle cx="808" cy="742" r="1.3"/><circle cx="178" cy="676" r="1.5"/><circle cx="456" cy="786" r="1.5"/>
+                                    </g>
+                                    <path class="sky-map__horizon sky-map__horizon--far" d="M80 770 L150 690 L232 736 L315 652 L402 728 L486 668 L560 725 L646 642 L732 716 L815 668 L920 768 V920 H80 Z"/>
+                                    <path class="sky-map__horizon sky-map__horizon--near" d="M80 822 C170 768 226 812 300 764 C382 712 462 815 548 758 C610 716 660 752 704 780 C770 822 842 748 920 806 V920 H80 Z"/>
+                                    <path class="sky-map__desert" d="M80 860 C216 834 310 872 414 844 C520 816 632 852 738 836 C812 825 868 844 920 838 V920 H80 Z"/>
+                                    <path class="sky-map__yucca" d="M592 842 C596 805 612 780 636 756 M611 804 C590 778 574 755 566 724 M617 808 C652 792 678 770 699 738 M606 844 L622 716" />
+                                </g>
+
+                                <g class="sky-map__compass" aria-hidden="true">
+                                    <text x="500" y="116">N</text><text x="500" y="904">S</text><text x="106" y="508">E</text><text x="894" y="508">O</text>
+                                    <path d="M500 130 l-8 16 h16z M500 870 l-8 -16 h16z M122 500 l16 -8 v16z M878 500 l-16 -8 v16z"/>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="osa-mayor" role="button" tabindex="0" aria-label="Osa Mayor">
+                                    <path class="sky-constellation__line" d="M268 245 L315 218 L366 248 L420 260 L462 296 L507 278"/>
+                                    <path class="sky-constellation__line" d="M420 260 L432 314 L474 350"/>
+                                    <circle cx="268" cy="245" r="5"/><circle cx="315" cy="218" r="5"/><circle cx="366" cy="248" r="5"/><circle cx="420" cy="260" r="5"/><circle cx="462" cy="296" r="5"/><circle cx="507" cy="278" r="5"/><circle cx="432" cy="314" r="5"/><circle cx="474" cy="350" r="5"/>
+                                    <text x="384" y="340">OSA MAYOR</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="bootes" role="button" tabindex="0" aria-label="Bootes">
+                                    <path class="sky-constellation__line" d="M188 370 L232 318 L264 334 L252 420 L210 478 L164 522"/>
+                                    <path class="sky-constellation__line" d="M252 420 L294 468"/>
+                                    <circle cx="188" cy="370" r="5"/><circle cx="232" cy="318" r="5"/><circle cx="264" cy="334" r="5"/><circle cx="252" cy="420" r="5"/><circle cx="210" cy="478" r="6"/><circle cx="164" cy="522" r="5"/><circle cx="294" cy="468" r="4"/>
+                                    <text x="206" y="438">BOOTES</text>
+                                    <text class="sky-constellation__small" x="224" y="506">Arturo</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="virgo" role="button" tabindex="0" aria-label="Virgo">
+                                    <path class="sky-constellation__line" d="M318 588 L402 620 L470 586 L548 566"/>
+                                    <path class="sky-constellation__line" d="M402 620 L410 672 L494 642 L470 586 L478 526"/>
+                                    <path class="sky-constellation__line" d="M410 672 L330 634"/>
+                                    <circle cx="318" cy="588" r="5"/><circle cx="402" cy="620" r="5"/><circle cx="470" cy="586" r="5"/><circle cx="548" cy="566" r="5"/><circle cx="410" cy="672" r="6"/><circle cx="494" cy="642" r="5"/><circle cx="478" cy="526" r="5"/><circle cx="330" cy="634" r="5"/>
+                                    <text x="412" y="548">VIRGO</text>
+                                    <text class="sky-constellation__small" x="390" y="694">Espiga</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="leo" role="button" tabindex="0" aria-label="Leo">
+                                    <path class="sky-constellation__line" d="M612 396 L660 350 L704 368 L736 354 L774 372"/>
+                                    <path class="sky-constellation__line" d="M612 396 L560 442 L672 432 L730 444 L704 368"/>
+                                    <path class="sky-constellation__line" d="M672 432 L686 494"/>
+                                    <circle cx="612" cy="396" r="5"/><circle cx="660" cy="350" r="5"/><circle cx="704" cy="368" r="5"/><circle cx="736" cy="354" r="5"/><circle cx="774" cy="372" r="5"/><circle cx="560" cy="442" r="5"/><circle cx="672" cy="432" r="5"/><circle cx="730" cy="444" r="5"/><circle cx="686" cy="494" r="5"/>
+                                    <text x="690" y="408">LEO</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="geminis" role="button" tabindex="0" aria-label="Géminis">
+                                    <path class="sky-constellation__line" d="M776 552 L818 532 L850 548 L866 590"/>
+                                    <path class="sky-constellation__line" d="M788 604 L824 630 L862 614"/>
+                                    <path class="sky-constellation__line" d="M818 532 L824 630 M850 548 L862 614"/>
+                                    <circle cx="776" cy="552" r="6"/><circle cx="818" cy="532" r="5"/><circle cx="850" cy="548" r="5"/><circle cx="866" cy="590" r="5"/><circle cx="788" cy="604" r="6"/><circle cx="824" cy="630" r="5"/><circle cx="862" cy="614" r="5"/>
+                                    <text x="812" y="588">GÉMINIS</text>
+                                    <text class="sky-constellation__small" x="770" y="526">Cástor</text>
+                                    <text class="sky-constellation__small" x="748" y="594">Pólux</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="escorpio" role="button" tabindex="0" aria-label="Escorpio">
+                                    <path class="sky-constellation__line" d="M292 704 L268 740 L224 762 L194 812 L148 840"/>
+                                    <path class="sky-constellation__line" d="M292 704 L282 668 L260 638 L244 688"/>
+                                    <circle cx="292" cy="704" r="5"/><circle cx="268" cy="740" r="5"/><circle cx="224" cy="762" r="6"/><circle cx="194" cy="812" r="5"/><circle cx="148" cy="840" r="5"/><circle cx="282" cy="668" r="5"/><circle cx="260" cy="638" r="5"/><circle cx="244" cy="688" r="4"/>
+                                    <text x="150" y="720">ESCORPIO</text>
+                                    <text class="sky-constellation__small" x="210" y="834">Antares</text>
+                                </g>
+
+                                <g class="sky-constellation" data-sky-id="orion" role="button" tabindex="0" aria-label="Orión">
+                                    <path class="sky-constellation__line" d="M806 768 L838 720 L878 718 L902 758 L878 802 L834 810 Z"/>
+                                    <path class="sky-constellation__line" d="M840 758 L856 762 L872 766"/>
+                                    <path class="sky-constellation__line" d="M834 810 L870 850"/>
+                                    <circle cx="806" cy="768" r="5"/><circle cx="838" cy="720" r="6"/><circle cx="878" cy="718" r="5"/><circle cx="902" cy="758" r="5"/><circle cx="878" cy="802" r="5"/><circle cx="834" cy="810" r="5"/><circle cx="856" cy="762" r="4"/><circle cx="870" cy="850" r="5"/>
+                                    <text x="770" y="794">ORIÓN</text>
+                                    <text class="sky-constellation__small" x="812" y="688">Betelgeuse</text>
+                                    <text class="sky-constellation__small" x="880" y="842">Rigel</text>
+                                </g>
+
+                                <g class="sky-constellation sky-constellation--moon" data-sky-id="luna" role="button" tabindex="0" aria-label="Luna">
+                                    <circle class="sky-orb sky-orb--moon" cx="706" cy="248" r="30"/>
+                                    <circle class="sky-orb__mark" cx="694" cy="240" r="7"/><circle class="sky-orb__mark" cx="716" cy="256" r="9"/><circle class="sky-orb__mark" cx="722" cy="236" r="5"/>
+                                    <text x="682" y="304">Luna</text>
+                                    <text class="sky-constellation__small" x="658" y="326">(gibosa creciente)</text>
+                                </g>
+
+                                <g class="sky-constellation sky-constellation--planet" data-sky-id="jupiter" role="button" tabindex="0" aria-label="Júpiter">
+                                    <circle class="sky-orb sky-orb--jupiter" cx="888" cy="676" r="9"/>
+                                    <text x="904" y="684">JÚPITER</text>
+                                </g>
+
+                                <g class="sky-constellation sky-constellation--planet" data-sky-id="venus" role="button" tabindex="0" aria-label="Venus">
+                                    <circle class="sky-orb sky-orb--venus" cx="848" cy="736" r="8"/>
+                                    <text x="866" y="744">VENUS</text>
+                                </g>
+
+                                <g class="sky-constellation sky-constellation--special" data-sky-id="historia" role="button" tabindex="0" aria-label="Aquí comenzó nuestra historia">
+                                    <circle cx="500" cy="838" r="7"/>
+                                    <path d="M500 814 L506 832 L525 832 L510 844 L516 862 L500 851 L484 862 L490 844 L475 832 L494 832 Z"/>
+                                    <text x="405" y="884">Aquí comenzó nuestra historia.</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <aside class="sky-message" id="sky-message" aria-live="polite">
+                            <button type="button" class="sky-message__close" id="sky-message-close" aria-label="Cerrar mensaje">×</button>
+                            <p class="sky-message__kicker">El cielo guardó esto</p>
+                            <h3 class="sky-message__title" id="sky-message-title">Haz click en una constelación</h3>
+                            <p class="sky-message__text" id="sky-message-text">y descubre lo que el cielo guardó para nosotros aquella noche.</p>
+                        </aside>
+                    </div>
+
+                    <footer class="sky-section__footer" aria-label="Datos de la noche">
+                        <span>Ingrid y Ramiro</span>
+                        <span>24 de mayo de 2026</span>
+                        <span>8:44 PM</span>
+                        <span>Matamoros, Coahuila</span>
+                    </footer>
                 </section>
                 </section>
 

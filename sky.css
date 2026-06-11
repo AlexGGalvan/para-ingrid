@@ -1,0 +1,584 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #020813;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #f6d49a;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(26, 59, 98, 0.65), transparent 38%),
+    radial-gradient(circle at 16% 78%, rgba(217, 159, 82, 0.12), transparent 28%),
+    linear-gradient(180deg, #01050d 0%, #061426 48%, #01050b 100%);
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+.astral-page {
+  min-height: 100vh;
+  padding: max(1rem, env(safe-area-inset-top)) clamp(0.65rem, 2.5vw, 1.25rem) max(1rem, env(safe-area-inset-bottom));
+}
+
+.astral-back {
+  position: fixed;
+  top: max(0.8rem, env(safe-area-inset-top));
+  left: max(0.8rem, env(safe-area-inset-left));
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.56rem 0.9rem;
+  color: #ffe6b0;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(3, 11, 22, 0.68);
+  border: 1px solid rgba(225, 169, 91, 0.45);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+
+.astral-back:hover,
+.astral-back:focus-visible {
+  outline: none;
+  color: #08111d;
+  background: #f3c77d;
+}
+
+.astral-poster {
+  position: relative;
+  width: min(100%, 980px);
+  min-height: calc(100vh - 2rem);
+  margin: 0 auto;
+  padding: clamp(2.35rem, 5vw, 3.2rem) clamp(0.8rem, 3.8vw, 2rem) clamp(1.35rem, 3vw, 2rem);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(22, 54, 91, 0.72), transparent 44%),
+    radial-gradient(circle at 14% 18%, rgba(241, 190, 105, 0.12), transparent 18%),
+    radial-gradient(circle at 86% 18%, rgba(241, 190, 105, 0.1), transparent 18%),
+    linear-gradient(180deg, #030b16 0%, #06172b 45%, #020814 100%);
+  border: 2px solid #dca15a;
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.56), inset 0 0 0 1px rgba(255, 226, 170, 0.12);
+}
+
+.astral-poster::before,
+.astral-poster::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.astral-poster::before {
+  inset: 0.7rem;
+  border: 1px solid rgba(231, 174, 96, 0.75);
+}
+
+.astral-poster::after {
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 11% 8%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 17% 18%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 86% 9%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 92% 28%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 8% 73%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 90% 82%, #f8d28a 0 1px, transparent 2px),
+    radial-gradient(circle at 25% 92%, rgba(248, 210, 138, 0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 74% 91%, rgba(248, 210, 138, 0.8) 0 1px, transparent 2px);
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+.astral-corner {
+  position: absolute;
+  width: clamp(4rem, 11vw, 7rem);
+  height: clamp(4rem, 11vw, 7rem);
+  pointer-events: none;
+  color: #dda25d;
+  border-color: currentColor;
+}
+
+.astral-corner::before,
+.astral-corner::after {
+  content: "";
+  position: absolute;
+  border: 2px solid currentColor;
+  opacity: 0.86;
+}
+
+.astral-corner::before {
+  inset: 0.15rem auto auto 0.15rem;
+  width: 70%;
+  height: 70%;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 1rem 0 0 0;
+}
+
+.astral-corner::after {
+  top: 0.72rem;
+  left: 0.72rem;
+  width: 42%;
+  height: 42%;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 999px 0 0 0;
+}
+
+.astral-corner--tl { top: 1rem; left: 1rem; }
+.astral-corner--tr { top: 1rem; right: 1rem; transform: scaleX(-1); }
+.astral-corner--bl { bottom: 1rem; left: 1rem; transform: scaleY(-1); }
+.astral-corner--br { bottom: 1rem; right: 1rem; transform: scale(-1); }
+
+.astral-top-heart {
+  position: absolute;
+  top: 0.34rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e5ad68;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+}
+
+.astral-head {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto clamp(0.6rem, 2vw, 1.2rem);
+  text-align: center;
+}
+
+.astral-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(2.1rem, 6.2vw, 4.3rem);
+  font-weight: 600;
+  line-height: 0.92;
+  color: #e5b270;
+  text-shadow: 0 0 30px rgba(228, 176, 104, 0.22);
+}
+
+.astral-script {
+  position: relative;
+  display: inline-block;
+  margin: -0.08em 0 0;
+  color: #e0a55d;
+  font-family: "Great Vibes", "Cormorant Garamond", cursive;
+  font-size: clamp(3.3rem, 11.5vw, 7.9rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-shadow: 0 0 34px rgba(225, 166, 91, 0.24);
+}
+
+.astral-script::before,
+.astral-script::after {
+  content: "♡";
+  position: absolute;
+  top: 44%;
+  color: #e0a55d;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+}
+
+.astral-script::before {
+  right: calc(100% + 0.55rem);
+}
+
+.astral-script::after {
+  left: calc(100% + 0.55rem);
+}
+
+.astral-sky-wrap {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 760px);
+  margin: 0 auto;
+}
+
+.astral-sky-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -1.8%;
+  border: 2px solid rgba(226, 164, 88, 0.82);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.astral-sky {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sky-base {
+  fill: url(#dome);
+  stroke: rgba(255, 219, 156, 0.26);
+  stroke-width: 1.4;
+}
+
+.sky-ring {
+  fill: none;
+  stroke: #dca15a;
+}
+
+.sky-ring--wide {
+  stroke-width: 4;
+}
+
+.sky-ring--thin {
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+.milky-way {
+  fill: none;
+  stroke: rgba(166, 196, 232, 0.25);
+  stroke-width: 82;
+  stroke-linecap: round;
+  filter: blur(10px);
+}
+
+.star-field circle {
+  fill: #fff8e8;
+  opacity: 0.82;
+  filter: url(#glow);
+}
+
+.horizon--far {
+  fill: rgba(15, 24, 37, 0.95);
+}
+
+.horizon--near,
+.desert {
+  fill: rgba(2, 7, 12, 0.98);
+}
+
+.yucca {
+  fill: none;
+  stroke: rgba(2, 6, 9, 0.96);
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.compass text {
+  fill: #efc484;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.compass path {
+  fill: #e0a55d;
+}
+
+.constellation {
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.constellation path {
+  fill: none;
+  stroke: rgba(232, 234, 244, 0.64);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw 1.8s ease forwards;
+}
+
+.constellation circle:not(.moon):not(.moon-mark):not(.planet) {
+  fill: #fff8e8;
+  filter: url(#glow);
+}
+
+.constellation text {
+  fill: rgba(255, 250, 239, 0.94);
+  font-size: 20px;
+  font-weight: 700;
+  pointer-events: none;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.62);
+}
+
+.constellation .small {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.moon,
+.planet {
+  filter: url(#glow);
+}
+
+.moon {
+  fill: url(#moon);
+}
+
+.moon-mark {
+  fill: rgba(86, 89, 98, 0.33);
+  pointer-events: none;
+}
+
+.planet--jupiter {
+  fill: #fff7df;
+  stroke: #ffd38b;
+  stroke-width: 2;
+}
+
+.planet--venus {
+  fill: #ffe1a2;
+  stroke: #fff5d1;
+  stroke-width: 2;
+}
+
+.constellation:hover path,
+.constellation:focus-visible path,
+.constellation.is-active path {
+  stroke: #ffd68e;
+  stroke-width: 3.4;
+  filter: url(#glow);
+}
+
+.constellation:hover circle:not(.moon-mark),
+.constellation:focus-visible circle:not(.moon-mark),
+.constellation.is-active circle:not(.moon-mark) {
+  fill: #ffd68e;
+}
+
+.constellation:hover text,
+.constellation:focus-visible text,
+.constellation.is-active text {
+  fill: #ffd68e;
+}
+
+.constellation.is-active {
+  animation: selected 1.8s ease-in-out infinite alternate;
+}
+
+.astral-foot {
+  position: relative;
+  z-index: 1;
+  margin: clamp(0.7rem, 2.2vw, 1.3rem) auto 0;
+  text-align: center;
+}
+
+.astral-names {
+  margin: 0;
+  color: #e3ad68;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(3rem, 9vw, 5.8rem);
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.astral-data {
+  display: grid;
+  justify-content: center;
+  gap: 0.2rem;
+  width: fit-content;
+  margin: 0.8rem auto 0;
+  padding: 0.75rem 2.2rem;
+  border-top: 1px solid rgba(226, 164, 88, 0.35);
+  border-bottom: 1px solid rgba(226, 164, 88, 0.35);
+}
+
+.astral-data p {
+  margin: 0;
+  color: #f3d29c;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.astral-data span {
+  display: inline-block;
+  width: 1.75rem;
+  color: #d99d58;
+}
+
+.astral-phrase {
+  margin: 0.8rem auto 0;
+  color: #f4d9ad;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.sky-note {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 4;
+  width: min(360px, calc(100vw - 2rem));
+  padding: 1.15rem 1.25rem 1.25rem;
+  color: #fff0d2;
+  background:
+    linear-gradient(180deg, rgba(255, 238, 199, 0.11), rgba(255, 238, 199, 0.04)),
+    rgba(4, 13, 25, 0.86);
+  border: 1px solid rgba(224, 165, 93, 0.62);
+  border-radius: 8px;
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(12px);
+  transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.sky-note[hidden] {
+  display: none;
+}
+
+.sky-note.is-changing {
+  opacity: 0.42;
+  transform: translateY(8px);
+}
+
+.sky-note.is-open {
+  border-color: rgba(255, 215, 145, 0.9);
+}
+
+.sky-note__close {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  color: #f6d099;
+  background: rgba(255, 236, 199, 0.08);
+  border: 1px solid rgba(247, 211, 151, 0.3);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sky-note__close:hover,
+.sky-note__close:focus-visible {
+  outline: none;
+  color: #08111d;
+  background: #f7d397;
+}
+
+.sky-note__eyebrow {
+  margin: 0 2.2rem 0.45rem 0;
+  color: rgba(255, 218, 154, 0.72);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.sky-note h2 {
+  margin: 0 0 0.6rem;
+  color: #f2c47f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.5rem, 5.8vw, 2.2rem);
+  line-height: 1;
+}
+
+.sky-note p:last-child {
+  margin: 0;
+  color: rgba(255, 246, 230, 0.94);
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(1.08rem, 4vw, 1.3rem);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes selected {
+  from { filter: drop-shadow(0 0 2px rgba(255, 214, 142, 0.28)); }
+  to { filter: drop-shadow(0 0 13px rgba(255, 214, 142, 0.78)); }
+}
+
+@media (max-width: 720px) {
+  .astral-page {
+    padding: 0;
+  }
+
+  .astral-poster {
+    width: 100%;
+    min-height: 100vh;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .astral-sky-wrap {
+    width: min(108vw, 760px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .astral-script::before,
+  .astral-script::after {
+    display: none;
+  }
+
+  .constellation path {
+    stroke-width: 3;
+  }
+
+  .constellation text {
+    font-size: 24px;
+  }
+
+  .constellation .small {
+    font-size: 17px;
+  }
+
+  .sky-note {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .astral-title {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+  }
+
+  .astral-script {
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+
+  .astral-names {
+    font-size: clamp(2.7rem, 16vw, 4.1rem);
+  }
+
+  .astral-data {
+    padding-inline: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astral-poster::after,
+  .constellation,
+  .constellation path,
+  .sky-note {
+    animation: none !important;
+    transition-duration: 0.1s !important;
+  }
+
+  .constellation path {
+    stroke-dashoffset: 0;
+  }
+}
