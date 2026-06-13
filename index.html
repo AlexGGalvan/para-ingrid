@@ -96,13 +96,13 @@
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
 
-                <aside class="new-poem-pop new-poem-pop--sky" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="nuestro-cielo-v1">
-                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir el cielo de nuestra noche">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">✦</span>
+                <aside class="new-poem-pop new-poem-pop--sky" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="dificil-v1">
+                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir poema Que facil haces lo dificil">
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">🔓</span>
                         <span class="new-poem-pop__body">
-                            <span class="new-poem-pop__kicker">Nuevo cielo para ti</span>
-                            <span class="new-poem-pop__title">«Bajo este mismo cielo»</span>
-                            <span class="new-poem-pop__hint">Toca para abrir la noche en que empezó nuestra historia</span>
+                            <span class="new-poem-pop__kicker">Nuevo poema para ti</span>
+                            <span class="new-poem-pop__title">«Que facil haces lo dificil»</span>
+                            <span class="new-poem-pop__hint">Toca para abrir los candados</span>
                         </span>
                     </button>
                     <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
@@ -545,6 +545,22 @@
                                     <span class="poem-card__body">
                                         <span class="poem-card__title">El Tiempo Contigo</span>
                                         <span class="poem-card__line">Cuando el calendario pierde autoridad.</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-dificil" data-mood="estas" aria-label="Abrir poema: Que facil haces lo dificil">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <rect x="12" y="21" width="24" height="18" rx="4" fill="rgba(255,210,225,0.18)" stroke="rgba(255,220,232,0.88)" stroke-width="2"/>
+                                            <path d="M17 21v-5a7 7 0 0 1 14 0v5" fill="none" stroke="rgba(255,220,232,0.88)" stroke-width="2.2" stroke-linecap="round"/>
+                                            <circle cx="24" cy="30" r="2.1" fill="rgba(255,220,232,0.95)"/>
+                                            <path d="M24 32v3.2" stroke="rgba(255,220,232,0.95)" stroke-width="1.8" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Que facil haces lo dificil</span>
+                                        <span class="poem-card__line">Cuando abrir el corazón deja de dar miedo.</span>
                                     </span>
                                 </button>
                             </li>
@@ -1716,6 +1732,58 @@
                 <p class="pager" id="pager-tiempo" aria-label="Progreso del poema">0/7</p>
                 <div class="verses-column" id="verses-column-tiempo">
                     <div class="verse-panel" id="tiempo-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dificil-view" hidden aria-label="Poema: Que facil haces lo dificil">
+            <button type="button" class="extra-cta is-visible" id="btn-back-11">Volver al menú</button>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-dificil">Reiniciar</button>
+            <div id="poem-area-dificil" tabindex="0" role="application" aria-label="Poema — toca para abrir cada parte">
+                <p class="poem-meta" id="date-dificil">Viernes 12 de Junio de 2026</p>
+                <div class="locks" id="dificil-locks" aria-label="Candados" role="img">
+                    <span class="lock" aria-hidden="true">
+                        <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
+                            <path class="lock-shackle lock-shackle--closed" d="M8 15V10a6 6 0 0 1 12 0v5"/>
+                            <path class="lock-shackle lock-shackle--open" d="M8 15V10a6 6 0 0 1 11.2-3"/>
+                            <rect class="lock-body" x="5" y="14" width="18" height="15" rx="3"/>
+                            <circle class="lock-keyhole" cx="14" cy="21" r="1.8"/>
+                            <path class="lock-keyline" d="M14 23v2.6"/>
+                        </svg>
+                    </span>
+                    <span class="lock" aria-hidden="true">
+                        <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
+                            <path class="lock-shackle lock-shackle--closed" d="M8 15V10a6 6 0 0 1 12 0v5"/>
+                            <path class="lock-shackle lock-shackle--open" d="M8 15V10a6 6 0 0 1 11.2-3"/>
+                            <rect class="lock-body" x="5" y="14" width="18" height="15" rx="3"/>
+                            <circle class="lock-keyhole" cx="14" cy="21" r="1.8"/>
+                            <path class="lock-keyline" d="M14 23v2.6"/>
+                        </svg>
+                    </span>
+                    <span class="lock" aria-hidden="true">
+                        <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
+                            <path class="lock-shackle lock-shackle--closed" d="M8 15V10a6 6 0 0 1 12 0v5"/>
+                            <path class="lock-shackle lock-shackle--open" d="M8 15V10a6 6 0 0 1 11.2-3"/>
+                            <rect class="lock-body" x="5" y="14" width="18" height="15" rx="3"/>
+                            <circle class="lock-keyhole" cx="14" cy="21" r="1.8"/>
+                            <path class="lock-keyline" d="M14 23v2.6"/>
+                        </svg>
+                    </span>
+                    <span class="lock" aria-hidden="true">
+                        <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
+                            <path class="lock-shackle lock-shackle--closed" d="M8 15V10a6 6 0 0 1 12 0v5"/>
+                            <path class="lock-shackle lock-shackle--open" d="M8 15V10a6 6 0 0 1 11.2-3"/>
+                            <rect class="lock-body" x="5" y="14" width="18" height="15" rx="3"/>
+                            <circle class="lock-keyhole" cx="14" cy="21" r="1.8"/>
+                            <path class="lock-keyline" d="M14 23v2.6"/>
+                        </svg>
+                    </span>
+                </div>
+                <p class="hint" id="hint-dificil">Toca la pantalla para abrir cada parte</p>
+                <p class="pager" id="pager-dificil" aria-label="Progreso del poema">0/4</p>
+                <div class="verses-column" id="verses-column-dificil">
+                    <div class="verse-panel" id="dificil-panel" aria-live="polite"></div>
                     <p class="signature">— Para Ingrid</p>
                 </div>
             </div>

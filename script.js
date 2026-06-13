@@ -130,6 +130,7 @@
   var ocasoView = document.getElementById("ocaso-view");
   var nadaView = document.getElementById("nada-view");
   var tiempoView = document.getElementById("tiempo-view");
+  var dificilView = document.getElementById("dificil-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnParaTiLetter = document.getElementById("btn-para-ti-letter");
@@ -142,6 +143,7 @@
   var btnOcaso = document.getElementById("btn-ocaso");
   var btnNada = document.getElementById("btn-nada");
   var btnTiempo = document.getElementById("btn-tiempo");
+  var btnDificil = document.getElementById("btn-dificil");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
@@ -152,6 +154,7 @@
   var btnBack8 = document.getElementById("btn-back-8");
   var btnBack9 = document.getElementById("btn-back-9");
   var btnBack10 = document.getElementById("btn-back-10");
+  var btnBack11 = document.getElementById("btn-back-11");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
@@ -166,6 +169,7 @@
   var btnResetOcaso = document.getElementById("btn-reset-ocaso");
   var btnResetNada = document.getElementById("btn-reset-nada");
   var btnResetTiempo = document.getElementById("btn-reset-tiempo");
+  var btnResetDificil = document.getElementById("btn-reset-dificil");
   var prisaArea = document.getElementById("poem-area-prisa");
   var prisaHint = document.getElementById("hint-prisa");
   var prisaScrollColumn = document.getElementById("verses-column-prisa");
@@ -220,6 +224,12 @@
   var tiempoPanel = document.getElementById("tiempo-panel");
   var tiempoHourglasses = document.getElementById("tiempo-hourglasses");
   var tiempoPager = document.getElementById("pager-tiempo");
+  var dificilArea = document.getElementById("poem-area-dificil");
+  var dificilHint = document.getElementById("hint-dificil");
+  var dificilScrollColumn = document.getElementById("verses-column-dificil");
+  var dificilPanel = document.getElementById("dificil-panel");
+  var dificilLocks = document.getElementById("dificil-locks");
+  var dificilPager = document.getElementById("pager-dificil");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -750,6 +760,33 @@
       "nos está preparando",
       "para pertenecernos mejor."
     ].join("\n")
+  ];
+
+  var DIFICIL_BLOCKS = [
+    [
+      "Qué difícil es ser",
+      "una persona difícil,",
+      "cuando abrir el corazón",
+      "también da miedo."
+    ].join("\n"),
+    [
+      "Pero qué fácil haces ver lo difícil",
+      "cuando te permites hacerlo conmigo,",
+      "despacio, sin sentir que tienes que defenderte."
+    ].join("\n"),
+    [
+      "Como si lo imposible,",
+      "por un momento,",
+      "dejara de dar miedo."
+    ].join("\n"),
+    {
+      lead: ["Y yo solo puedo mirarte"],
+      highlight: [
+        "con el corazón agradecido,",
+        "porque entre tantas puertas cerradas,",
+        "la tuya empezó a abrirse conmigo."
+      ]
+    }
   ];
 
   function createAcronymPlayer(opts) {
@@ -1658,6 +1695,102 @@
     tiempoArea.addEventListener("keydown", onTiempoActivate);
   }
 
+  var dificilLockEls = dificilLocks
+    ? Array.prototype.slice.call(dificilLocks.querySelectorAll(".lock"))
+    : [];
+  var dificilShown = 0;
+
+  function renderDificilBlock(block) {
+    if (!dificilPanel || !block) return;
+
+    dificilPanel.textContent = "";
+
+    if (typeof block === "string") {
+      dificilPanel.textContent = block;
+      return;
+    }
+
+    if (block.lead && block.lead.length) {
+      var leadEl = document.createElement("p");
+      leadEl.className = "dificil-stanza-lead";
+      leadEl.textContent = block.lead.join("\n");
+      dificilPanel.appendChild(leadEl);
+    }
+
+    if (block.highlight && block.highlight.length) {
+      var highlightEl = document.createElement("p");
+      highlightEl.className = "dificil-stanza-highlight";
+      highlightEl.textContent = block.highlight.join("\n");
+      dificilPanel.appendChild(highlightEl);
+    }
+  }
+
+  function resetDificil() {
+    dificilShown = 0;
+    dificilLockEls.forEach(function (el) {
+      el.classList.remove("is-open");
+    });
+    if (dificilHint) dificilHint.classList.remove("is-hidden");
+    if (dificilPanel) {
+      dificilPanel.textContent = "";
+      dificilPanel.classList.remove("has-text");
+    }
+    setPager(dificilPager, 0, DIFICIL_BLOCKS.length);
+  }
+
+  function openDificilLock(index) {
+    if (index < 0 || index >= dificilLockEls.length) return;
+    dificilLockEls[index].classList.add("is-open");
+  }
+
+  function revealNextDificilBlock() {
+    if (dificilShown >= DIFICIL_BLOCKS.length || !dificilPanel) return;
+    var block = DIFICIL_BLOCKS[dificilShown];
+    dificilShown += 1;
+    if (!block) return;
+
+    renderDificilBlock(block);
+    dificilPanel.classList.add("has-text");
+    dificilPanel.classList.remove("verse-enter");
+    void dificilPanel.offsetWidth;
+    dificilPanel.classList.add("verse-enter");
+    dificilPanel.scrollTop = 0;
+    if (dificilScrollColumn) dificilScrollColumn.scrollTop = 0;
+    setPager(dificilPager, dificilShown, DIFICIL_BLOCKS.length);
+    openDificilLock(dificilShown - 1);
+
+    if (dificilShown >= DIFICIL_BLOCKS.length) {
+      if (dificilHint) dificilHint.classList.add("is-hidden");
+    }
+  }
+
+  function dificilProgress() {
+    if (dificilShown === 0 && dificilHint) {
+      dificilHint.classList.add("is-hidden");
+    }
+    revealNextDificilBlock();
+  }
+
+  function onDificilActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    dificilProgress();
+  }
+
+  if (dificilArea) {
+    dificilArea.addEventListener(
+      "pointerup",
+      function (e) {
+        if (e.button !== 0 && e.button !== -1) return;
+        if (e.target.closest("#btn-back-11")) return;
+        if (e.target.closest("#btn-reset-dificil")) return;
+        onDificilActivate(e);
+      },
+      { passive: true }
+    );
+    dificilArea.addEventListener("keydown", onDificilActivate);
+  }
+
   function resetIngridLetterScroll() {
     window.scrollTo(0, 0);
     ingridLetterView.scrollTop = 0;
@@ -1756,6 +1889,7 @@
     ocasoView.hidden = view !== "ocaso";
     nadaView.hidden = view !== "nada";
     if (tiempoView) tiempoView.hidden = view !== "tiempo";
+    if (dificilView) dificilView.hidden = view !== "dificil";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -1834,6 +1968,11 @@
       if (tiempoArea) tiempoArea.focus();
     }
 
+    if (view === "dificil") {
+      resetDificil();
+      if (dificilArea) dificilArea.focus();
+    }
+
     if (view === "menu") {
       scheduleIngridLetterBtnIntro();
     }
@@ -1891,6 +2030,12 @@
     });
   }
 
+  if (btnDificil) {
+    btnDificil.addEventListener("click", function () {
+      showView("dificil");
+    });
+  }
+
   btnLeerHistoria.addEventListener("click", function () {
     showView("story");
   });
@@ -1934,6 +2079,12 @@
 
   if (btnBack10) {
     btnBack10.addEventListener("click", function () {
+      showView("menu");
+    });
+  }
+
+  if (btnBack11) {
+    btnBack11.addEventListener("click", function () {
       showView("menu");
     });
   }
@@ -2011,6 +2162,14 @@
       e.stopPropagation();
       resetTiempo();
       if (tiempoArea) tiempoArea.focus();
+    });
+  }
+
+  if (btnResetDificil) {
+    btnResetDificil.addEventListener("click", function (e) {
+      e.stopPropagation();
+      resetDificil();
+      if (dificilArea) dificilArea.focus();
     });
   }
 
@@ -2508,7 +2667,7 @@
       openBtn.addEventListener("click", function () {
         persistDismiss();
         hide(true);
-        window.location.href = "sky.html";
+        showView("dificil");
       });
     }
     if (closeBtn) {

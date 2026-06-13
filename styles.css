@@ -875,6 +875,7 @@ body.is-envelope-lock {
 #btn-back-8,
 #btn-back-9,
 #btn-back-10,
+#btn-back-11,
 #btn-back-story,
 #btn-back-ingrid-letter {
   max-width: 12rem;
@@ -899,6 +900,7 @@ body.is-envelope-lock {
 #btn-back-8:hover,
 #btn-back-9:hover,
 #btn-back-10:hover,
+#btn-back-11:hover,
 #btn-back-story:hover,
 #btn-back-ingrid-letter:hover {
   filter: brightness(1.05);
@@ -2122,6 +2124,118 @@ body.is-envelope-lock {
 
 #tiempo-panel .tiempo-stanza-lead + .tiempo-stanza-glow + .tiempo-stanza-lead {
   margin-top: 0.15rem;
+}
+
+/* Candados del poema «Que facil haces lo dificil» */
+#dificil-panel .dificil-stanza-lead,
+#dificil-panel .dificil-stanza-highlight {
+  margin: 0;
+  white-space: pre-line;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+#dificil-panel .dificil-stanza-highlight {
+  margin-top: 0.15rem;
+  color: rgba(255, 238, 172, 0.98);
+  text-shadow: 0 0 28px rgba(255, 215, 125, 0.28);
+}
+
+.locks {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.48rem;
+  padding: 0.35rem 0 0.6rem;
+  max-width: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: none;
+}
+
+.locks .lock {
+  width: clamp(28px, 9vw, 36px);
+  height: clamp(34px, 11vw, 42px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  color: rgba(255, 218, 232, 0.76);
+  transform: translateZ(0) scale(0.98);
+  transition: transform 0.28s ease, opacity 0.28s ease, filter 0.28s ease, color 0.28s ease;
+}
+
+.locks .lock svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(255, 150, 195, 0.08));
+}
+
+.locks .lock .lock-shackle,
+.locks .lock .lock-keyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.locks .lock .lock-body {
+  fill: rgba(255, 240, 246, 0.09);
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+
+.locks .lock .lock-keyhole {
+  fill: currentColor;
+}
+
+.locks .lock .lock-shackle--open {
+  opacity: 0;
+  transform: translate3d(4px, -2px, 0) rotate(18deg);
+  transform-origin: 9px 15px;
+}
+
+.locks .lock.is-open {
+  opacity: 1;
+  color: rgba(255, 205, 224, 0.98);
+  filter: brightness(1.1);
+  transform: translateZ(0) scale(1.08);
+  animation: lock-open-pop 0.62s ease both;
+}
+
+.locks .lock.is-open .lock-shackle--closed {
+  opacity: 0;
+}
+
+.locks .lock.is-open .lock-shackle--open {
+  opacity: 1;
+}
+
+.locks .lock.is-open .lock-body {
+  fill: rgba(255, 190, 214, 0.22);
+}
+
+.locks .lock.is-open svg {
+  filter: drop-shadow(0 0 14px rgba(255, 155, 205, 0.45));
+}
+
+@keyframes lock-open-pop {
+  0% {
+    transform: scale(0.94) rotate(-4deg);
+    filter: brightness(1);
+  }
+  55% {
+    transform: scale(1.16) rotate(4deg);
+    filter: brightness(1.16);
+  }
+  100% {
+    transform: scale(1.08) rotate(0deg);
+    filter: brightness(1.1);
+  }
 }
 
 .extra-panel {
