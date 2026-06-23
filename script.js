@@ -2280,18 +2280,19 @@
     });
   })();
 
-  (function initMenuPersonalCarousel() {
-    var root = document.getElementById("menu-personal-carousel");
-    var strip = document.getElementById("menu-personal-carousel-strip");
-    if (!root || !strip) return;
+  function initMenuCarousel(root, opts) {
+    if (!root) return;
 
-    var slides = strip.querySelectorAll(".menu-personal-carousel__slide");
-    var dots = root.querySelectorAll(".menu-personal-carousel__dot");
+    var strip = root.querySelector(opts.stripSelector);
+    if (!strip) return;
+
+    var slides = strip.querySelectorAll(opts.slideSelector);
+    var dots = root.querySelectorAll(opts.dotSelector);
     if (!slides.length || dots.length !== slides.length) return;
 
     var idx = 0;
     var n = slides.length;
-    var intervalMs = 5500;
+    var intervalMs = opts.intervalMs || 5500;
     var timerId = null;
 
     function setAriaHidden() {
@@ -2355,7 +2356,21 @@
 
     apply();
     start();
-  })();
+  }
+
+  initMenuCarousel(document.getElementById("menu-verse-carousel"), {
+    stripSelector: ".menu-verse-carousel__strip",
+    slideSelector: ".menu-verse-carousel__slide",
+    dotSelector: ".menu-verse-carousel__dot",
+    intervalMs: 8000
+  });
+
+  initMenuCarousel(document.getElementById("menu-personal-carousel"), {
+    stripSelector: ".menu-personal-carousel__strip",
+    slideSelector: ".menu-personal-carousel__slide",
+    dotSelector: ".menu-personal-carousel__dot",
+    intervalMs: 5500
+  });
 
   (function initPresentationEmbed() {
     var frame = document.getElementById("ppt-embed-frame");
@@ -2618,90 +2633,6 @@
     var observer = new MutationObserver(syncNavVisibility);
     if (menuViewEl) {
       observer.observe(menuViewEl, { attributes: true, attributeFilter: ["hidden"] });
-    }
-  })();
-
-  (function setupNewPoemPop() {
-    var pop = document.getElementById("new-poem-pop");
-    if (!pop) return;
-
-    var openBtn = document.getElementById("new-poem-pop-open");
-    var closeBtn = document.getElementById("new-poem-pop-close");
-    var storageKey = "para-ingrid:new-poem-pop:" + (pop.getAttribute("data-key") || "v1");
-
-    function isDismissed() {
-      try {
-        return window.localStorage && localStorage.getItem(storageKey) === "1";
-      } catch (e) {
-        return false;
-      }
-    }
-    function persistDismiss() {
-      try {
-        if (window.localStorage) localStorage.setItem(storageKey, "1");
-      } catch (e) { /* ignore */ }
-    }
-
-    function reveal() {
-      if (isDismissed()) return;
-      pop.hidden = false;
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          pop.classList.add("is-visible");
-        });
-      });
-    }
-
-    function hide(immediate) {
-      pop.classList.remove("is-visible");
-      pop.classList.add("is-hiding");
-      var done = function () {
-        pop.hidden = true;
-        pop.classList.remove("is-hiding");
-      };
-      if (immediate) return done();
-      window.setTimeout(done, 480);
-    }
-
-    if (openBtn) {
-      openBtn.addEventListener("click", function () {
-        persistDismiss();
-        hide(true);
-        showView("dificil");
-      });
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener("click", function () {
-        persistDismiss();
-        hide(false);
-      });
-    }
-
-    var menuViewEl = document.getElementById("menu-view");
-    function trySync() {
-      if (!menuViewEl || menuViewEl.hidden) {
-        if (!pop.hidden && !pop.classList.contains("is-hiding")) hide(true);
-        return;
-      }
-      var hero = document.getElementById("cap-hero");
-      var onHero = hero && hero.classList.contains("is-active");
-      if (isDismissed() || !onHero) {
-        if (!pop.hidden) hide(true);
-        return;
-      }
-      if (pop.hidden) reveal();
-    }
-    trySync();
-    if (menuViewEl) {
-      new MutationObserver(trySync).observe(menuViewEl, {
-        attributes: true, attributeFilter: ["hidden"]
-      });
-    }
-    var hero = document.getElementById("cap-hero");
-    if (hero) {
-      new MutationObserver(trySync).observe(hero, {
-        attributes: true, attributeFilter: ["class"]
-      });
     }
   })();
 

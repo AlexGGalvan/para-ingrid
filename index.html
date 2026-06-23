@@ -96,22 +96,27 @@
                 <section class="menu-chapter menu-chapter--hero is-active" id="cap-hero" data-tab role="tabpanel" aria-labelledby="cap-hero-title">
                     <p class="menu-chapter__kicker" id="cap-hero-title">Para Ingrid</p>
 
-                <aside class="new-poem-pop new-poem-pop--sky" id="new-poem-pop" hidden role="status" aria-live="polite" data-key="dificil-v1">
-                    <button type="button" class="new-poem-pop__card" id="new-poem-pop-open" aria-label="Abrir poema Que facil haces lo dificil">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">🔓</span>
-                        <span class="new-poem-pop__body">
-                            <span class="new-poem-pop__kicker">Nuevo poema para ti</span>
-                            <span class="new-poem-pop__title">«Que facil haces lo dificil»</span>
-                            <span class="new-poem-pop__hint">Toca para abrir los candados</span>
-                        </span>
-                    </button>
-                    <button type="button" class="new-poem-pop__close" id="new-poem-pop-close" aria-label="Cerrar aviso">×</button>
-                </aside>
-
-                <div class="verse-panel has-text menu-title">
-                    Proverbios 18:22
+                <div class="menu-verse-carousel" id="menu-verse-carousel" data-index="0"
+                    aria-roledescription="carrusel" aria-label="Versículos bíblicos">
+                    <div class="menu-verse-carousel__viewport">
+                        <div class="menu-verse-carousel__strip" id="menu-verse-carousel-strip">
+                            <article class="menu-verse-carousel__slide">
+                                <p class="verse-panel has-text menu-title">Eclesiastés 5:4-5</p>
+                                <p class="menu-verse">Cuando a Dios haces promesa, no tardes en cumplirla; porque él no se complace en los insensatos. Cumple lo que prometes. Mejor es que no prometas, y no que prometas y no cumplas.</p>
+                            </article>
+                            <article class="menu-verse-carousel__slide">
+                                <p class="verse-panel has-text menu-title">Proverbios 18:22</p>
+                                <p class="menu-verse">Quien halla esposa encuentra el bien y recibe el favor del Señor</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="menu-verse-carousel__dots" role="tablist" aria-label="Cambiar versículo">
+                        <button type="button" class="menu-verse-carousel__dot is-active" role="tab"
+                            aria-selected="true" aria-label="Eclesiastés 5:4-5"></button>
+                        <button type="button" class="menu-verse-carousel__dot" role="tab"
+                            aria-selected="false" aria-label="Proverbios 18:22"></button>
+                    </div>
                 </div>
-                <p class="menu-verse">Quien halla esposa encuentra el bien y recibe el favor del Señor</p>
                 <div class="menu-personal-carousel" id="menu-personal-carousel" data-index="0"
                     aria-roledescription="carrusel" aria-label="Mensajes personales">
                     <p class="menu-personal-carousel__kicker">Mensaje de hoy</p>
