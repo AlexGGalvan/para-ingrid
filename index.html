@@ -655,6 +655,20 @@
                                     </span>
                                 </button>
                             </li>
+                            <li>
+                                <button type="button" class="poem-card" id="btn-frustracion" data-mood="estas" aria-label="Abrir poema: Frustracion">
+                                    <span class="poem-card__icon" aria-hidden="true">
+                                        <svg viewBox="0 0 48 48" focusable="false">
+                                            <path d="M10 24v-6M16 24v-10M22 24V14M28 24v-10M34 24v-6" fill="none" stroke="rgba(255,210,225,0.9)" stroke-width="2.6" stroke-linecap="round"/>
+                                            <circle cx="38" cy="24" r="3.2" fill="rgba(255,190,214,0.35)" stroke="rgba(255,220,232,0.9)" stroke-width="1.8"/>
+                                        </svg>
+                                    </span>
+                                    <span class="poem-card__body">
+                                        <span class="poem-card__title">Frustracion <span class="poem-card__tag">audio</span></span>
+                                        <span class="poem-card__line">Un poema que se escucha, no se lee.</span>
+                                    </span>
+                                </button>
+                            </li>
                         </ul>
                     </section>
 
@@ -1791,6 +1805,22 @@
                     <div class="verse-panel" id="dificil-panel" aria-live="polite"></div>
                     <p class="signature">— Para Ingrid</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="frustracion-view" hidden aria-label="Poema: Frustracion">
+            <button type="button" class="extra-cta is-visible" id="btn-back-12">Volver al menú</button>
+            <div class="poem-audio-shell" id="poem-area-frustracion">
+                <p class="poem-meta">Poema en audio</p>
+                <h2 class="poem-audio-title">Frustracion</h2>
+                <p class="poem-audio-hint">Dale play y escucha el poema.</p>
+                <div class="poem-audio-player-wrap">
+                    <audio class="poem-audio-player" id="frustracion-audio" controls preload="metadata"
+                        aria-label="Reproducir poema Frustracion">
+                        <source src="assets/audio/frustracion.m4a" type="audio/mp4">
+                    </audio>
+                </div>
+                <p class="signature">— Para Ingrid</p>
             </div>
         </section>
     </main>

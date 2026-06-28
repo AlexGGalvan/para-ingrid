@@ -876,6 +876,7 @@ body.is-envelope-lock {
 #btn-back-9,
 #btn-back-10,
 #btn-back-11,
+#btn-back-12,
 #btn-back-story,
 #btn-back-ingrid-letter {
   max-width: 12rem;
@@ -901,6 +902,7 @@ body.is-envelope-lock {
 #btn-back-9:hover,
 #btn-back-10:hover,
 #btn-back-11:hover,
+#btn-back-12:hover,
 #btn-back-story:hover,
 #btn-back-ingrid-letter:hover {
   filter: brightness(1.05);
@@ -1548,6 +1550,56 @@ body.is-envelope-lock {
   font-size: 1.05rem;
   color: rgba(255, 240, 245, 0.78);
   text-shadow: 0 0 26px rgba(255, 200, 220, 0.14);
+}
+
+.poem-audio-shell {
+  margin: 0 auto;
+  max-width: 22rem;
+  padding: 1.5rem 1rem 2rem;
+  text-align: center;
+}
+
+.poem-audio-title {
+  margin: 0 0 0.65rem;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.55rem, 6vw, 2rem);
+  letter-spacing: 0.04em;
+  color: rgba(255, 240, 245, 0.96);
+  text-shadow:
+    0 0 30px rgba(255, 200, 220, 0.22),
+    0 0 60px rgba(190, 176, 255, 0.1);
+}
+
+.poem-audio-hint {
+  margin: 0 auto 1.35rem;
+  max-width: 16rem;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 183, 201, 0.62);
+}
+
+.poem-audio-player-wrap {
+  padding: 1rem 0.85rem;
+  border-radius: 16px;
+  background:
+    linear-gradient(155deg, rgba(255, 200, 218, 0.14) 0%, rgba(255, 255, 255, 0.04) 42%, rgba(140, 110, 160, 0.08) 100%),
+    rgba(14, 8, 12, 0.55);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 183, 201, 0.28) inset,
+    0 0 56px rgba(255, 150, 190, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.poem-audio-player {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
 }
 
 /* Corazones del poema "prisa" */

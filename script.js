@@ -131,6 +131,7 @@
   var nadaView = document.getElementById("nada-view");
   var tiempoView = document.getElementById("tiempo-view");
   var dificilView = document.getElementById("dificil-view");
+  var frustracionView = document.getElementById("frustracion-view");
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnParaTiLetter = document.getElementById("btn-para-ti-letter");
@@ -144,6 +145,7 @@
   var btnNada = document.getElementById("btn-nada");
   var btnTiempo = document.getElementById("btn-tiempo");
   var btnDificil = document.getElementById("btn-dificil");
+  var btnFrustracion = document.getElementById("btn-frustracion");
   var btnBack1 = document.getElementById("btn-back-1");
   var btnBack2 = document.getElementById("btn-back-2");
   var btnBack3 = document.getElementById("btn-back-3");
@@ -155,6 +157,7 @@
   var btnBack9 = document.getElementById("btn-back-9");
   var btnBack10 = document.getElementById("btn-back-10");
   var btnBack11 = document.getElementById("btn-back-11");
+  var btnBack12 = document.getElementById("btn-back-12");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
@@ -230,6 +233,7 @@
   var dificilPanel = document.getElementById("dificil-panel");
   var dificilLocks = document.getElementById("dificil-locks");
   var dificilPager = document.getElementById("pager-dificil");
+  var frustracionAudio = document.getElementById("frustracion-audio");
 
   var dataEl = document.getElementById("poem-data");
   var area = document.getElementById("poem-area");
@@ -1874,7 +1878,17 @@
     finishIngridLetterBtnIntro();
   });
 
+  function pauseFrustracionAudio() {
+    if (!frustracionAudio) return;
+    frustracionAudio.pause();
+    try {
+      frustracionAudio.currentTime = 0;
+    } catch (e) { /* ignore */ }
+  }
+
   function showView(view) {
+    if (view !== "frustracion") pauseFrustracionAudio();
+
     menuView.hidden = view !== "menu";
     storyView.hidden = view !== "story";
     ingridLetterView.hidden = view !== "ingrid-letter";
@@ -1890,6 +1904,7 @@
     nadaView.hidden = view !== "nada";
     if (tiempoView) tiempoView.hidden = view !== "tiempo";
     if (dificilView) dificilView.hidden = view !== "dificil";
+    if (frustracionView) frustracionView.hidden = view !== "frustracion";
 
     if (view === "story") {
       versesColumnStory.scrollTop = 0;
@@ -2036,6 +2051,12 @@
     });
   }
 
+  if (btnFrustracion) {
+    btnFrustracion.addEventListener("click", function () {
+      showView("frustracion");
+    });
+  }
+
   btnLeerHistoria.addEventListener("click", function () {
     showView("story");
   });
@@ -2085,6 +2106,12 @@
 
   if (btnBack11) {
     btnBack11.addEventListener("click", function () {
+      showView("menu");
+    });
+  }
+
+  if (btnBack12) {
+    btnBack12.addEventListener("click", function () {
       showView("menu");
     });
   }
