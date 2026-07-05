@@ -3,7 +3,7 @@
 
   (function setupEnvelopeIntro() {
     var intro = document.getElementById("envelope-intro");
-    if (!intro) return;
+    if (!intro || document.documentElement.classList.contains("maintenance-active")) return;
 
     var trigger = document.getElementById("envelope-trigger");
     var skipBtn = document.getElementById("envelope-intro-skip");
@@ -1887,6 +1887,8 @@
   }
 
   function showView(view) {
+    if (document.documentElement.classList.contains("maintenance-active")) return;
+
     if (view !== "frustracion") pauseFrustracionAudio();
 
     menuView.hidden = view !== "menu";

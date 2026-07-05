@@ -19,6 +19,62 @@ body {
   overscroll-behavior: none;
 }
 
+html.maintenance-active body {
+  overflow: hidden;
+}
+
+html.maintenance-active body > :not(#maintenance-screen) {
+  display: none !important;
+}
+
+.maintenance-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem max(1.25rem, env(safe-area-inset-bottom));
+}
+
+.maintenance-screen__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 10%, rgba(90, 45, 70, 0.42) 0%, transparent 58%),
+    radial-gradient(90% 70% at 50% 100%, rgba(20, 8, 16, 0.92) 0%, rgba(8, 4, 10, 0.98) 72%),
+    rgba(8, 4, 10, 0.96);
+}
+
+.maintenance-screen__card {
+  position: relative;
+  width: min(100%, 24rem);
+  margin: 0;
+  padding: 1.65rem 1.35rem 1.5rem;
+  border-radius: 18px;
+  background:
+    linear-gradient(155deg, rgba(255, 200, 218, 0.12) 0%, rgba(255, 255, 255, 0.03) 42%, rgba(140, 110, 160, 0.08) 100%),
+    rgba(14, 8, 12, 0.72);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(255, 183, 201, 0.24) inset,
+    0 0 72px rgba(255, 150, 190, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.maintenance-screen__message {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.08rem, 4.8vw, 1.32rem);
+  line-height: 1.62;
+  text-align: center;
+  color: rgba(255, 244, 248, 0.94);
+  text-shadow: 0 0 28px rgba(255, 200, 220, 0.14);
+  white-space: pre-line;
+}
+
 /* =======================================================================
    Sobre de entrada: aparece al cargar la página; al tocarlo se "abre"
    y deja ver una carta. Persiste por sesión (sessionStorage).
