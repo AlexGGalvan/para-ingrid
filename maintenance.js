@@ -2,7 +2,10 @@
   "use strict";
 
   var MAINTENANCE_MODE = false;
-  if (!MAINTENANCE_MODE) return;
+  if (!MAINTENANCE_MODE) {
+    document.documentElement.classList.remove("maintenance-active");
+    return;
+  }
 
   window.PARA_INGRID_MAINTENANCE = true;
   document.documentElement.classList.add("maintenance-active");
