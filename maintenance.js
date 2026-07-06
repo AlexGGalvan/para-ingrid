@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var MAINTENANCE_MODE = true;
+  var MAINTENANCE_MODE = false;
   if (!MAINTENANCE_MODE) return;
 
   window.PARA_INGRID_MAINTENANCE = true;
