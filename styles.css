@@ -1233,6 +1233,125 @@ body.is-envelope-lock {
   outline-offset: 3px;
 }
 
+/* Variante estática — «Mensaje de mi vida» (nota en papel pastel) */
+.menu-personal-carousel--vida {
+  position: relative;
+  max-width: 24rem;
+  margin-top: 0.65rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.menu-personal-carousel--vida::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 2.2rem;
+  transform: translateX(-50%);
+  width: 88%;
+  height: calc(100% - 1.5rem);
+  border-radius: 18px;
+  background: radial-gradient(ellipse 85% 70% at 50% 40%, rgba(255, 200, 220, 0.14), transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__kicker {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.8rem;
+  color: rgba(255, 218, 230, 0.92);
+  text-shadow: 0 0 28px rgba(255, 150, 185, 0.35);
+  letter-spacing: 0.28em;
+  font-size: 0.64rem;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__kicker::before,
+.menu-personal-carousel--vida .menu-personal-carousel__kicker::after {
+  content: "";
+  display: inline-block;
+  width: 1.35rem;
+  height: 1px;
+  vertical-align: middle;
+  margin: 0 0.55rem;
+  opacity: 0.75;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__kicker::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 185, 205, 0.75));
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__kicker::after {
+  background: linear-gradient(90deg, rgba(255, 185, 205, 0.75), transparent);
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__viewport {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  padding: 1.25rem 1.2rem 1.35rem;
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 23px,
+      rgba(210, 170, 185, 0.09) 24px,
+      transparent 25px
+    ),
+    linear-gradient(168deg, #fffdfb 0%, #fff7f3 38%, #fdf1f5 100%);
+  border: 1px solid rgba(255, 238, 244, 0.95);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.34),
+    0 6px 18px rgba(180, 100, 130, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__viewport::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(255, 225, 235, 0.45), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 100%, rgba(255, 235, 245, 0.35), transparent 50%);
+  pointer-events: none;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__viewport::after {
+  content: "♡";
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.55rem;
+  font-size: 0.7rem;
+  color: rgba(215, 155, 175, 0.42);
+  pointer-events: none;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__strip {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  transform: none !important;
+}
+
+.menu-personal-carousel--vida .menu-personal-carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 0 0.15rem 0.35rem;
+  font-size: clamp(1.05rem, 4.5vw, 1.24rem);
+  line-height: 1.72;
+  color: rgba(82, 54, 64, 0.9);
+  text-shadow: none;
+  letter-spacing: 0.01em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .menu-personal-carousel__strip {
     transition-duration: 0.01ms;
