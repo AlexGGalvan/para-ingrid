@@ -6,6 +6,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background: #c8e8fb;
 }
 
 body {
@@ -13,10 +14,13 @@ body {
   min-height: 100dvh;
   min-height: 100vh;
   font-family: "Cormorant Garamond", "Times New Roman", serif;
-  background: radial-gradient(120% 80% at 50% 15%, #3a2340 0%, #160b18 52%, #08040a 100%);
+  background:
+    radial-gradient(circle at 72% 4%, rgba(255, 246, 199, 0.86) 0 4.5rem, rgba(255, 222, 150, 0.36) 4.6rem 10rem, transparent 18rem),
+    linear-gradient(180deg, #bfdff6 0%, #f7d7c8 42%, #6b3a62 74%, #160b18 100%);
   color: #f4e8ec;
   touch-action: manipulation;
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 html.maintenance-active body {
@@ -592,11 +596,11 @@ body.is-envelope-lock {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(700px 420px at 12% 12%, rgba(255, 198, 222, 0.18), transparent 60%),
-    radial-gradient(540px 360px at 86% 18%, rgba(190, 176, 255, 0.16), transparent 62%),
-    radial-gradient(520px 420px at 50% 92%, rgba(255, 138, 186, 0.10), transparent 60%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 38%, rgba(255, 255, 255, 0.02));
-  filter: saturate(1.05);
+    repeating-conic-gradient(from 216deg at 72% -3%, rgba(255, 246, 204, 0.22) 0deg 5deg, transparent 8deg 17deg),
+    radial-gradient(680px 360px at 72% 5%, rgba(255, 241, 190, 0.4), transparent 68%),
+    radial-gradient(760px 420px at 22% 18%, rgba(255, 255, 255, 0.2), transparent 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 42%, rgba(30, 8, 20, 0.28) 100%);
+  filter: saturate(1.05) blur(0.2px);
   pointer-events: none;
 }
 
@@ -606,14 +610,19 @@ body.is-envelope-lock {
   inset: -40px;
   z-index: -1;
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.09) 0 1px, transparent 2px),
-    radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.06) 0 1px, transparent 2px),
-    radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.07) 0 1px, transparent 2px),
-    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.05) 0 1px, transparent 2px);
-  background-size: 220px 220px, 260px 260px, 240px 240px, 300px 300px;
-  opacity: 0.55;
+    radial-gradient(ellipse 18rem 5rem at 10% 10%, rgba(255, 255, 255, 0.74) 0 48%, rgba(255, 255, 255, 0.18) 68%, transparent 74%),
+    radial-gradient(ellipse 13rem 4.5rem at 32% 16%, rgba(255, 250, 244, 0.66) 0 50%, rgba(255, 250, 244, 0.16) 68%, transparent 74%),
+    radial-gradient(ellipse 16rem 5rem at 76% 13%, rgba(255, 255, 255, 0.76) 0 48%, rgba(255, 235, 214, 0.2) 67%, transparent 75%),
+    radial-gradient(ellipse 11rem 3.8rem at 95% 22%, rgba(255, 255, 255, 0.58) 0 52%, rgba(255, 255, 255, 0.14) 70%, transparent 78%),
+    radial-gradient(circle at 70% 12%, rgba(255, 255, 245, 0.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 83% 19%, rgba(255, 242, 198, 0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.62) 0 1px, transparent 2px),
+    radial-gradient(circle at 58% 31%, rgba(255, 246, 214, 0.48) 0 1px, transparent 2px);
+  background-size: 780px 260px, 720px 250px, 840px 300px, 700px 230px, 170px 170px, 230px 230px, 190px 190px, 260px 260px;
+  background-position: 0 0, 90px 28px, 0 18px, 120px 40px, 0 0, 40px 20px, 18px 60px, 90px 80px;
+  opacity: 0.72;
   transform: translateZ(0);
-  animation: float-sparkles 12s ease-in-out infinite;
+  animation: float-sparkles 18s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -1236,7 +1245,7 @@ body.is-envelope-lock {
 /* Variante estática — «Mensaje de mi vida» (nota en papel pastel) */
 .menu-personal-carousel--vida {
   position: relative;
-  max-width: 24rem;
+  max-width: 27rem;
   margin-top: 0.65rem;
   margin-bottom: 1.5rem;
   padding: 0;
@@ -1344,9 +1353,9 @@ body.is-envelope-lock {
 .menu-personal-carousel--vida .menu-personal-carousel__slide {
   flex: 0 0 100%;
   width: 100%;
-  padding: 0 0.15rem 0.35rem;
-  font-size: clamp(1.05rem, 4.5vw, 1.24rem);
-  line-height: 1.72;
+  padding: 0 0.1rem 0.35rem;
+  font-size: clamp(0.98rem, 3.7vw, 1.14rem);
+  line-height: 1.64;
   color: rgba(82, 54, 64, 0.9);
   text-shadow: none;
   letter-spacing: 0.01em;
