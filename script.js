@@ -120,6 +120,7 @@
   var storyView = document.getElementById("story-view");
   var ingridLetterView = document.getElementById("ingrid-letter-view");
   var paraTiLetterView = document.getElementById("para-ti-letter-view");
+  var hesedView = document.getElementById("hesed-view");
   var ingridView = document.getElementById("ingrid-view");
   var prisaView = document.getElementById("prisa-view");
   var perfumeView = document.getElementById("perfume-view");
@@ -135,6 +136,10 @@
   var btnIngrid = document.getElementById("btn-ingrid");
   var btnIngridLetter = document.getElementById("btn-ingrid-letter");
   var btnParaTiLetter = document.getElementById("btn-para-ti-letter");
+  var btnHesed = document.getElementById("btn-hesed");
+  var btnNewHesedPop = document.getElementById("btn-new-hesed-pop");
+  var btnCloseNewHesedPop = document.getElementById("btn-close-new-hesed-pop");
+  var newHesedPop = document.getElementById("new-poem-hesed-pop");
   var btnPrisa = document.getElementById("btn-prisa");
   var btnPerfume = document.getElementById("btn-perfume");
   var btnAmor = document.getElementById("btn-amor");
@@ -158,6 +163,7 @@
   var btnBack10 = document.getElementById("btn-back-10");
   var btnBack11 = document.getElementById("btn-back-11");
   var btnBack12 = document.getElementById("btn-back-12");
+  var btnBackHesed = document.getElementById("btn-back-hesed");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
@@ -249,6 +255,7 @@
   var versesColumnIngridLetter = document.getElementById("verses-column-ingrid-letter");
   var paraTiLetterArea = document.getElementById("para-ti-letter-area");
   var versesColumnParaTiLetter = document.getElementById("verses-column-para-ti-letter");
+  var hesedArea = document.getElementById("poem-area-hesed");
 
   /**
    * Respuestas a «¿Ya le pongo punto?» · regístrate en https://formspree.io ,
@@ -278,6 +285,7 @@
     !menuView ||
     !storyView ||
     !ingridLetterView ||
+    !hesedView ||
     !ingridView ||
     !prisaView ||
     !perfumeView ||
@@ -288,6 +296,10 @@
     !ocasoView ||
     !btnIngrid ||
     !btnIngridLetter ||
+    !btnHesed ||
+    !btnNewHesedPop ||
+    !btnCloseNewHesedPop ||
+    !newHesedPop ||
     !btnPrisa ||
     !btnPerfume ||
     !btnAmor ||
@@ -303,6 +315,7 @@
     !btnBack6 ||
     !btnBack7 ||
     !btnBack8 ||
+    !btnBackHesed ||
     !btnBackStory ||
     !btnBackIngridLetter ||
     !btnLeerHistoria ||
@@ -366,6 +379,7 @@
     || !versesColumnStory
     || !ingridLetterArea
     || !versesColumnIngridLetter
+    || !hesedArea
   )
     return;
 
@@ -1895,6 +1909,7 @@
     storyView.hidden = view !== "story";
     ingridLetterView.hidden = view !== "ingrid-letter";
     paraTiLetterView.hidden = view !== "para-ti-letter";
+    hesedView.hidden = view !== "hesed";
     ingridView.hidden = view !== "ingrid";
     prisaView.hidden = view !== "prisa";
     perfumeView.hidden = view !== "perfume";
@@ -1933,6 +1948,13 @@
           paraTiLetterArea.focus({ preventScroll: true });
         });
       });
+    }
+
+    if (view === "hesed") {
+      window.scrollTo(0, 0);
+      hesedView.scrollTop = 0;
+      hesedArea.scrollTop = 0;
+      hesedArea.focus({ preventScroll: true });
     }
 
     if (view === "ingrid") {
@@ -1995,12 +2017,50 @@
     }
   }
 
+  function goToHesedInMenu() {
+    if (menuView.hidden) {
+      showView("menu");
+    }
+
+    var poemsTab = document.querySelector('.menu-nav__link[data-target="cap-poemas"]');
+    if (poemsTab) {
+      poemsTab.click();
+    }
+
+    window.setTimeout(function () {
+      var target = document.getElementById("menu-hesed-section") || btnHesed;
+      if (target && typeof target.scrollIntoView === "function") {
+        target.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+      }
+      btnHesed.classList.add("is-spotlight");
+      window.setTimeout(function () {
+        btnHesed.classList.remove("is-spotlight");
+      }, 1800);
+    }, 120);
+  }
+
+  btnNewHesedPop.addEventListener("click", function () {
+    goToHesedInMenu();
+  });
+
+  btnCloseNewHesedPop.addEventListener("click", function () {
+    newHesedPop.classList.add("is-hiding");
+    window.setTimeout(function () {
+      newHesedPop.hidden = true;
+      newHesedPop.classList.remove("is-visible", "is-hiding");
+    }, 320);
+  });
+
   btnIngrid.addEventListener("click", function () {
     showView("ingrid");
   });
 
   btnIngridLetter.addEventListener("click", function () {
     showView("ingrid-letter");
+  });
+
+  btnHesed.addEventListener("click", function () {
+    showView("hesed");
   });
 
   if (btnParaTiLetter) {
@@ -2093,6 +2153,10 @@
   });
 
   btnBack8.addEventListener("click", function () {
+    showView("menu");
+  });
+
+  btnBackHesed.addEventListener("click", function () {
     showView("menu");
   });
 

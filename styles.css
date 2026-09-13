@@ -15,8 +15,8 @@ body {
   min-height: 100vh;
   font-family: "Cormorant Garamond", "Times New Roman", serif;
   background:
-    radial-gradient(circle at 72% 4%, rgba(255, 246, 199, 0.86) 0 4.5rem, rgba(255, 222, 150, 0.36) 4.6rem 10rem, transparent 18rem),
-    linear-gradient(180deg, #bfdff6 0%, #f7d7c8 42%, #6b3a62 74%, #160b18 100%);
+    radial-gradient(circle at 74% 5%, rgba(255, 247, 203, 0.78) 0 4.1rem, rgba(255, 223, 156, 0.32) 4.2rem 10rem, transparent 18rem),
+    linear-gradient(180deg, #a9d3ec 0%, #dcecf1 28%, #f0ccbd 52%, #784765 80%, #160b18 100%);
   color: #f4e8ec;
   touch-action: manipulation;
   overscroll-behavior: none;
@@ -596,10 +596,10 @@ body.is-envelope-lock {
   inset: 0;
   z-index: -1;
   background:
-    repeating-conic-gradient(from 216deg at 72% -3%, rgba(255, 246, 204, 0.22) 0deg 5deg, transparent 8deg 17deg),
-    radial-gradient(680px 360px at 72% 5%, rgba(255, 241, 190, 0.4), transparent 68%),
-    radial-gradient(760px 420px at 22% 18%, rgba(255, 255, 255, 0.2), transparent 62%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 42%, rgba(30, 8, 20, 0.28) 100%);
+    radial-gradient(620px 230px at 50% 20%, rgba(58, 32, 48, 0.3), rgba(58, 32, 48, 0.1) 46%, transparent 76%),
+    repeating-conic-gradient(from 218deg at 74% -4%, rgba(255, 245, 199, 0.15) 0deg 5deg, transparent 9deg 18deg),
+    radial-gradient(700px 350px at 74% 4%, rgba(255, 239, 186, 0.28), transparent 68%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 36%, rgba(30, 8, 20, 0.3) 100%);
   filter: saturate(1.05) blur(0.2px);
   pointer-events: none;
 }
@@ -610,17 +610,17 @@ body.is-envelope-lock {
   inset: -40px;
   z-index: -1;
   background-image:
-    radial-gradient(ellipse 18rem 5rem at 10% 10%, rgba(255, 255, 255, 0.74) 0 48%, rgba(255, 255, 255, 0.18) 68%, transparent 74%),
-    radial-gradient(ellipse 13rem 4.5rem at 32% 16%, rgba(255, 250, 244, 0.66) 0 50%, rgba(255, 250, 244, 0.16) 68%, transparent 74%),
-    radial-gradient(ellipse 16rem 5rem at 76% 13%, rgba(255, 255, 255, 0.76) 0 48%, rgba(255, 235, 214, 0.2) 67%, transparent 75%),
-    radial-gradient(ellipse 11rem 3.8rem at 95% 22%, rgba(255, 255, 255, 0.58) 0 52%, rgba(255, 255, 255, 0.14) 70%, transparent 78%),
-    radial-gradient(circle at 70% 12%, rgba(255, 255, 245, 0.95) 0 1px, transparent 2px),
-    radial-gradient(circle at 83% 19%, rgba(255, 242, 198, 0.7) 0 1px, transparent 2px),
-    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.62) 0 1px, transparent 2px),
-    radial-gradient(circle at 58% 31%, rgba(255, 246, 214, 0.48) 0 1px, transparent 2px);
-  background-size: 780px 260px, 720px 250px, 840px 300px, 700px 230px, 170px 170px, 230px 230px, 190px 190px, 260px 260px;
-  background-position: 0 0, 90px 28px, 0 18px, 120px 40px, 0 0, 40px 20px, 18px 60px, 90px 80px;
-  opacity: 0.72;
+    radial-gradient(ellipse 18rem 4.4rem at 16% 27%, rgba(255, 255, 255, 0.48) 0 42%, rgba(255, 255, 255, 0.16) 61%, transparent 75%),
+    radial-gradient(ellipse 14rem 3.8rem at 36% 23%, rgba(255, 250, 244, 0.38) 0 48%, rgba(255, 250, 244, 0.14) 66%, transparent 78%),
+    radial-gradient(ellipse 17rem 4.6rem at 78% 26%, rgba(255, 255, 255, 0.48) 0 44%, rgba(255, 235, 214, 0.17) 65%, transparent 78%),
+    radial-gradient(ellipse 12rem 3.6rem at 94% 39%, rgba(255, 255, 255, 0.33) 0 48%, rgba(255, 255, 255, 0.1) 67%, transparent 78%),
+    radial-gradient(circle at 70% 12%, rgba(255, 255, 245, 0.85) 0 1px, transparent 2px),
+    radial-gradient(circle at 83% 19%, rgba(255, 242, 198, 0.62) 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.5) 0 1px, transparent 2px),
+    radial-gradient(circle at 58% 31%, rgba(255, 246, 214, 0.42) 0 1px, transparent 2px);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, repeat, repeat;
+  background-size: auto, auto, auto, auto, 170px 170px, 230px 230px, 190px 190px, 260px 260px;
+  opacity: 0.82;
   transform: translateZ(0);
   animation: float-sparkles 18s ease-in-out infinite;
   pointer-events: none;
@@ -946,6 +946,7 @@ body.is-envelope-lock {
 #btn-back-10,
 #btn-back-11,
 #btn-back-12,
+#btn-back-hesed,
 #btn-back-story,
 #btn-back-ingrid-letter {
   max-width: 12rem;
@@ -972,6 +973,7 @@ body.is-envelope-lock {
 #btn-back-10:hover,
 #btn-back-11:hover,
 #btn-back-12:hover,
+#btn-back-hesed:hover,
 #btn-back-story:hover,
 #btn-back-ingrid-letter:hover {
   filter: brightness(1.05);
@@ -1002,8 +1004,10 @@ body.is-envelope-lock {
   text-align: center;
   letter-spacing: 0.02em;
   font-size: clamp(1.25rem, 5vw, 1.6rem);
-  color: rgba(255, 240, 245, 0.92);
-  text-shadow: 0 0 30px rgba(255, 200, 220, 0.18);
+  color: rgba(255, 246, 242, 0.98);
+  text-shadow:
+    0 2px 16px rgba(38, 18, 28, 0.55),
+    0 0 28px rgba(255, 210, 225, 0.2);
   margin-bottom: 0.75rem;
 }
 
@@ -1014,10 +1018,10 @@ body.is-envelope-lock {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: clamp(1.05rem, 4.8vw, 1.35rem);
-  color: rgba(255, 240, 245, 0.95);
+  color: rgba(255, 240, 232, 0.98);
   text-shadow:
-    0 0 30px rgba(255, 200, 220, 0.22),
-    0 0 60px rgba(190, 176, 255, 0.10);
+    0 2px 16px rgba(38, 18, 28, 0.62),
+    0 0 32px rgba(255, 210, 225, 0.22);
 }
 
 .menu-verse {
@@ -1028,14 +1032,28 @@ body.is-envelope-lock {
   font-style: italic;
   font-size: clamp(1rem, 4.4vw, 1.2rem);
   line-height: 1.45;
-  color: rgba(244, 232, 236, 0.78);
-  text-shadow: 0 0 30px rgba(255, 200, 220, 0.12);
+  color: rgba(255, 244, 238, 0.92);
+  text-shadow:
+    0 2px 14px rgba(38, 18, 28, 0.52),
+    0 0 26px rgba(255, 240, 220, 0.12);
 }
 
 .menu-verse-carousel {
-  margin: 0 auto 1.05rem;
-  max-width: 22rem;
+  position: relative;
+  margin: 0 auto 1.15rem;
+  max-width: 28rem;
   width: 100%;
+  padding: 0.9rem clamp(0.95rem, 4vw, 1.25rem) 0.85rem;
+  border: 1px solid rgba(255, 229, 222, 0.22);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 215, 198, 0.16), transparent 52%),
+    linear-gradient(155deg, rgba(60, 35, 52, 0.68), rgba(28, 14, 28, 0.48));
+  box-shadow:
+    0 18px 42px rgba(40, 18, 28, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  backdrop-filter: blur(12px) saturate(1.04);
+  -webkit-backdrop-filter: blur(12px) saturate(1.04);
 }
 
 .menu-verse-carousel__viewport {
@@ -1075,7 +1093,7 @@ body.is-envelope-lock {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.75rem;
+  margin-top: 0.85rem;
 }
 
 .menu-verse-carousel__dot {
@@ -1245,9 +1263,9 @@ body.is-envelope-lock {
 /* Variante estática — «Mensaje de mi vida» (nota en papel pastel) */
 .menu-personal-carousel--vida {
   position: relative;
-  max-width: 27rem;
-  margin-top: 0.65rem;
-  margin-bottom: 1.5rem;
+  max-width: 31rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1.65rem;
   padding: 0;
   background: transparent;
   border: none;
@@ -1264,8 +1282,8 @@ body.is-envelope-lock {
   transform: translateX(-50%);
   width: 88%;
   height: calc(100% - 1.5rem);
-  border-radius: 18px;
-  background: radial-gradient(ellipse 85% 70% at 50% 40%, rgba(255, 200, 220, 0.14), transparent 72%);
+  border-radius: 22px;
+  background: radial-gradient(ellipse 88% 70% at 50% 40%, rgba(82, 36, 58, 0.14), transparent 72%);
   pointer-events: none;
   z-index: 0;
 }
@@ -1273,11 +1291,11 @@ body.is-envelope-lock {
 .menu-personal-carousel--vida .menu-personal-carousel__kicker {
   position: relative;
   z-index: 1;
-  margin-bottom: 0.8rem;
-  color: rgba(255, 218, 230, 0.92);
-  text-shadow: 0 0 28px rgba(255, 150, 185, 0.35);
-  letter-spacing: 0.28em;
-  font-size: 0.64rem;
+  margin-bottom: 0.75rem;
+  color: rgba(104, 57, 76, 0.78);
+  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.22em;
+  font-size: 0.66rem;
 }
 
 .menu-personal-carousel--vida .menu-personal-carousel__kicker::before,
@@ -1292,33 +1310,35 @@ body.is-envelope-lock {
 }
 
 .menu-personal-carousel--vida .menu-personal-carousel__kicker::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 185, 205, 0.75));
+  background: linear-gradient(90deg, transparent, rgba(130, 76, 95, 0.42));
 }
 
 .menu-personal-carousel--vida .menu-personal-carousel__kicker::after {
-  background: linear-gradient(90deg, rgba(255, 185, 205, 0.75), transparent);
+  background: linear-gradient(90deg, rgba(130, 76, 95, 0.42), transparent);
 }
 
 .menu-personal-carousel--vida .menu-personal-carousel__viewport {
   position: relative;
   z-index: 1;
   overflow: visible;
-  padding: 1.25rem 1.2rem 1.35rem;
-  border-radius: 14px;
+  padding: clamp(1.3rem, 4vw, 1.65rem) clamp(1.25rem, 4vw, 1.8rem) clamp(1.35rem, 4vw, 1.7rem);
+  border-radius: 20px;
   background:
+    radial-gradient(circle at 12% 0%, rgba(255, 225, 218, 0.5), transparent 42%),
+    radial-gradient(circle at 100% 100%, rgba(255, 202, 216, 0.34), transparent 42%),
     repeating-linear-gradient(
       to bottom,
       transparent 0,
-      transparent 23px,
-      rgba(210, 170, 185, 0.09) 24px,
-      transparent 25px
+      transparent 29px,
+      rgba(190, 126, 148, 0.07) 30px,
+      transparent 31px
     ),
-    linear-gradient(168deg, #fffdfb 0%, #fff7f3 38%, #fdf1f5 100%);
-  border: 1px solid rgba(255, 238, 244, 0.95);
+    linear-gradient(168deg, rgba(255, 253, 249, 0.97) 0%, rgba(255, 244, 238, 0.96) 48%, rgba(255, 236, 244, 0.95) 100%);
+  border: 1px solid rgba(255, 248, 248, 0.92);
   box-shadow:
-    0 18px 44px rgba(0, 0, 0, 0.34),
-    0 6px 18px rgba(180, 100, 130, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+    0 22px 54px rgba(70, 32, 48, 0.26),
+    0 8px 20px rgba(180, 100, 130, 0.12),
+    0 0 0 1px rgba(130, 70, 90, 0.08) inset,
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
@@ -1328,8 +1348,8 @@ body.is-envelope-lock {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(255, 225, 235, 0.45), transparent 55%),
-    radial-gradient(ellipse 90% 60% at 100% 100%, rgba(255, 235, 245, 0.35), transparent 50%);
+    linear-gradient(90deg, rgba(130, 70, 90, 0.08), transparent 18%, transparent 82%, rgba(130, 70, 90, 0.05)),
+    radial-gradient(ellipse 110% 80% at 50% 0%, rgba(255, 255, 255, 0.54), transparent 55%);
   pointer-events: none;
 }
 
@@ -1339,7 +1359,7 @@ body.is-envelope-lock {
   right: 0.85rem;
   bottom: 0.55rem;
   font-size: 0.7rem;
-  color: rgba(215, 155, 175, 0.42);
+  color: rgba(172, 95, 122, 0.48);
   pointer-events: none;
 }
 
@@ -1353,12 +1373,35 @@ body.is-envelope-lock {
 .menu-personal-carousel--vida .menu-personal-carousel__slide {
   flex: 0 0 100%;
   width: 100%;
-  padding: 0 0.1rem 0.35rem;
-  font-size: clamp(0.98rem, 3.7vw, 1.14rem);
-  line-height: 1.64;
-  color: rgba(82, 54, 64, 0.9);
+  padding: 0 0.05rem 0.35rem;
+  font-size: clamp(0.98rem, 2.8vw, 1.08rem);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.68;
+  text-align: left;
+  color: rgba(78, 42, 56, 0.9);
   text-shadow: none;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
+}
+
+.menu-life-message__lead,
+.menu-life-message__body {
+  display: block;
+}
+
+.menu-life-message__lead {
+  max-width: 25rem;
+  margin: 0 auto;
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.08rem, 3.1vw, 1.22rem);
+  line-height: 1.6;
+  color: rgba(105, 55, 73, 0.95);
+}
+
+.menu-life-message__body {
+  margin-top: 1.05rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1788,6 +1831,164 @@ body.is-envelope-lock {
   display: block;
   width: 100%;
   min-height: 3rem;
+}
+
+/* Poema «Hesed» */
+.hesed-poem-shell {
+  min-height: 100dvh;
+  padding: 0.4rem 0 2.2rem;
+  outline: none;
+}
+
+.hesed-poem-card {
+  position: relative;
+  width: min(100%, 34rem);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(4.2rem, 7.2rem) 1fr;
+  gap: clamp(0.9rem, 4vw, 1.35rem);
+  padding: clamp(1rem, 4vw, 1.45rem);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255, 238, 214, 0.48), transparent 36%),
+    radial-gradient(circle at 12% 92%, rgba(170, 105, 112, 0.18), transparent 42%),
+    linear-gradient(150deg, #d8c0a0 0%, #c9aa86 52%, #b89572 100%);
+  color: rgba(48, 35, 31, 0.92);
+  border: 1px solid rgba(255, 238, 214, 0.32);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(72, 42, 34, 0.08) inset,
+    inset 0 1px 0 rgba(255, 248, 232, 0.36);
+  overflow: hidden;
+}
+
+.hesed-poem-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(72, 42, 34, 0.04) 0 1px, transparent 1px),
+    linear-gradient(0deg, rgba(72, 42, 34, 0.035) 0 1px, transparent 1px),
+    radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.2), transparent 22%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hesed-poem-art,
+.hesed-poem-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hesed-poem-art {
+  align-self: stretch;
+  min-height: 20rem;
+  opacity: 0.92;
+}
+
+.hesed-poem-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  overflow: visible;
+}
+
+.hesed-poem-art path,
+.hesed-poem-art circle {
+  fill: none;
+  stroke: rgba(38, 30, 27, 0.84);
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hesed-poem-art .hesed-art-heart {
+  fill: rgba(80, 44, 42, 0.08);
+}
+
+.hesed-poem-art .hesed-art-flower circle {
+  fill: rgba(38, 30, 27, 0.04);
+}
+
+.hesed-poem-art .hesed-art-flower--small {
+  opacity: 0.8;
+}
+
+.hesed-poem-content {
+  min-width: 0;
+  padding: 0.15rem 0 0.1rem;
+}
+
+.hesed-poem-kicker {
+  margin: 0 0 0.25rem;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(90, 56, 48, 0.62);
+}
+
+.hesed-poem-title {
+  margin: 0 0 0.9rem;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  line-height: 1;
+  color: rgba(58, 38, 34, 0.95);
+  text-shadow: 0 1px 0 rgba(255, 246, 230, 0.38);
+}
+
+.hesed-poem-stanzas {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.95rem, 3vw, 1.2rem);
+}
+
+.hesed-poem-stanzas p {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 4.2vw, 1.26rem);
+  line-height: 1.58;
+  letter-spacing: 0.01em;
+  color: rgba(42, 31, 29, 0.9);
+}
+
+.hesed-poem-card .signature {
+  margin-top: 1.35rem;
+  color: rgba(70, 44, 40, 0.66);
+  text-shadow: none;
+}
+
+@media (max-width: 520px) {
+  .hesed-poem-card {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 1.15rem 1rem 1.25rem;
+  }
+
+  .hesed-poem-art {
+    min-height: 6.5rem;
+    max-height: 8rem;
+    opacity: 0.5;
+    margin: -0.65rem auto -0.2rem;
+    width: min(11rem, 70%);
+  }
+
+  .hesed-poem-art svg {
+    min-height: 8rem;
+  }
+
+  .hesed-poem-kicker,
+  .hesed-poem-title {
+    text-align: center;
+  }
 }
 
 /* Corazones del poema "prisa" */
@@ -3556,6 +3757,14 @@ button.story-followup-submit:disabled {
     max-width: 26rem;
   }
 
+  .menu-verse-carousel {
+    max-width: 28rem;
+  }
+
+  .menu-personal-carousel--vida {
+    max-width: 31rem;
+  }
+
   #menu-view .menu-story-slot {
     max-width: 30rem;
   }
@@ -4164,6 +4373,50 @@ button.story-followup-submit:disabled {
   border-color: rgba(255, 214, 142, 0.68);
 }
 
+/* Variante Hesed — papel, tinta y ramas */
+.new-poem-pop--hesed .new-poem-pop__card {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(236, 201, 161, 0.22), transparent 58%),
+    radial-gradient(circle at 86% 74%, rgba(166, 104, 116, 0.2), transparent 54%),
+    linear-gradient(140deg, rgba(55, 40, 34, 0.95), rgba(28, 20, 22, 0.96));
+  border-color: rgba(222, 184, 144, 0.38);
+}
+
+.new-poem-pop--hesed .new-poem-pop__card:hover {
+  border-color: rgba(244, 213, 177, 0.62);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(246, 217, 178, 0.28), transparent 58%),
+    radial-gradient(circle at 86% 74%, rgba(188, 120, 132, 0.24), transparent 54%),
+    linear-gradient(140deg, rgba(66, 46, 38, 0.97), rgba(34, 24, 24, 0.98));
+}
+
+.new-poem-pop--hesed .new-poem-pop__sparkle {
+  color: rgba(255, 221, 202, 0.96);
+  text-shadow: 0 0 16px rgba(226, 176, 138, 0.55);
+}
+
+.new-poem-pop--hesed .new-poem-pop__kicker {
+  color: rgba(244, 211, 178, 0.9);
+}
+
+.new-poem-pop--hesed .new-poem-pop__title {
+  color: rgba(255, 244, 232, 0.98);
+  text-shadow: 0 0 16px rgba(226, 176, 138, 0.28);
+}
+
+.new-poem-pop--hesed .new-poem-pop__hint {
+  color: rgba(255, 231, 216, 0.76);
+}
+
+.new-poem-pop--hesed .new-poem-pop__close {
+  background: linear-gradient(140deg, rgba(55, 40, 34, 0.95), rgba(28, 20, 22, 0.96));
+  border-color: rgba(222, 184, 144, 0.38);
+}
+
+.new-poem-pop--hesed .new-poem-pop__close:hover {
+  border-color: rgba(244, 213, 177, 0.62);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .new-poem-pop,
   .new-poem-pop.is-visible {
@@ -4690,11 +4943,20 @@ button.story-followup-submit:disabled {
   margin: 0;
 }
 
+.poem-grid--single {
+  max-width: 32rem;
+}
+
 @media (min-width: 640px) {
   .poem-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.9rem;
     max-width: 40rem;
+  }
+
+  .poem-grid--single {
+    grid-template-columns: 1fr;
+    max-width: 32rem;
   }
 }
 
@@ -4759,12 +5021,49 @@ button.story-followup-submit:disabled {
   transform: translateY(0);
 }
 
+.poem-card.is-spotlight {
+  animation: poem-card-spotlight 1.8s ease both;
+}
+
+@keyframes poem-card-spotlight {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 14px 32px rgba(0, 0, 0, 0.32);
+  }
+  35%,
+  68% {
+    box-shadow:
+      0 0 0 1px rgba(255, 238, 214, 0.32) inset,
+      0 24px 54px rgba(0, 0, 0, 0.36),
+      0 0 42px rgba(232, 178, 132, 0.34);
+    transform: translateY(-2px);
+  }
+}
+
 .poem-card--featured {
   background:
     radial-gradient(circle at 100% 0%, rgba(255, 200, 222, 0.18), transparent 55%),
     radial-gradient(circle at 0% 100%, rgba(168, 67, 106, 0.22), transparent 55%),
     linear-gradient(145deg, rgba(54, 24, 42, 0.94), rgba(28, 12, 24, 0.96));
   border-color: rgba(255, 200, 220, 0.28);
+}
+
+.poem-card--hesed {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(238, 201, 160, 0.2), transparent 48%),
+    radial-gradient(circle at 96% 92%, rgba(160, 92, 104, 0.22), transparent 54%),
+    linear-gradient(145deg, rgba(58, 42, 34, 0.96), rgba(29, 20, 21, 0.97));
+  border-color: rgba(234, 196, 158, 0.34);
+}
+
+.poem-card--hesed:hover {
+  border-color: rgba(248, 218, 184, 0.58);
+  box-shadow:
+    0 0 0 1px rgba(255, 246, 235, 0.07) inset,
+    0 22px 44px rgba(0, 0, 0, 0.36),
+    0 0 38px rgba(218, 156, 126, 0.16);
 }
 
 .poem-card__icon {
@@ -4809,6 +5108,29 @@ button.story-followup-submit:disabled {
   background:
     radial-gradient(circle at 50% 30%, rgba(255, 220, 180, 0.18), transparent 75%),
     rgba(36, 22, 30, 0.6);
+}
+
+.poem-card__icon--hesed {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(244, 218, 190, 0.24), transparent 70%),
+    rgba(46, 30, 26, 0.72);
+}
+
+.poem-card__icon--hesed svg {
+  padding: 0.45rem;
+  overflow: visible;
+}
+
+.poem-card__icon--hesed path {
+  fill: none;
+  stroke: rgba(244, 216, 190, 0.9);
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.poem-card__icon--hesed path:first-child {
+  fill: rgba(166, 84, 100, 0.16);
 }
 
 .poem-card__icon--letters span {
