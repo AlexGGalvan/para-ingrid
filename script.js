@@ -164,6 +164,7 @@
   var btnBack11 = document.getElementById("btn-back-11");
   var btnBack12 = document.getElementById("btn-back-12");
   var btnBackHesed = document.getElementById("btn-back-hesed");
+  var btnResetHesed = document.getElementById("btn-reset-hesed");
   var btnBackStory = document.getElementById("btn-back-story");
   var btnBackIngridLetter = document.getElementById("btn-back-ingrid-letter");
   var btnBackParaTiLetter = document.getElementById("btn-back-para-ti-letter");
@@ -256,6 +257,11 @@
   var paraTiLetterArea = document.getElementById("para-ti-letter-area");
   var versesColumnParaTiLetter = document.getElementById("verses-column-para-ti-letter");
   var hesedArea = document.getElementById("poem-area-hesed");
+  var hesedHint = document.getElementById("hint-hesed");
+  var hesedScrollColumn = document.getElementById("verses-column-hesed");
+  var hesedPanel = document.getElementById("hesed-panel");
+  var hesedFlowers = document.getElementById("hesed-flowers");
+  var hesedPager = document.getElementById("pager-hesed");
 
   /**
    * Respuestas a «¿Ya le pongo punto?» · regístrate en https://formspree.io ,
@@ -316,6 +322,7 @@
     !btnBack7 ||
     !btnBack8 ||
     !btnBackHesed ||
+    !btnResetHesed ||
     !btnBackStory ||
     !btnBackIngridLetter ||
     !btnLeerHistoria ||
@@ -380,6 +387,11 @@
     || !ingridLetterArea
     || !versesColumnIngridLetter
     || !hesedArea
+    || !hesedHint
+    || !hesedScrollColumn
+    || !hesedPanel
+    || !hesedFlowers
+    || !hesedPager
   )
     return;
 
@@ -388,6 +400,27 @@
     var c = Math.max(0, Math.min(current, total));
     el.textContent = String(c) + "/" + String(total);
   }
+
+  var HESED_POEM =
+    "¿En qué momento dejé de amarte\n" +
+    "porque me hacías sentir amado,\n" +
+    "y comencé a amarte simplemente\n" +
+    "porque había decidido amarte?\n" +
+    "\n" +
+    "¿Cuándo la ansiedad se volvió paz,\n" +
+    "la idealización, aceptación,\n" +
+    "el necesitarte, elegirte,\n" +
+    "y el miedo a perderte, libertad?\n" +
+    "\n" +
+    "No sé cuándo dejé de preguntarme\n" +
+    "si me amabas\n" +
+    "y empecé a preguntarme\n" +
+    "si yo sabía amarte.\n" +
+    "\n" +
+    "Cuando entendí que,\n" +
+    "en lugar de querer que fueras mía,\n" +
+    "simplemente quería\n" +
+    "que fueras tú.";
 
   var EXTRA_POEM =
     "Lo nuestro no fue prisa,\n" +
@@ -954,6 +987,78 @@
     scrollColumn: scrollColumn
     ,pagerEl: ingridPager
   });
+
+  var hesedFlowerEls = Array.prototype.slice.call(
+    hesedFlowers.querySelectorAll(".hesed-flower")
+  );
+  var hesedFill = 0;
+  var hesedParas = HESED_POEM.split(/\n\s*\n/);
+  var hesedShown = 0;
+
+  function resetHesedFlowers() {
+    hesedFill = 0;
+    hesedShown = 0;
+    hesedFlowerEls.forEach(function (el) {
+      el.classList.remove("is-full");
+    });
+    hesedHint.classList.remove("is-hidden");
+    hesedPanel.textContent = "";
+    hesedPanel.classList.remove("has-text", "verse-enter");
+    hesedArea.scrollTop = 0;
+    hesedScrollColumn.scrollTop = 0;
+    setPager(hesedPager, 0, hesedParas.length);
+  }
+
+  function fillNextHesedFlower() {
+    if (hesedFill < hesedFlowerEls.length) {
+      hesedFlowerEls[hesedFill].classList.add("is-full");
+      hesedFill += 1;
+    }
+  }
+
+  function revealNextHesedBlock() {
+    if (hesedShown >= hesedParas.length) return;
+    var next = hesedParas[hesedShown].trim();
+    hesedShown += 1;
+    if (!next) return;
+
+    hesedPanel.textContent = next;
+    hesedPanel.classList.add("has-text");
+    hesedPanel.classList.remove("verse-enter");
+    void hesedPanel.offsetWidth;
+    hesedPanel.classList.add("verse-enter");
+    hesedPanel.scrollTop = 0;
+    hesedScrollColumn.scrollTop = 0;
+    setPager(hesedPager, hesedShown, hesedParas.length);
+  }
+
+  function hesedProgress() {
+    if (hesedFill === 0 && hesedShown === 0) {
+      hesedHint.classList.add("is-hidden");
+    }
+    fillNextHesedFlower();
+    revealNextHesedBlock();
+    if (hesedFill >= hesedFlowerEls.length && hesedShown >= hesedParas.length) {
+      hesedHint.classList.add("is-hidden");
+    }
+  }
+
+  function onHesedActivate(e) {
+    if (e.type === "keydown" && e.key !== " " && e.key !== "Enter") return;
+    if (e.type === "keydown") e.preventDefault();
+    hesedProgress();
+  }
+
+  hesedArea.addEventListener(
+    "pointerup",
+    function (e) {
+      if (e.button !== 0 && e.button !== -1) return;
+      if (e.target.closest("#btn-back-hesed, #btn-reset-hesed")) return;
+      onHesedActivate(e);
+    },
+    { passive: true }
+  );
+  hesedArea.addEventListener("keydown", onHesedActivate);
 
   var prisaHeartsEls = Array.prototype.slice.call(
     prisaHearts.querySelectorAll(".heart")
@@ -1953,7 +2058,7 @@
     if (view === "hesed") {
       window.scrollTo(0, 0);
       hesedView.scrollTop = 0;
-      hesedArea.scrollTop = 0;
+      resetHesedFlowers();
       hesedArea.focus({ preventScroll: true });
     }
 
@@ -2158,6 +2263,12 @@
 
   btnBackHesed.addEventListener("click", function () {
     showView("menu");
+  });
+
+  btnResetHesed.addEventListener("click", function (e) {
+    e.stopPropagation();
+    resetHesedFlowers();
+    hesedArea.focus();
   });
 
   btnBack9.addEventListener("click", function () {

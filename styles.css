@@ -6,7 +6,6 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  background: #c8e8fb;
 }
 
 body {
@@ -14,13 +13,10 @@ body {
   min-height: 100dvh;
   min-height: 100vh;
   font-family: "Cormorant Garamond", "Times New Roman", serif;
-  background:
-    radial-gradient(circle at 74% 5%, rgba(255, 247, 203, 0.78) 0 4.1rem, rgba(255, 223, 156, 0.32) 4.2rem 10rem, transparent 18rem),
-    linear-gradient(180deg, #a9d3ec 0%, #dcecf1 28%, #f0ccbd 52%, #784765 80%, #160b18 100%);
+  background: radial-gradient(120% 80% at 50% 15%, #3a2340 0%, #160b18 52%, #08040a 100%);
   color: #f4e8ec;
   touch-action: manipulation;
   overscroll-behavior: none;
-  overflow-x: hidden;
 }
 
 html.maintenance-active body {
@@ -596,11 +592,11 @@ body.is-envelope-lock {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(620px 230px at 50% 20%, rgba(58, 32, 48, 0.3), rgba(58, 32, 48, 0.1) 46%, transparent 76%),
-    repeating-conic-gradient(from 218deg at 74% -4%, rgba(255, 245, 199, 0.15) 0deg 5deg, transparent 9deg 18deg),
-    radial-gradient(700px 350px at 74% 4%, rgba(255, 239, 186, 0.28), transparent 68%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 36%, rgba(30, 8, 20, 0.3) 100%);
-  filter: saturate(1.05) blur(0.2px);
+    radial-gradient(700px 420px at 12% 12%, rgba(255, 198, 222, 0.18), transparent 60%),
+    radial-gradient(540px 360px at 86% 18%, rgba(190, 176, 255, 0.16), transparent 62%),
+    radial-gradient(520px 420px at 50% 92%, rgba(255, 138, 186, 0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 38%, rgba(255, 255, 255, 0.02));
+  filter: saturate(1.05);
   pointer-events: none;
 }
 
@@ -610,19 +606,14 @@ body.is-envelope-lock {
   inset: -40px;
   z-index: -1;
   background-image:
-    radial-gradient(ellipse 18rem 4.4rem at 16% 27%, rgba(255, 255, 255, 0.48) 0 42%, rgba(255, 255, 255, 0.16) 61%, transparent 75%),
-    radial-gradient(ellipse 14rem 3.8rem at 36% 23%, rgba(255, 250, 244, 0.38) 0 48%, rgba(255, 250, 244, 0.14) 66%, transparent 78%),
-    radial-gradient(ellipse 17rem 4.6rem at 78% 26%, rgba(255, 255, 255, 0.48) 0 44%, rgba(255, 235, 214, 0.17) 65%, transparent 78%),
-    radial-gradient(ellipse 12rem 3.6rem at 94% 39%, rgba(255, 255, 255, 0.33) 0 48%, rgba(255, 255, 255, 0.1) 67%, transparent 78%),
-    radial-gradient(circle at 70% 12%, rgba(255, 255, 245, 0.85) 0 1px, transparent 2px),
-    radial-gradient(circle at 83% 19%, rgba(255, 242, 198, 0.62) 0 1px, transparent 2px),
-    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.5) 0 1px, transparent 2px),
-    radial-gradient(circle at 58% 31%, rgba(255, 246, 214, 0.42) 0 1px, transparent 2px);
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, repeat, repeat;
-  background-size: auto, auto, auto, auto, 170px 170px, 230px 230px, 190px 190px, 260px 260px;
-  opacity: 0.82;
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.09) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.07) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.05) 0 1px, transparent 2px);
+  background-size: 220px 220px, 260px 260px, 240px 240px, 300px 300px;
+  opacity: 0.55;
   transform: translateZ(0);
-  animation: float-sparkles 18s ease-in-out infinite;
+  animation: float-sparkles 12s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -1833,161 +1824,104 @@ body.is-envelope-lock {
   min-height: 3rem;
 }
 
-/* Poema «Hesed» */
-.hesed-poem-shell {
-  min-height: 100dvh;
-  padding: 0.4rem 0 2.2rem;
-  outline: none;
+/* Flores del poema «Hesed» */
+.hesed-flowers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  max-width: min(100%, 18rem);
+  margin-inline: auto;
+  padding: 0.35rem 0 0.65rem;
+  user-select: none;
 }
 
-.hesed-poem-card {
-  position: relative;
-  width: min(100%, 34rem);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(4.2rem, 7.2rem) 1fr;
-  gap: clamp(0.9rem, 4vw, 1.35rem);
-  padding: clamp(1rem, 4vw, 1.45rem);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 84% 8%, rgba(255, 238, 214, 0.48), transparent 36%),
-    radial-gradient(circle at 12% 92%, rgba(170, 105, 112, 0.18), transparent 42%),
-    linear-gradient(150deg, #d8c0a0 0%, #c9aa86 52%, #b89572 100%);
-  color: rgba(48, 35, 31, 0.92);
-  border: 1px solid rgba(255, 238, 214, 0.32);
-  box-shadow:
-    0 24px 56px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgba(72, 42, 34, 0.08) inset,
-    inset 0 1px 0 rgba(255, 248, 232, 0.36);
-  overflow: hidden;
+.hesed-flower {
+  width: clamp(30px, 10vw, 40px);
+  height: clamp(30px, 10vw, 40px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.34;
+  transform: translateZ(0) scale(0.96) rotate(-8deg);
+  transition: transform 0.22s ease, opacity 0.22s ease, filter 0.22s ease;
 }
 
-.hesed-poem-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(90deg, rgba(72, 42, 34, 0.04) 0 1px, transparent 1px),
-    linear-gradient(0deg, rgba(72, 42, 34, 0.035) 0 1px, transparent 1px),
-    radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.2), transparent 22%);
-  background-size: 28px 28px, 28px 28px, 100% 100%;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-  pointer-events: none;
+.hesed-flower:nth-child(even) {
+  transform: translateZ(0) scale(0.96) rotate(7deg);
 }
 
-.hesed-poem-art,
-.hesed-poem-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hesed-poem-art {
-  align-self: stretch;
-  min-height: 20rem;
-  opacity: 0.92;
-}
-
-.hesed-poem-art svg {
-  display: block;
+.hesed-flower svg {
   width: 100%;
   height: 100%;
-  min-height: 20rem;
   overflow: visible;
 }
 
-.hesed-poem-art path,
-.hesed-poem-art circle {
-  fill: none;
-  stroke: rgba(38, 30, 27, 0.84);
-  stroke-width: 2.1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.hesed-flower-petal {
+  fill: rgba(255, 220, 232, 0.12);
+  stroke: rgba(255, 220, 232, 0.34);
+  stroke-width: 1.1;
 }
 
-.hesed-poem-art .hesed-art-heart {
-  fill: rgba(80, 44, 42, 0.08);
+.hesed-flower-center {
+  fill: rgba(255, 226, 174, 0.18);
+  stroke: rgba(255, 232, 190, 0.35);
+  stroke-width: 1;
 }
 
-.hesed-poem-art .hesed-art-flower circle {
-  fill: rgba(38, 30, 27, 0.04);
+.hesed-flower.is-full {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(255, 170, 205, 0.36));
+  transform: translateZ(0) scale(1.08) rotate(-3deg);
+  animation: hesed-flower-bloom 0.58s ease both;
 }
 
-.hesed-poem-art .hesed-art-flower--small {
-  opacity: 0.8;
+.hesed-flower.is-full:nth-child(even) {
+  transform: translateZ(0) scale(1.08) rotate(4deg);
+  animation: hesed-flower-bloom-even 0.58s ease both;
 }
 
-.hesed-poem-content {
-  min-width: 0;
-  padding: 0.15rem 0 0.1rem;
+.hesed-flower.is-full .hesed-flower-petal {
+  fill: #ffc8da;
+  stroke: #ffe8f0;
 }
 
-.hesed-poem-kicker {
-  margin: 0 0 0.25rem;
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(90, 56, 48, 0.62);
+.hesed-flower.is-full .hesed-flower-center {
+  fill: #ffe6a8;
+  stroke: #fff2c8;
 }
 
-.hesed-poem-title {
-  margin: 0 0 0.9rem;
-  font-family: "Cormorant Garamond", "Times New Roman", serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(2rem, 7vw, 2.8rem);
-  line-height: 1;
-  color: rgba(58, 38, 34, 0.95);
-  text-shadow: 0 1px 0 rgba(255, 246, 230, 0.38);
+.verse-panel--hesed {
+  max-width: 24rem;
 }
 
-.hesed-poem-stanzas {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.95rem, 3vw, 1.2rem);
-}
-
-.hesed-poem-stanzas p {
-  margin: 0;
-  font-family: "Cormorant Garamond", "Times New Roman", serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(1.05rem, 4.2vw, 1.26rem);
-  line-height: 1.58;
-  letter-spacing: 0.01em;
-  color: rgba(42, 31, 29, 0.9);
-}
-
-.hesed-poem-card .signature {
-  margin-top: 1.35rem;
-  color: rgba(70, 44, 40, 0.66);
-  text-shadow: none;
-}
-
-@media (max-width: 520px) {
-  .hesed-poem-card {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-    padding: 1.15rem 1rem 1.25rem;
+@keyframes hesed-flower-bloom {
+  0% {
+    transform: scale(0.9) rotate(-10deg);
+    filter: brightness(1);
   }
-
-  .hesed-poem-art {
-    min-height: 6.5rem;
-    max-height: 8rem;
-    opacity: 0.5;
-    margin: -0.65rem auto -0.2rem;
-    width: min(11rem, 70%);
+  55% {
+    transform: scale(1.16) rotate(-1deg);
+    filter: brightness(1.08);
   }
-
-  .hesed-poem-art svg {
-    min-height: 8rem;
+  100% {
+    transform: scale(1.08) rotate(-3deg);
+    filter: brightness(1);
   }
+}
 
-  .hesed-poem-kicker,
-  .hesed-poem-title {
-    text-align: center;
+@keyframes hesed-flower-bloom-even {
+  0% {
+    transform: scale(0.9) rotate(8deg);
+    filter: brightness(1);
+  }
+  55% {
+    transform: scale(1.16) rotate(1deg);
+    filter: brightness(1.08);
+  }
+  100% {
+    transform: scale(1.08) rotate(4deg);
+    filter: brightness(1);
   }
 }
 
@@ -4373,48 +4307,48 @@ button.story-followup-submit:disabled {
   border-color: rgba(255, 214, 142, 0.68);
 }
 
-/* Variante Hesed — papel, tinta y ramas */
+/* Variante Hesed — flores rosadas */
 .new-poem-pop--hesed .new-poem-pop__card {
   background:
-    radial-gradient(circle at 18% 24%, rgba(236, 201, 161, 0.22), transparent 58%),
-    radial-gradient(circle at 86% 74%, rgba(166, 104, 116, 0.2), transparent 54%),
-    linear-gradient(140deg, rgba(55, 40, 34, 0.95), rgba(28, 20, 22, 0.96));
-  border-color: rgba(222, 184, 144, 0.38);
+    radial-gradient(circle at 18% 24%, rgba(255, 198, 222, 0.22), transparent 58%),
+    radial-gradient(circle at 86% 74%, rgba(160, 218, 170, 0.12), transparent 54%),
+    linear-gradient(140deg, rgba(58, 24, 46, 0.96), rgba(26, 12, 24, 0.97));
+  border-color: rgba(255, 198, 222, 0.38);
 }
 
 .new-poem-pop--hesed .new-poem-pop__card:hover {
-  border-color: rgba(244, 213, 177, 0.62);
+  border-color: rgba(255, 220, 235, 0.62);
   background:
-    radial-gradient(circle at 18% 24%, rgba(246, 217, 178, 0.28), transparent 58%),
-    radial-gradient(circle at 86% 74%, rgba(188, 120, 132, 0.24), transparent 54%),
-    linear-gradient(140deg, rgba(66, 46, 38, 0.97), rgba(34, 24, 24, 0.98));
+    radial-gradient(circle at 18% 24%, rgba(255, 210, 232, 0.28), transparent 58%),
+    radial-gradient(circle at 86% 74%, rgba(174, 232, 186, 0.16), transparent 54%),
+    linear-gradient(140deg, rgba(68, 28, 54, 0.98), rgba(32, 14, 28, 0.98));
 }
 
 .new-poem-pop--hesed .new-poem-pop__sparkle {
-  color: rgba(255, 221, 202, 0.96);
-  text-shadow: 0 0 16px rgba(226, 176, 138, 0.55);
+  color: rgba(255, 213, 228, 0.98);
+  text-shadow: 0 0 16px rgba(255, 150, 202, 0.55);
 }
 
 .new-poem-pop--hesed .new-poem-pop__kicker {
-  color: rgba(244, 211, 178, 0.9);
+  color: rgba(255, 205, 224, 0.9);
 }
 
 .new-poem-pop--hesed .new-poem-pop__title {
   color: rgba(255, 244, 232, 0.98);
-  text-shadow: 0 0 16px rgba(226, 176, 138, 0.28);
+  text-shadow: 0 0 16px rgba(255, 150, 202, 0.28);
 }
 
 .new-poem-pop--hesed .new-poem-pop__hint {
-  color: rgba(255, 231, 216, 0.76);
+  color: rgba(255, 231, 240, 0.78);
 }
 
 .new-poem-pop--hesed .new-poem-pop__close {
-  background: linear-gradient(140deg, rgba(55, 40, 34, 0.95), rgba(28, 20, 22, 0.96));
-  border-color: rgba(222, 184, 144, 0.38);
+  background: linear-gradient(140deg, rgba(58, 24, 46, 0.96), rgba(26, 12, 24, 0.97));
+  border-color: rgba(255, 198, 222, 0.38);
 }
 
 .new-poem-pop--hesed .new-poem-pop__close:hover {
-  border-color: rgba(244, 213, 177, 0.62);
+  border-color: rgba(255, 220, 235, 0.62);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5052,18 +4986,18 @@ button.story-followup-submit:disabled {
 
 .poem-card--hesed {
   background:
-    radial-gradient(circle at 10% 20%, rgba(238, 201, 160, 0.2), transparent 48%),
-    radial-gradient(circle at 96% 92%, rgba(160, 92, 104, 0.22), transparent 54%),
-    linear-gradient(145deg, rgba(58, 42, 34, 0.96), rgba(29, 20, 21, 0.97));
-  border-color: rgba(234, 196, 158, 0.34);
+    radial-gradient(circle at 10% 20%, rgba(255, 198, 222, 0.2), transparent 48%),
+    radial-gradient(circle at 96% 92%, rgba(156, 220, 172, 0.12), transparent 54%),
+    linear-gradient(145deg, rgba(58, 24, 46, 0.96), rgba(28, 12, 25, 0.97));
+  border-color: rgba(255, 198, 222, 0.34);
 }
 
 .poem-card--hesed:hover {
-  border-color: rgba(248, 218, 184, 0.58);
+  border-color: rgba(255, 220, 235, 0.58);
   box-shadow:
     0 0 0 1px rgba(255, 246, 235, 0.07) inset,
     0 22px 44px rgba(0, 0, 0, 0.36),
-    0 0 38px rgba(218, 156, 126, 0.16);
+    0 0 38px rgba(255, 145, 200, 0.18);
 }
 
 .poem-card__icon {
@@ -5112,8 +5046,8 @@ button.story-followup-submit:disabled {
 
 .poem-card__icon--hesed {
   background:
-    radial-gradient(circle at 50% 35%, rgba(244, 218, 190, 0.24), transparent 70%),
-    rgba(46, 30, 26, 0.72);
+    radial-gradient(circle at 50% 35%, rgba(255, 198, 222, 0.24), transparent 70%),
+    rgba(42, 18, 34, 0.72);
 }
 
 .poem-card__icon--hesed svg {
@@ -5121,7 +5055,8 @@ button.story-followup-submit:disabled {
   overflow: visible;
 }
 
-.poem-card__icon--hesed path {
+.poem-card__icon--hesed path,
+.poem-card__icon--hesed circle {
   fill: none;
   stroke: rgba(244, 216, 190, 0.9);
   stroke-width: 1.55;
@@ -5129,8 +5064,23 @@ button.story-followup-submit:disabled {
   stroke-linejoin: round;
 }
 
-.poem-card__icon--hesed path:first-child {
-  fill: rgba(166, 84, 100, 0.16);
+.poem-card__icon--hesed .poem-card__flower-petal {
+  fill: rgba(255, 198, 222, 0.18);
+  stroke: rgba(255, 226, 238, 0.9);
+}
+
+.poem-card__icon--hesed .poem-card__flower-center {
+  fill: rgba(255, 230, 168, 0.42);
+  stroke: rgba(255, 241, 206, 0.95);
+}
+
+.poem-card__icon--hesed .poem-card__flower-stem {
+  stroke: rgba(188, 230, 188, 0.78);
+}
+
+.poem-card__icon--hesed .poem-card__flower-leaf {
+  fill: rgba(158, 218, 170, 0.16);
+  stroke: rgba(188, 230, 188, 0.78);
 }
 
 .poem-card__icon--letters span {

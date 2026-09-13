@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#b9ddf5">
+    <meta name="theme-color" content="#1a0f14">
     <script src="maintenance.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -141,7 +141,7 @@
 
                 <div class="new-poem-pop new-poem-pop--hesed is-visible" id="new-poem-hesed-pop" aria-label="Nuevo poema agregado">
                     <button type="button" class="new-poem-pop__card" id="btn-new-hesed-pop" aria-label="Ir al nuevo poema Hesed">
-                        <span class="new-poem-pop__sparkle" aria-hidden="true">♡</span>
+                        <span class="new-poem-pop__sparkle" aria-hidden="true">✿</span>
                         <span class="new-poem-pop__body">
                             <span class="new-poem-pop__kicker">Nuevo Poema Agregado</span>
                             <span class="new-poem-pop__title">Hesed</span>
@@ -526,10 +526,13 @@
                                 <button type="button" class="poem-card poem-card--featured poem-card--hesed" id="btn-hesed" data-mood="estas" aria-label="Abrir poema: Hesed">
                                     <span class="poem-card__icon poem-card__icon--hesed" aria-hidden="true">
                                         <svg viewBox="0 0 48 48" focusable="false">
-                                            <path d="M24 39s-12-7.5-12-16.3c0-4.1 3.1-7.4 7.2-7.4 2.3 0 4.1 1 5.2 2.6 1.2-1.6 3-2.6 5.3-2.6 4.1 0 7.2 3.3 7.2 7.4C36.9 31.5 24 39 24 39z"/>
-                                            <path d="M12 34c7.5-2 14.9-8.8 19-20"/>
-                                            <path d="M30.2 14.8c3.1-1 5.6-.8 7.7.5-1 2.4-2.8 4.1-5.7 5"/>
-                                            <path d="M18.2 27.1c-2.6-.9-4.7-2.4-6.2-4.7 2.7-.8 5-.4 7 1"/>
+                                            <circle class="poem-card__flower-petal" cx="24" cy="13" r="6"/>
+                                            <circle class="poem-card__flower-petal" cx="34" cy="23" r="6"/>
+                                            <circle class="poem-card__flower-petal" cx="24" cy="33" r="6"/>
+                                            <circle class="poem-card__flower-petal" cx="14" cy="23" r="6"/>
+                                            <circle class="poem-card__flower-center" cx="24" cy="23" r="5"/>
+                                            <path class="poem-card__flower-stem" d="M24 37 C23 41 20 43 16 44"/>
+                                            <path class="poem-card__flower-leaf" d="M20 41 C16 38 13 38 10 41 C13 44 17 44 20 41 Z"/>
                                         </svg>
                                     </span>
                                     <span class="poem-card__body">
@@ -1232,50 +1235,54 @@
 
         <section id="hesed-view" hidden aria-label="Poema: Hesed">
             <button type="button" class="extra-cta is-visible" id="btn-back-hesed">Volver al menú</button>
-            <div class="hesed-poem-shell" id="poem-area-hesed" tabindex="0">
-                <p class="poem-meta">La Forma en que te amo</p>
-                <article class="hesed-poem-card" aria-labelledby="hesed-title">
-                    <div class="hesed-poem-art" aria-hidden="true">
-                        <svg viewBox="0 0 180 320" focusable="false">
-                            <path class="hesed-art-heart" d="M62 250 C28 214 18 166 42 132 C56 112 78 112 91 132 C106 109 132 111 146 134 C169 172 128 224 62 250 Z"/>
-                            <path class="hesed-art-vein" d="M68 246 C70 214 79 185 96 157 C108 137 123 122 143 109"/>
-                            <path class="hesed-art-stem" d="M52 198 C48 162 42 128 33 95 C28 74 22 56 14 42"/>
-                            <path class="hesed-art-stem" d="M57 181 C64 147 77 118 96 92 C110 73 124 57 138 43"/>
-                            <path class="hesed-art-stem" d="M41 154 C34 137 26 121 12 108"/>
-                            <path class="hesed-art-leaf" d="M92 100 C76 94 65 96 55 108 C70 115 84 112 92 100 Z"/>
-                            <path class="hesed-art-leaf" d="M118 66 C100 64 88 69 80 84 C96 88 111 82 118 66 Z"/>
-                            <path class="hesed-art-leaf" d="M28 116 C16 121 10 132 10 146 C25 143 33 133 28 116 Z"/>
-                            <g class="hesed-art-flower">
-                                <circle cx="30" cy="80" r="6"/>
-                                <circle cx="22" cy="86" r="5"/>
-                                <circle cx="38" cy="88" r="5"/>
-                                <circle cx="30" cy="95" r="5"/>
-                                <circle cx="30" cy="88" r="2.5"/>
-                            </g>
-                            <g class="hesed-art-flower hesed-art-flower--small">
-                                <circle cx="129" cy="51" r="4.8"/>
-                                <circle cx="123" cy="57" r="4"/>
-                                <circle cx="136" cy="58" r="4"/>
-                                <circle cx="130" cy="64" r="4"/>
-                                <circle cx="130" cy="57" r="2"/>
-                            </g>
-                            <path class="hesed-art-spark" d="M154 78 l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/>
-                            <path class="hesed-art-spark" d="M30 272 l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+            <button type="button" class="extra-cta is-visible btn-reset" id="btn-reset-hesed">Reiniciar</button>
+            <div id="poem-area-hesed" tabindex="0" role="application" aria-label="Poema - toca para llenar flores">
+                <p class="poem-meta" id="date-hesed">La Forma en que te amo</p>
+                <div class="hesed-flowers" id="hesed-flowers" aria-label="Flores" role="img">
+                    <span class="hesed-flower" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false">
+                            <circle class="hesed-flower-petal" cx="16" cy="8" r="5"/>
+                            <circle class="hesed-flower-petal" cx="24" cy="16" r="5"/>
+                            <circle class="hesed-flower-petal" cx="16" cy="24" r="5"/>
+                            <circle class="hesed-flower-petal" cx="8" cy="16" r="5"/>
+                            <circle class="hesed-flower-center" cx="16" cy="16" r="4"/>
                         </svg>
-                    </div>
+                    </span>
+                    <span class="hesed-flower" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false">
+                            <circle class="hesed-flower-petal" cx="16" cy="8" r="5"/>
+                            <circle class="hesed-flower-petal" cx="24" cy="16" r="5"/>
+                            <circle class="hesed-flower-petal" cx="16" cy="24" r="5"/>
+                            <circle class="hesed-flower-petal" cx="8" cy="16" r="5"/>
+                            <circle class="hesed-flower-center" cx="16" cy="16" r="4"/>
+                        </svg>
+                    </span>
+                    <span class="hesed-flower" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false">
+                            <circle class="hesed-flower-petal" cx="16" cy="8" r="5"/>
+                            <circle class="hesed-flower-petal" cx="24" cy="16" r="5"/>
+                            <circle class="hesed-flower-petal" cx="16" cy="24" r="5"/>
+                            <circle class="hesed-flower-petal" cx="8" cy="16" r="5"/>
+                            <circle class="hesed-flower-center" cx="16" cy="16" r="4"/>
+                        </svg>
+                    </span>
+                    <span class="hesed-flower" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false">
+                            <circle class="hesed-flower-petal" cx="16" cy="8" r="5"/>
+                            <circle class="hesed-flower-petal" cx="24" cy="16" r="5"/>
+                            <circle class="hesed-flower-petal" cx="16" cy="24" r="5"/>
+                            <circle class="hesed-flower-petal" cx="8" cy="16" r="5"/>
+                            <circle class="hesed-flower-center" cx="16" cy="16" r="4"/>
+                        </svg>
+                    </span>
+                </div>
+                <p class="hint" id="hint-hesed">Toca la pantalla para hacer florecer cada bloque</p>
+                <p class="pager" id="pager-hesed" aria-label="Progreso del poema">0/4</p>
 
-                    <div class="hesed-poem-content">
-                        <p class="hesed-poem-kicker">Poema nuevo</p>
-                        <h2 class="hesed-poem-title" id="hesed-title">Hesed</h2>
-                        <div class="hesed-poem-stanzas">
-                            <p>¿En qué momento dejé de amarte<br>porque me hacías sentir amado,<br>y comencé a amarte simplemente<br>porque había decidido amarte?</p>
-                            <p>¿Cuándo la ansiedad se volvió paz,<br>la idealización, aceptación,<br>el necesitarte, elegirte,<br>y el miedo a perderte, libertad?</p>
-                            <p>No sé cuándo dejé de preguntarme<br>si me amabas<br>y empecé a preguntarme<br>si yo sabía amarte.</p>
-                            <p>Cuando entendí que,<br>en lugar de querer que fueras mía,<br>simplemente quería<br>que fueras tú.</p>
-                        </div>
-                        <p class="signature">— Para Ingrid</p>
-                    </div>
-                </article>
+                <div class="verses-column" id="verses-column-hesed">
+                    <div class="verse-panel verse-panel--hesed" id="hesed-panel" aria-live="polite"></div>
+                    <p class="signature">— Para Ingrid</p>
+                </div>
             </div>
         </section>
 
