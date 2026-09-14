@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#d9d2ee">
+    <title>Cafuné</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: #d9d2ee;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100svh;
+            min-height: 100dvh;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(248, 241, 255, 0.58), transparent 34rem),
+                linear-gradient(180deg, #e3ddf4 0%, #d9d2ee 48%, #cec5e8 100%);
+            color: #c8332b;
+        }
+
+        main {
+            min-height: 100svh;
+            min-height: 100dvh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.85rem, 4vw, 2.75rem);
+        }
+
+        .cafune-composition {
+            width: min(100%, 47.5rem);
+            display: block;
+        }
+
+        .cafune-composition img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: clamp(0.4rem, 1.6vw, 1rem);
+            box-shadow:
+                0 2.2rem 4.4rem rgba(92, 74, 128, 0.22),
+                0 0 0 1px rgba(255, 255, 255, 0.26);
+        }
+
+        @media (max-width: 540px) {
+            main {
+                padding: 0;
+            }
+
+            .cafune-composition {
+                width: 100%;
+            }
+
+            .cafune-composition img {
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-height: 780px) {
+            main {
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .cafune-composition {
+                animation: cafune-arrive 720ms ease-out both;
+            }
+        }
+
+        @keyframes cafune-arrive {
+            from {
+                opacity: 0;
+                transform: translateY(0.75rem) scale(0.992);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main aria-label="Carta digital Cafuné">
+        <div class="cafune-composition">
+            <img src="cafune.png" alt="Carta ilustrada Cafuné con una pareja y la frase: El amor no siempre necesita hacer ruido." fetchpriority="high" decoding="async">
+        </div>
+    </main>
+</body>
+
+</html>
